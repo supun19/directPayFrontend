@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="register">
   <div class="col-md-12">
     <div>
       <ba-card title="Basic Form" baCardClass="with-scroll">
@@ -24,4 +24,10 @@
       </ba-card>
     </div>
   </div>
+</div>
+<div *ngIf="qr_code" class="col-md-6 col-sm-6 col-xs-6">
+  <qrcode [merchantId]="merchantId"></qrcode>
+</div>
+<div *ngIf="detail" class="col-md-6 col-sm-6 col-xs-6">
+  <detail [merchant]="merchant"></detail>
 </div>

@@ -23,7 +23,7 @@ export class CalendarService {
       eventLimit: true,
       events: [
         {
-          title: 'All Day Event',
+          title: 'all Day Event',
           start: '2016-03-01',
           color: dashboardColors.silverTree
         },

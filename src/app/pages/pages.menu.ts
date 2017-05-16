@@ -34,15 +34,31 @@ export const PAGES_MENU = [
                 title: 'Register',
               }
             }
-          },
+          }
+
+        ]
+      },
+      {
+        path: 'transaction',  // path for our page
+        data: { // custom menu declaration
+          menu: {
+            title: 'Transaction', // menu title
+            icon: 'ion-android-home', // menu icon
+            selected: false,
+            expanded: false,
+            order: 75
+          }
+        },
+        children: [
           {
-            path: 'qrcode',
+            path: 'all',
             data: {
               menu: {
-                title: 'QrCode',
+                title: 'All',
               }
             }
           }
+
         ]
       },
       {

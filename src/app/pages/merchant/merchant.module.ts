@@ -9,11 +9,13 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { MerchantRegisterComponent } from './register/merchantRegister.component';
 import {MerchantComponent} from './merchant.component';
 import {QrCodeComponent} from './QRCode/qrcode.component';
+import {DetailComponent} from './Detail/detail.component';
+
 
 import { routing } from './merchant.routing';
 
 import { QRCodeModule } from 'angular2-qrcode';
-import {QRCodeComponent} from 'angular2-qrcode';
+
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import {QRCodeComponent} from 'angular2-qrcode';
     routing
   ],
   declarations: [
-    MerchantRegisterComponent,MerchantComponent,QrCodeComponent
+    MerchantRegisterComponent,MerchantComponent,QrCodeComponent,DetailComponent
 
 
   ]

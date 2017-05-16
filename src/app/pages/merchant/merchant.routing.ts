@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MerchantRegisterComponent } from './register/merchantRegister.component';
 import {QrCodeComponent} from './QRCode/qrcode.component';
 import {MerchantComponent} from "./merchant.component";
+import {DetailComponent} from "./Detail/detail.component";
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     component: MerchantComponent,
     children: [
       { path: 'register', component: MerchantRegisterComponent },
-      { path: 'qrcode', component: QrCodeComponent },
+
     ]
   }
 ];

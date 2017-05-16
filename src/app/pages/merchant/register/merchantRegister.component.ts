@@ -3,6 +3,7 @@ import {MerchantService} from "../../../services/merchant.service";
 
 
 import {Merchant} from "../../../class/merchant";
+import {register} from "ts-node/dist";
 
 @Component({
   selector: 'merchant-register',
@@ -12,8 +13,11 @@ import {Merchant} from "../../../class/merchant";
 })
 export class MerchantRegisterComponent {
   isChecked: boolean = false;
-  merchant = new Merchant("","","no 65","kils@gmail.com");
-
+  merchant = new Merchant("supun","madushanka","no 65","kils@gmail.com");
+  merchantId="";
+  register = true;
+  qr_code =false;
+  detail=false;
   constructor(private merchantService:MerchantService) {
   }
 
@@ -23,8 +27,19 @@ export class MerchantRegisterComponent {
 
     this.merchantService.register(this.merchant).then(res => {
 
+        if(res.data[0] != null){
+          this.register=false;
 
-          console.log(res.data[0]);
+          this.merchant.accountNumber = res.data[0].merchantAccountNumber
+          this.merchant.email = res.data[0].merchantEmail
+          this.merchant.address = res.data[0].merchantAddress
+          this.merchantId = res.data[0].merchantId
+          this.qr_code =true;
+          this.detail=true;
+        }
+        else {
+
+        }
 
       },
       error => {
