@@ -18,6 +18,13 @@ import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 
 
+//service
+
+import {MerchantService} from './services/merchant.service'
+
+import { QRCodeModule } from 'angular2-qrcode';
+import {QRCodeComponent} from 'angular2-qrcode';
+
 // Application wide providers
 const APP_PROVIDERS = [
   AppState,
@@ -47,11 +54,13 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
+
     routing
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    APP_PROVIDERS
-  ]
+    APP_PROVIDERS,MerchantService
+  ],
+
 })
 
 export class AppModule {

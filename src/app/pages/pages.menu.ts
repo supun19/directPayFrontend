@@ -2,6 +2,7 @@ export const PAGES_MENU = [
   {
     path: 'pages',
     children: [
+
       {
         path: 'dashboard',
         data: {
@@ -13,6 +14,36 @@ export const PAGES_MENU = [
             order: 0
           }
         }
+      },
+      {
+        path: 'merchant',  // path for our page
+        data: { // custom menu declaration
+          menu: {
+            title: 'Merchant', // menu title
+            icon: 'ion-android-home', // menu icon
+            selected: false,
+            expanded: false,
+            order: 50
+          }
+        },
+        children: [
+          {
+            path: 'register',
+            data: {
+              menu: {
+                title: 'Register',
+              }
+            }
+          },
+          {
+            path: 'qrcode',
+            data: {
+              menu: {
+                title: 'QrCode',
+              }
+            }
+          }
+        ]
       },
       {
         path: 'editors',

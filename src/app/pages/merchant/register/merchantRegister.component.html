@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-12">
+    <div>
+      <ba-card title="Basic Form" baCardClass="with-scroll">
+        <form #merchantRegisterForm="ngForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="merchantName">Merchant Name</label>
+            <input type="text" class="form-control" id="merchantName" placeholder="Merchant Name" [(ngModel)] = "merchant.name" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <label for="merchantAccount">Merchant Account Number</label>
+            <input type="text" class="form-control" id="merchantAccount" placeholder="Merchant Account Number" [(ngModel)] = "merchant.accountNumber" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <label for="Street">Street</label>
+            <input type="text" class="form-control" id="Street" placeholder="Street">
+          </div>
+
+          <div class="checkbox">
+            <ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+          </div>
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+      </ba-card>
+    </div>
+  </div>
+</div>
