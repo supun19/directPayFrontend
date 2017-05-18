@@ -12,6 +12,15 @@ import {QrCodeComponent} from './QRCode/qrcode.component';
 import {DetailComponent} from './Detail/detail.component';
 
 
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { DataTableModule } from "angular2-datatable";
+import { HttpModule } from "@angular/http";
+import { HotTable, HotTableModule } from 'ng2-handsontable';
+import { DataFilterPipe } from './merchantlist/data-filter.pipe';
+
+
+import {MerchantListComponent} from './merchantlist/merchantlist.component';
+
 import { routing } from './merchant.routing';
 
 import { QRCodeModule } from 'angular2-qrcode';
@@ -27,10 +36,16 @@ import { QRCodeModule } from 'angular2-qrcode';
     NgaModule,
     NgbRatingModule,
     QRCodeModule,
+    Ng2SmartTableModule,
+    DataTableModule,
+    HttpModule,
+    HotTableModule,
     routing
   ],
   declarations: [
-    MerchantRegisterComponent,MerchantComponent,QrCodeComponent,DetailComponent
+    MerchantRegisterComponent,MerchantComponent,QrCodeComponent,DetailComponent,
+    MerchantListComponent,
+    DataFilterPipe
 
 
   ]

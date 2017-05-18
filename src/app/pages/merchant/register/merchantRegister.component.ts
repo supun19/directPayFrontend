@@ -13,7 +13,7 @@ import {register} from "ts-node/dist";
 })
 export class MerchantRegisterComponent {
   isChecked: boolean = false;
-  merchant = new Merchant("supun","madushanka","no 65","kils@gmail.com");
+  merchant = new Merchant("1234","supun","madushanka","no 65","kils@gmail.com");
   merchantId="";
   register = true;
   qr_code =false;
@@ -30,9 +30,9 @@ export class MerchantRegisterComponent {
         if(res.data[0] != null){
           this.register=false;
 
-          this.merchant.accountNumber = res.data[0].merchantAccountNumber
-          this.merchant.email = res.data[0].merchantEmail
-          this.merchant.address = res.data[0].merchantAddress
+          this.merchant.merchantAccountNumber = res.data[0].merchantAccountNumber
+          this.merchant.merchantEmail = res.data[0].merchantEmail
+          this.merchant.merchantAddress = res.data[0].merchantAddress
           this.merchantId = res.data[0].merchantId
           this.qr_code =true;
           this.detail=true;

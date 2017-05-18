@@ -34,6 +34,14 @@ export const PAGES_MENU = [
                 title: 'Register',
               }
             }
+          },
+          {
+            path: 'list',
+            data: {
+              menu: {
+                title: 'List',
+              }
+            }
           }
 
         ]

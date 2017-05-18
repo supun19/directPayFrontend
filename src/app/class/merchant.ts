@@ -3,7 +3,7 @@ export class Merchant{
 
 
 
-  constructor(public name:string,public accountNumber:string,public address:string,public email:string){
+  constructor(public merchantId:string,public merchantName:string,public merchantAddress:string,public merchantAccountNumber:string,public merchantEmail:string){
 
   }
 
