@@ -8,7 +8,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MerchantRegisterComponent } from './register/merchantRegister.component';
 import {MerchantComponent} from './merchant.component';
-import {QrCodeComponent} from './QRCode/qrcode.component';
+
 import {DetailComponent} from './Detail/detail.component';
 
 
@@ -21,9 +21,12 @@ import { DataFilterPipe } from './merchantlist/data-filter.pipe';
 
 import {MerchantListComponent} from './merchantlist/merchantlist.component';
 
-import { routing } from './merchant.routing';
 
 import { QRCodeModule } from 'angular2-qrcode';
+
+import { routing } from './merchant.routing';
+
+import {QrModule} from '../qr/qr.module';
 
 
 
@@ -40,12 +43,14 @@ import { QRCodeModule } from 'angular2-qrcode';
     DataTableModule,
     HttpModule,
     HotTableModule,
-    routing
+    routing,
+    QrModule
   ],
   declarations: [
-    MerchantRegisterComponent,MerchantComponent,QrCodeComponent,DetailComponent,
+    MerchantRegisterComponent,MerchantComponent,DetailComponent,
     MerchantListComponent,
-    DataFilterPipe
+    DataFilterPipe,
+
 
 
   ]

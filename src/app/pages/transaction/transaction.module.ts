@@ -14,8 +14,11 @@ import { DataFilterPipe } from './all/data-filter.pipe';
 import {TransactionComponent} from './transaction.component';
 import {AllComponent} from './all/all.component'
 
+import { QRCodeModule } from 'angular2-qrcode';
+
 import { routing } from './transaction.routing';
 
+import {QrModule} from '../qr/qr.module'
 
 @NgModule({
   imports: [
@@ -26,7 +29,9 @@ import { routing } from './transaction.routing';
     DataTableModule,
     HttpModule,
     HotTableModule,
-    routing
+    routing,
+    QRCodeModule,
+    QrModule
   ],
   declarations: [
     TransactionComponent,

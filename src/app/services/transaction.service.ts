@@ -1,29 +1,34 @@
 import {Injectable} from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class TransactionService {
 
-  dataTableData = [{
-    "id": "12345",
-    "status": "success",
-    "dateTime": "2015-05-22T14:56:29.000Z",
-    "amount": "10000",
-    "merchantId": "12345"
-  },
-    {
-      "id": "12345",
-      "status": "success",
-      "dateTime": "2015-05-22T14:56:29.000Z",
-      "amount": "10000",
-      "merchantId": "12345"
-    }
-];
-
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private urlTransactionList = 'http://192.168.8.103:8000/transaction/list';
+  //private merchantListUrl = 'http://192.168.8.100/merchant/list';
+  constructor(private http: Http) { }
   getData(): Promise<any> {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.dataTableData);
-      }, 2000);
+      return this.http
+        .get(this.urlTransactionList, {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
     });
   }
 }

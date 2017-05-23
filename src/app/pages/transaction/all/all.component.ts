@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {TransactionService} from '../../../services/transaction.service'
-
+import {Merchant} from "../../../class/merchant";
 @Component({
 
   selector:'all',
@@ -16,10 +16,17 @@ export class AllComponent{
   rowsOnPage = 10;
   sortBy = "email";
   sortOrder = "asc";
-
+  merchantqrcode = false;
+  merchantId="";
   constructor(private trasaction: TransactionService) {
     this.trasaction.getData().then((data) => {
-      this.data = data;
+      if(data.data != null){
+        this.data = data.data;
+        console.log(this.data);
+      }
+      else {
+
+      }
     });
   }
 
@@ -30,6 +37,11 @@ export class AllComponent{
   sortByWordLength = (a: any) => {
     return a.city.length;
   }
+  showQrcode(id:any){
 
+
+    this.merchantId=id;
+    this.merchantqrcode = true;
+  }
 
 }

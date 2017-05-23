@@ -18,8 +18,9 @@ import {Merchant} from '../class/merchant';
 export class MerchantService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private merchantRegisterUrl = 'http://192.168.8.100/merchant/register';
-  private merchantListUrl = 'http://192.168.8.100/merchant/list';
+  private merchantRegisterUrl = 'http://192.168.8.103:8000/merchant/register';
+  private merchantListUrl = 'http://192.168.8.103:8000/merchant/list';
+  private merchantDetailUrl = 'http://192.168.8.103:8000/merchant/details';
   constructor(private http: Http) { }
 
 
@@ -67,20 +68,31 @@ export class MerchantService {
 
     });
   }
-  dataTableData = [{
-    "merchantId": "12345",
-    "merchantAddress": "success",
-    "merchantAccountNumber": "2015-05-22T14:56:29.000Z",
-    "merchantEmail": "c@gmail.com"
 
-  },
-    {
-      "merchantId": "12345",
-      "merchantAddress": "success",
-      "merchantAccountNumber": "2015-05-22T14:56:29.000Z",
-      "merchantEmail": "ab@gmial.com"
-    }
-  ];
+  merchantDetail(id:any): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      return this.http
+        .post(this.merchantDetailUrl, JSON.stringify(id), {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
+  }
+
 
   getData(): Promise<any> {
     return new Promise((resolve, reject) => {

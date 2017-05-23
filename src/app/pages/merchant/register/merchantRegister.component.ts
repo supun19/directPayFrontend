@@ -13,11 +13,12 @@ import {register} from "ts-node/dist";
 })
 export class MerchantRegisterComponent {
   isChecked: boolean = false;
-  merchant = new Merchant("1234","supun","madushanka","no 65","kils@gmail.com");
+  merchant = new Merchant("-1","","","","","","","","");
   merchantId="";
   register = true;
   qr_code =false;
   detail=false;
+  requestDetail={"id":""};
   constructor(private merchantService:MerchantService) {
   }
 
@@ -27,15 +28,16 @@ export class MerchantRegisterComponent {
 
     this.merchantService.register(this.merchant).then(res => {
 
-        if(res.data[0] != null){
-          this.register=false;
-
-          this.merchant.merchantAccountNumber = res.data[0].merchantAccountNumber
-          this.merchant.merchantEmail = res.data[0].merchantEmail
-          this.merchant.merchantAddress = res.data[0].merchantAddress
+        if (res.data[0] != null) {
+          this.register = false;
+          /*this.merchant.merchantName =  res.data[0].merchantName;
+           this.merchant.brNumber = res.data[0].brNumber;
+           this.merchant.phoneNumber = res.data[0].phoneNumber;
+           this.merchant.merchantAccountNumber = res.data[0].merchantAccountNumber
+           this.merchant.merchantEmail = res.data[0].merchantEmail
+           this.merchant.merchantAddress = res.data[0].merchantAddress*/
           this.merchantId = res.data[0].merchantId
-          this.qr_code =true;
-          this.detail=true;
+          this.qr_code = true;
         }
         else {
 
@@ -48,5 +50,35 @@ export class MerchantRegisterComponent {
 
       }
     );
+    this.requestDetail.id = this.merchantId;
+    if (this.qr_code) {
+      this.merchantService.merchantDetail(this.requestDetail).then(res => {
+          console.log("sds", "fsfds");
+          if (res.data[0] != null) {
+
+            this.merchant.merchantName = res.data[0].merchantName;
+            this.merchant.brNumber = res.data[0].brNumber;
+            this.merchant.phoneNumber = res.data[0].phoneNumber;
+            this.merchant.merchantAccountNumber = res.data[0].merchantAccountNumber
+            this.merchant.merchantEmail = res.data[0].merchantEmail
+            this.merchant.merchantAddressNo = res.data[0].merchantAddressNo
+            this.merchant.merchantAddressStreet1 = res.data[0].merchantAddressStreet1
+            this.merchant.merchantAddressState = res.data[0].merchantAddressState
+            this.merchantId = res.data[0].merchantId
+            this.detail = true;
+          }
+          else {
+
+          }
+
+        },
+        error => {
+          console.log("res");
+          alert('Invalid Username or Password');
+
+        }
+      );
+    }
   }
 }
+

@@ -17,7 +17,6 @@ import { GlobalState } from './global.state';
 import { NgaModule } from './theme/nga.module';
 import { PagesModule } from './pages/pages.module';
 
-
 //service
 
 import {MerchantService} from './services/merchant.service'
@@ -54,6 +53,7 @@ export type StoreType = {
     NgaModule.forRoot(),
     NgbModule.forRoot(),
     PagesModule,
+
 
     routing
   ],
