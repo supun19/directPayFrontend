@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 
-import {AgentService} from './agent.service'
+import {UserService} from './user.service'
 import {Merchant} from "../../../class/merchant";
 
 import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
@@ -8,13 +8,13 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 @Component({
 
 
-  selector:'agent',
-  templateUrl:'./agent.component.html',
-  providers:[AgentService]
+  selector:'user',
+  templateUrl:'./user.component.html',
+  providers:[UserService]
 
 })
 
-export class AgentComponent {
+export class UserComponent implements OnInit {
 
   data;
   filterQuery = "";
@@ -23,6 +23,7 @@ export class AgentComponent {
   sortOrder = "asc";
   merchantqrcode = false;
   merchantId="";
+  users;
 
   private myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -32,9 +33,15 @@ export class AgentComponent {
   //private model: Object = { date: { year: 2018, month: 10, day: 9 } };
 
 
-  constructor(private agentService: AgentService) {
-    this.data = this.agentService.getData();
+  constructor(private userService: UserService) {
+
   }
+  ngOnInit(){
+    this.data = this.userService.getData();
+    this.users = this.userService.getUsersId();
+
+  }
+
 
   toInt(num: string) {
     return +num;

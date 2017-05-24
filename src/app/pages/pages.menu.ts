@@ -90,10 +90,10 @@ export const PAGES_MENU = [
             }
           },
           {
-            path: 'User',
+            path: 'user',
             data: {
               menu: {
-                title: 'user',
+                title: 'User',
               }
             }
           },

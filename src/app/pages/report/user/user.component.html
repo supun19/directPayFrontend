@@ -4,8 +4,8 @@
       <div class="row">
         <div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
-          <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
-            <option [ngValue]="5">000005</option>
+          <select   class="form-control input-sm" [(ngModel)]="rowsOnPage">
+            <option  [ngValue]="5">000005</option>
             <option [ngValue]="10">000010</option>
             <option [ngValue]="15">0000015</option>
           </select>
@@ -38,8 +38,7 @@
       <div class="panel panel-default">
         <!--div class="panel-heading">Merchant List</div-->
 
-        <!--table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder"-->
-        <table class="table table-striped" [mfData]="data " #mf="mfDataTable"  [mfRowsOnPage]="rowsOnPage">
+        <table class="table table-striped" [mfData]="data " #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" >
           <thead>
           <tr>
             <!--th style="width: 10%"></th-->
@@ -47,10 +46,10 @@
               <mfDefaultSorter by="transactionId">Transaction ID</mfDefaultSorter>
             </th>
             <th style="width: 20%">
-              <mfDefaultSorter by="merchantId">Merchant ID</mfDefaultSorter>
+              <mfDefaultSorter by="userId">User ID</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="merchantName">Merchant Name</mfDefaultSorter>
+              <mfDefaultSorter by="userName">User Name</mfDefaultSorter>
             </th>
             <th style="width: 20%">
               <mfDefaultSorter by="data">Data</mfDefaultSorter>
@@ -75,8 +74,8 @@
               <button (click)="remove(merchant)" class="btn btn-danger">x</button>
             </td-->
             <td >{{transaction.transactionId}}</td>
-            <td (click)="showQrcode(merchant)">{{transaction.merchantId}}</td>
-            <td>{{transaction.merchantName}}</td>
+            <td (click)="showQrcode(merchant)">{{transaction.userId}}</td>
+            <td>{{transaction.userName}}</td>
             <td>{{transaction.data}}</td>
             <td >{{transaction.amount}}</td>
             <td>{{transaction.status}}</td>

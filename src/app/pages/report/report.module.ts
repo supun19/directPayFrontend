@@ -12,6 +12,8 @@ import { HotTable, HotTableModule } from 'ng2-handsontable';
 import {AgentComponent} from './agent/agent.component';
 import {ReportComponent} from './report.component';
 
+import {UserComponent} from './user/user.component';
+
 import { QRCodeModule } from 'angular2-qrcode';
 
 import { routing } from './report.routing';
@@ -19,6 +21,12 @@ import { routing } from './report.routing';
 import {QrModule} from '../qr/qr.module'
 
 import { DataFilterPipe } from './agent/data-filter.pipe';
+
+
+
+import { MyDatePickerModule } from 'mydatepicker';
+
+
 
 @NgModule({
   imports: [
@@ -32,12 +40,14 @@ import { DataFilterPipe } from './agent/data-filter.pipe';
     routing,
     QRCodeModule,
     QrModule,
+    MyDatePickerModule,
 
   ],
   declarations: [
     AgentComponent,
     ReportComponent,
-    DataFilterPipe,
+    UserComponent,
+
 
   ]
 })

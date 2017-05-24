@@ -1,6 +1,6 @@
 <div class="widgets">
   <div class="row">
-    <ba-card title="Basic Example" baCardClass="with-scroll" class="data-table-container">
+    <ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
       <!--div class="row">
         <div class="col-sm-2">
           <label class="label-control">Rows on page</label>
@@ -38,12 +38,12 @@
         </div>
       </div-->
       <div class="panel panel-default">
-        <div class="panel-heading">Merchant List</div>
+        <!--div class="panel-heading">Merchant List</div-->
 
         <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
           <thead>
           <tr>
-            <th style="width: 10%"></th>
+            <!--th style="width: 10%"></th-->
             <th style="width: 20%">
               <mfDefaultSorter by="merchantId">Merchant Id</mfDefaultSorter>
             </th>
@@ -61,10 +61,10 @@
             </th>
           </tr>
           <tr>
-            <th colspan="5">
+            <!--th colspan="5">
               Filter by name:
               <input class="form-control" [(ngModel)]="filterQuery" />
-            </th>
+            </th-->
           </tr>
           </thead>
           <tbody>
