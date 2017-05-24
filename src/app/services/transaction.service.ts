@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 export class TransactionService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private urlTransactionList = 'http://192.168.8.103:8000/transaction/list';
+  private urlTransactionList = 'http://192.168.8.100:8000/reports/transactions';
   //private merchantListUrl = 'http://192.168.8.100/merchant/list';
   constructor(private http: Http) { }
   getData(): Promise<any> {

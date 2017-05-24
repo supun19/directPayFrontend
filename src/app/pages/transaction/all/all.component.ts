@@ -23,9 +23,10 @@ export class AllComponent{
       if(data.data != null){
         this.data = data.data;
         console.log(this.data);
+
       }
       else {
-
+        console.log(data.data);
       }
     });
   }

@@ -5,6 +5,7 @@ import {Merchant} from "../../../class/merchant";
 
 import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import { Logger } from "angular2-logger/core";
 @Component({
 
 
@@ -24,6 +25,9 @@ export class UserComponent implements OnInit {
   merchantqrcode = false;
   merchantId="";
   users;
+  filterdata;
+  todate="2018.05.12";
+  fromdate="2017.05.01";
 
   private myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -33,12 +37,23 @@ export class UserComponent implements OnInit {
   //private model: Object = { date: { year: 2018, month: 10, day: 9 } };
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,private _logger: Logger) {
 
   }
   ngOnInit(){
-    this.data = this.userService.getData();
+   // this.data = this.userService.getData();
     this.users = this.userService.getUsersId();
+    this.userService.getData().then((data) => {
+      if(data.data != null){
+        this.data = data.data;
+        this.filterdata = this.data;
+        //console.log(this.data);
+
+      }
+      else {
+        console.log(data.data);
+      }
+    });
 
   }
 
@@ -56,8 +71,151 @@ export class UserComponent implements OnInit {
     this.merchantId=merchant.merchantId;
     this.merchantqrcode = true;
   }
-  onDateChanged(event: IMyDateModel) {
+  onDateChangedTo(event: IMyDateModel) {
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
+
+    this.todate = event.date.year+"."+event.date.month+"."+event.date.day
+    this._logger.error(this.todate);
+    //this.filtering.todate =this.todate;
+
+  }
+  onDateChangedFrom(event: IMyDateModel) {
+    // event properties are: event.date, event.jsdate, event.formatted and event.epoc
+    //this.fromdate = event.date;
+    this.fromdate = event.date.year+"."+event.date.month+"."+event.date.day
+    this._logger.error(this.fromdate);
+    //this.filtering.fromdate =this.fromdate;
+
+
+
+  }
+  selectType(){
+    //this._logger.error('This is a priority level 1 error message...'+this.type);
+    //this._logger.debug('tyoe ',""+this.type)
+  }
+  conditon(){
+
+    this._logger.error(''+this.fromdate);
+    this._logger.error(''+this.todate);
+    // val = transaction.data.split(".");
+    var hide = false;
+    var from=[];
+    from = this.fromdate.split(".");
+    var to=[];
+    to = this.todate.split(".");
+    //this._logger.error(this.data);
+
+    var current=[]
+    for(let item of this.data){
+
+      this._logger.error(item);
+      hide = false;
+      var val =[];
+      val = item.dateTime.date.split(" ");
+      val = val[0].split("-");
+
+      var fd:number = +from[2]
+      var fm:number = +from[1]
+      var fy:number = +from[0]
+
+      var td:number = +to[2]
+      var tm:number = +to[1]
+      var ty:number = +to[0]
+
+      var vd:number = +val[2]
+      var vm:number = +val[1]
+      var vy:number = +val[0]
+
+      if(fy<= vy){
+        if(fy==vy){
+          if(fm<=vm){
+            if(fm == vm){
+              if(fd <= vd){
+
+              }
+              else {
+
+                hide = true;
+              }
+
+            }
+
+          }
+          else {
+            hide = true;
+          }
+        }
+      }
+      else {
+        hide = true;
+      }
+      if( vy <= ty){
+        if(vy==ty){
+          if(vm<=tm){
+            if(vm == tm){
+              if(vd <= td){
+
+              }
+              else {
+
+                hide = true;
+              }
+
+            }
+
+          }
+          else {
+            hide = true;
+          }
+        }
+      }
+      else {
+        hide = true;
+      }
+
+      /*this._logger.error(''+fy+":::"+ty+":::"+vy);
+       if( fy<= vy && vy <= ty ){
+       this._logger.error(''+fm+":::"+tm+":::"+vm);
+       if(fy== vy || vy == ty) {
+       if (fm <= vm && vm <= tm) {
+       this._logger.error('' + fd + ":::" + td + ":::" + vd);
+       if (fm == vm || vm == tm) {
+       if (fd <= vd && vd <= td) {
+
+       //this._logger.error('trueeee');
+       }
+       else {
+
+       hide = true;
+       }
+       }
+       }
+
+
+       else {
+
+       hide = true;
+       }
+       }
+       }
+       else{
+
+       hide= true;
+       }
+       */
+
+      if(!hide){
+        current.push(item);
+      }
+    }
+    /*
+
+     var hide = false;
+
+
+     */
+    this.filterdata = current;
+
   }
 
 

@@ -2,14 +2,22 @@
   <div class="row">
     <ba-card title="Merchant Transaction List" baCardClass="with-scroll" class="data-table-container">
       <div class="row">
-        <div class="col-sm-2">
+        <!--div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
-          <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
+          <!--select class="form-control input-sm" [(ngModel)]="type" >
+            <option [ngValue]="Day">Day</option>
+            <option [ngValue]="DayToDay">DayToDay</option>
+
+          </select>
+        </div>
+        <!--div class="col-sm-2">
+          <!--label class="label-control">Agent Id</label-->
+          <!--select class="form-control input-sm" [(ngModel)]="rowsOnPage">
             <option [ngValue]="5">000005</option>
             <option [ngValue]="10">000010</option>
             <option [ngValue]="15">0000015</option>
           </select>
-        </div>
+        </div-->
         <div class="col-sm-4">
           <!--div class="row">
             <label class="col-sm-12 label-control">Period</label>
@@ -21,25 +29,34 @@
             <div class="offset-sm-1 col-sm-5">
               <div class="row">
                 <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChanged($event)"></my-date-picker>
+                                (dateChanged)="onDateChangedFrom($event)"></my-date-picker>
               </div>
             </div>
 
             <div class="offset-sm-1 col-sm-5">
               <div class="row">
                 <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChanged($event)"></my-date-picker>
+                                (dateChanged)="onDateChangedTo($event)"></my-date-picker>
               </div>
             </div>
 
           </div>
         </div>
+        <div class="col-sm-2">
+          <div class="offset-sm-1 col-sm-5">
+            <div class="row">
+              <button (click)="conditon()" class="btn btn-primary"> filter</button>
+            </div>
+          </div>
+        </div>
+
+
       </div>
       <div class="panel panel-default">
         <!--div class="panel-heading">Merchant List</div-->
 
         <!--table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder"-->
-        <table class="table table-striped" [mfData]="data " #mf="mfDataTable"  [mfRowsOnPage]="rowsOnPage">
+        <table class="table table-striped" [mfData]="filterdata " #mf="mfDataTable"  [mfRowsOnPage]="rowsOnPage">
           <thead>
           <tr>
             <!--th style="width: 10%"></th-->
@@ -53,7 +70,7 @@
               <mfDefaultSorter by="merchantName">Merchant Name</mfDefaultSorter>
             </th>
             <th style="width: 20%">
-              <mfDefaultSorter by="data">Data</mfDefaultSorter>
+              <mfDefaultSorter by="date">Date</mfDefaultSorter>
             </th>
             <th style="width: 20%">
               <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
@@ -70,16 +87,18 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let transaction of mf.data">
+          <tr *ngFor="let transaction of mf.data "  >
             <!--td>
               <button (click)="remove(merchant)" class="btn btn-danger">x</button>
             </td-->
-            <td >{{transaction.transactionId}}</td>
-            <td (click)="showQrcode(merchant)">{{transaction.merchantId}}</td>
-            <td>{{transaction.merchantName}}</td>
-            <td>{{transaction.data}}</td>
+            <!--div  *ngIf="conditon(transaction)" style="width: 100%"-->
+            <td >{{transaction.id}}</td>
+            <td (click)="showQrcode(merchant)">{{transaction.payerId}}</td>
+            <td>{{transaction.payerName}}</td>
+            <td>{{transaction.dateTime.date}}</td>
             <td >{{transaction.amount}}</td>
             <td>{{transaction.status}}</td>
+
           </tr>
           </tbody>
           <tfoot>

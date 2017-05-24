@@ -5,34 +5,31 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
 export class UserService{
-  getData() {
-
-    return [
-      {
-        transactionId: "000001",
-        userId: '1',
-        userName:'buddhika',
-        data: '24.05.2017',
-        amount: '1000.00',
-        status:"success"
-      }, {
-        transactionId: "000002",
-        userId: '2',
-        userName:'atupola',
-        data: '24.03.2017',
-        amount: '200.00',
-        status:"succss"
-      }, {
-        transactionId: "000003",
-        userId: '3',
-        userName:'asela',
-        data: '04.02.2017',
-        amount: '1100.00',
-        status:"success"
-      }
-    ];
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private urlTransactionList = 'http://192.168.8.100:8000/reports/transactions';
+  //private merchantListUrl = 'http://192.168.8.100/merchant/list';
+  constructor(private http: Http) { }
+  getData(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      return this.http
+        .get(this.urlTransactionList, {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
 
 
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
   }
   getUsersId(){
     return [

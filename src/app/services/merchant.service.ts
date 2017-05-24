@@ -18,9 +18,9 @@ import {Merchant} from '../class/merchant';
 export class MerchantService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private merchantRegisterUrl = 'http://192.168.8.103:8000/merchant/register';
-  private merchantListUrl = 'http://192.168.8.103:8000/merchant/list';
-  private merchantDetailUrl = 'http://192.168.8.103:8000/merchant/details';
+  private merchantRegisterUrl = 'http://192.168.8.100:8000/merchant/register';
+  private merchantListUrl = 'http://192.168.8.100:8000/merchant/list';
+  private merchantDetailUrl = 'http://192.168.8.100:8000/merchant/details';
   constructor(private http: Http) { }
 
 

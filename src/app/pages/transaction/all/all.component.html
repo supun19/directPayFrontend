@@ -78,10 +78,10 @@
               <button (click)="remove(item)" class="btn btn-danger">x</button>
             </td-->
             <td (click)="showQrcode(item.id)">{{item.id}}</td>
-            <td>{{item.merchantId}}</td>
-            <td>{{item.name}}</td>
+            <td>{{item.payeeId}}</td>
+            <td>{{item.payeeName}}</td>
 
-            <td >{{item.dateTime}}</td>
+            <td >{{item.dateTime.date}}</td>
             <td>{{item.amount}}</td>
             <td>{{item.status}}</td>
 

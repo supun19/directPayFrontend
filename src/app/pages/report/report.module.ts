@@ -22,10 +22,10 @@ import {QrModule} from '../qr/qr.module'
 
 import { DataFilterPipe } from './agent/data-filter.pipe';
 
-
+import { Logger } from "angular2-logger/core";
 
 import { MyDatePickerModule } from 'mydatepicker';
-
+import { DateFilterPipe } from './agent/date-filter.pipe';
 
 
 @NgModule({
@@ -42,13 +42,16 @@ import { MyDatePickerModule } from 'mydatepicker';
     QrModule,
     MyDatePickerModule,
 
+
   ],
   declarations: [
     AgentComponent,
     ReportComponent,
     UserComponent,
+    DateFilterPipe,
 
 
-  ]
+  ],
+  providers:    [ Logger ]
 })
 export class ReportModule {}

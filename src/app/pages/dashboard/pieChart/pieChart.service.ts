@@ -21,7 +21,7 @@ export class PieChartService {
         color: pieColor,
         description: 'dashboard.purchases',
         stats: 'LKR 89,745',
-        icon: 'money',
+        icon: '',
       }, {
         color: pieColor,
         description: 'dashboard.active_users',
