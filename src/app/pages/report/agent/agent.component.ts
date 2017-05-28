@@ -26,11 +26,15 @@ export class AgentComponent {
   merchantqrcode = false;
   merchantId="";
   type="";
-  todate="2017.05.12";
-  fromdate="2017.05.01";
-
+  todate;
+  fromdate;
+  role ="merchant";
   filtering ={"fromdate":this.fromdate,"todate":this.todate}
+  agents;
+  agentId;
 
+  day = false;
+  daytoday =false;
   private myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'dd.mm.yyyy',
@@ -41,7 +45,7 @@ export class AgentComponent {
 
   constructor(private agentService: AgentService,private _logger: Logger) {
 
-    this.agentService.getData().then((data) => {
+    /*this.agentService.getData().then((data) => {
       if(data.data != null){
         this.data = data.data;
         this.filterdata = this.data;
@@ -51,9 +55,27 @@ export class AgentComponent {
       else {
         console.log(data.data);
       }
-    });
+    });*/
     //this.data = this.agentService.getData();
     //this.filterdata = this.data;
+
+    this.agentService.getAgents(this.role).then(
+      (data) =>{
+
+        if(data.data != null){
+          _logger.debug("AgentComponent:agent List response",data);
+          console.log(data.data);
+          this.agents = data.data[0].Resources;
+
+          console.log(this.agents);
+
+        }
+        else {
+
+        }
+
+      }
+    );
   }
 
   toInt(num: string) {
@@ -71,18 +93,19 @@ export class AgentComponent {
   }
   onDateChangedTo(event: IMyDateModel) {
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
-
-    this.todate = event.date.year+"."+event.date.month+"."+event.date.day
-    this._logger.error(this.todate);
-    this.filtering.todate =this.todate;
+      this.todate =  event.date;
+    //this.todate = event.date.year+"."+event.date.month+"."+event.date.day
+    //this._logger.error(this.todate);
+    //this.filtering.todate =this.todate;
 
   }
   onDateChangedFrom(event: IMyDateModel) {
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
     //this.fromdate = event.date;
-    this.fromdate = event.date.year+"."+event.date.month+"."+event.date.day
-    this._logger.error(this.fromdate);
-    this.filtering.fromdate =this.fromdate;
+    this.fromdate = event.date;
+    //this.fromdate = event.date.year+"."+event.date.month+"."+event.date.day
+    //this._logger.error(this.fromdate);
+    //this.filtering.fromdate =this.fromdate;
 
 
 
@@ -91,7 +114,7 @@ export class AgentComponent {
     this._logger.error('This is a priority level 1 error message...'+this.type);
     this._logger.debug('tyoe ',""+this.type)
   }
-  conditon(){
+  /*conditon(){
 
     this._logger.error(''+this.fromdate);
     this._logger.error(''+this.todate);
@@ -201,7 +224,7 @@ export class AgentComponent {
         hide= true;
       }
 */
-
+/*
       if(!hide){
         current.push(item);
       }
@@ -212,8 +235,48 @@ export class AgentComponent {
 
 
 */
-    this.filterdata = current;
+   /* this.filterdata = current;
+    console.log("agentId"+this.agentId);
+  }*/
+  getAgentTransaction(){
+    if(+this.type == 0){
+      console.log("day");
+      console.log("fromdate:"+this.fromdate);
+      console.log("agentId"+this.agentId);
 
+      this.getByDate()
+
+    }
+    if(+this.type == 1){
+      console.log("daytoday");
+      console.log("fromdate:"+this.fromdate+"--todate"+this.todate);
+      console.log("agentId"+this.agentId);
+      this.getByDateToDate()
+    }
+
+  }
+  filterDate(){
+    if(+this.type == 0){
+
+      console.log("Day")
+      this.day = true;
+      this.daytoday =false;
+
+    }
+    if(+this.type == 1){
+      console.log("DayToDay")
+      this.day = true;
+      this.daytoday =true;
+    }
+
+  }
+  getByDate(){
+
+    this.agentService.getAgentTransactionByDate(this.agentId,this.fromdate);
+  }
+  getByDateToDate(){
+
+    this.filterdata=this.agentService.getAgentTransactionByDateToDate(this.agentId,this.fromdate,this.todate);
   }
 
 

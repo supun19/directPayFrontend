@@ -14,6 +14,7 @@ import {Address} from '../../../class/address'
 export class MerchantRegisterComponent {
   isChecked: boolean = false;
   address=new Address("","","");
+
   merchant = new Merchant("-1","","","",this.address,"","");
   merchantId="";
   register = true;

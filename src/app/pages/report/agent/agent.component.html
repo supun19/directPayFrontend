@@ -2,22 +2,21 @@
   <div class="row">
     <ba-card title="Merchant Transaction List" baCardClass="with-scroll" class="data-table-container">
       <div class="row">
-        <!--div class="col-sm-2">
+        <div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
-          <!--select class="form-control input-sm" [(ngModel)]="type" >
-            <option [ngValue]="Day">Day</option>
-            <option [ngValue]="DayToDay">DayToDay</option>
+          <select class="form-control input-sm" [(ngModel)]="type" (ngModelChange)="filterDate()">
+            <option [ngValue]="0">Day</option>
+            <option [ngValue]="1">DayToDay</option>
 
           </select>
         </div>
-        <!--div class="col-sm-2">
+        <div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
-          <!--select class="form-control input-sm" [(ngModel)]="rowsOnPage">
-            <option [ngValue]="5">000005</option>
-            <option [ngValue]="10">000010</option>
-            <option [ngValue]="15">0000015</option>
+          <select class="form-control input-sm" [(ngModel)]="agentId">
+            <option *ngFor="let agent of agents" [ngValue]="agent.id">{{agent.userName}}</option>
+
           </select>
-        </div-->
+        </div>
         <div class="col-sm-4">
           <!--div class="row">
             <label class="col-sm-12 label-control">Period</label>
@@ -26,7 +25,7 @@
             <label class="col-sm-12 label-control">Period</label>
           </div-->
           <div class="row">
-            <div class="offset-sm-1 col-sm-5">
+            <div *ngIf="day" class="offset-sm-1 col-sm-5">
               <div class="row">
                 <my-date-picker [options]="myDatePickerOptions"
                                 (dateChanged)="onDateChangedFrom($event)"></my-date-picker>
@@ -34,7 +33,7 @@
             </div>
 
             <div class="offset-sm-1 col-sm-5">
-              <div class="row">
+              <div *ngIf="daytoday" class="row">
                 <my-date-picker [options]="myDatePickerOptions"
                                 (dateChanged)="onDateChangedTo($event)"></my-date-picker>
               </div>
@@ -45,7 +44,7 @@
         <div class="col-sm-2">
           <div class="offset-sm-1 col-sm-5">
             <div class="row">
-              <button (click)="conditon()" class="btn btn-primary"> filter</button>
+              <button (click)="getAgentTransaction()" class="btn btn-primary"> filter</button>
             </div>
           </div>
         </div>
