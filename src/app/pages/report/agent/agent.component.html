@@ -5,8 +5,8 @@
         <div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
           <select class="form-control input-sm" [(ngModel)]="type" (ngModelChange)="filterDate()">
-            <option [ngValue]="0">Day</option>
-            <option [ngValue]="1">DayToDay</option>
+            <option [ngValue]="0">Date</option>
+            <option [ngValue]="1">Time Period</option>
 
           </select>
         </div>
@@ -27,15 +27,19 @@
           <div class="row">
             <div *ngIf="day" class="offset-sm-1 col-sm-5">
               <div class="row">
+                <form #myForm="ngForm" novalidate>
                 <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChangedFrom($event)"></my-date-picker>
+                                (dateChanged)="onDateChangedFrom($event)" [(ngModel)]="selectedDate"  name="mydate" required></my-date-picker>
+                </form>
               </div>
             </div>
 
             <div class="offset-sm-1 col-sm-5">
               <div *ngIf="daytoday" class="row">
+                <form #myForm="ngForm" novalidate>
                 <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChangedTo($event)"></my-date-picker>
+                                (dateChanged)="onDateChangedTo($event)" [(ngModel)]="selectedDate" name="mydate" required></my-date-picker>
+                </form>
               </div>
             </div>
 
