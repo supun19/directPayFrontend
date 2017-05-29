@@ -2,14 +2,21 @@
   <div class="row">
     <ba-card title="Merchant Transaction List" baCardClass="with-scroll" class="data-table-container">
       <div class="row">
-        <!--div class="col-sm-2">
+        <div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
-          <!--select   class="form-control input-sm" [(ngModel)]="rowsOnPage">
-            <option  [ngValue]="5">000005</option>
-            <option [ngValue]="10">000010</option>
-            <option [ngValue]="15">0000015</option>
+          <select class="form-control input-sm" [(ngModel)]="type" (ngModelChange)="filterDate()">
+            <option [ngValue]="0">Date</option>
+            <option [ngValue]="1">Time Period</option>
+
           </select>
-        </div-->
+        </div>
+        <div class="col-sm-2">
+          <!--label class="label-control">Agent Id</label-->
+          <select class="form-control input-sm" [(ngModel)]="userId">
+            <option *ngFor="let user of users" [ngValue]="user.id">{{user.userName}}</option>
+
+          </select>
+        </div>
         <div class="col-sm-4">
           <!--div class="row">
             <label class="col-sm-12 label-control">Period</label>
@@ -18,29 +25,48 @@
             <label class="col-sm-12 label-control">Period</label>
           </div-->
           <div class="row">
-            <div class="offset-sm-1 col-sm-5">
+            <div *ngIf="day" class="offset-sm-1 col-sm-5">
               <div class="row">
-                <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChangedFrom($event)"></my-date-picker>
+                <form #myForm="ngForm" novalidate>
+                  <my-date-picker [options]="myDatePickerOptions"
+                                  (dateChanged)="onDateChangedFrom($event)" [(ngModel)]="selectedDateFrom"  name="mydate" required></my-date-picker>
+                </form>
               </div>
             </div>
 
             <div class="offset-sm-1 col-sm-5">
-              <div class="row">
-                <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChangedTo($event)"></my-date-picker>
+              <div *ngIf="daytoday" class="row">
+                <form #myForm="ngForm" novalidate>
+                  <my-date-picker [options]="myDatePickerOptions"
+                                  (dateChanged)="onDateChangedTo($event)" [(ngModel)]="selectedDateTo" name="mydate" required></my-date-picker>
+                </form>
               </div>
             </div>
 
           </div>
         </div>
-
         <div class="col-sm-2">
           <div class="offset-sm-1 col-sm-5">
             <div class="row">
-              <button (click)="conditon()" class="btn btn-primary"> filter</button>
+              <button (click)="getAgentTransaction()" class="btn btn-primary"> filter</button>
             </div>
           </div>
+        </div>
+
+
+      </div>
+
+      <div class="row" *ngIf="transctionError">
+        <br>
+        <div class="alert alert-danger">
+          <strong>Error!</strong> {{errormassage}}
+        </div>
+      </div>
+
+      <div class="row" *ngIf="transctionInfo">
+        <br>
+        <div class="alert alert-info">
+          <strong>massege!</strong> {{infomassage}}
         </div>
       </div>
       <div class="panel panel-default">

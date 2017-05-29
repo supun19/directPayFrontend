@@ -29,7 +29,7 @@
               <div class="row">
                 <form #myForm="ngForm" novalidate>
                 <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChangedFrom($event)" [(ngModel)]="selectedDate"  name="mydate" required></my-date-picker>
+                                (dateChanged)="onDateChangedFrom($event)" [(ngModel)]="selectedDateFrom"  name="mydate" required></my-date-picker>
                 </form>
               </div>
             </div>
@@ -38,7 +38,7 @@
               <div *ngIf="daytoday" class="row">
                 <form #myForm="ngForm" novalidate>
                 <my-date-picker [options]="myDatePickerOptions"
-                                (dateChanged)="onDateChangedTo($event)" [(ngModel)]="selectedDate" name="mydate" required></my-date-picker>
+                                (dateChanged)="onDateChangedTo($event)" [(ngModel)]="selectedDateTo" name="mydate" required></my-date-picker>
                 </form>
               </div>
             </div>
@@ -54,6 +54,20 @@
         </div>
 
 
+      </div>
+
+      <div class="row" *ngIf="transctionError">
+        <br>
+            <div class="alert alert-danger">
+              <strong>Error!</strong> {{errormassage}}
+            </div>
+      </div>
+
+      <div class="row" *ngIf="transctionInfo">
+        <br>
+        <div class="alert alert-info">
+          <strong>massege!</strong> {{infomassage}}
+        </div>
       </div>
       <div class="panel panel-default">
         <!--div class="panel-heading">Merchant List</div-->

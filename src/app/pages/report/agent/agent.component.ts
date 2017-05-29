@@ -17,27 +17,38 @@ import { Logger } from "angular2-logger/core";
 
 export class AgentComponent implements OnInit{
 
+
+
   data;
   filterdata;
+
+
   filterQuery = "";
   rowsOnPage = 10;
-  sortBy = "email";
-  sortOrder = "asc";
+
   merchantqrcode = false;
   merchantId="";
   type="";
   todate;
   fromdate;
   role ="merchant";
-  filtering ={"fromdate":this.fromdate,"todate":this.todate}
+
   agents;
   agentId;
 
   day = false;
   daytoday =false;
 
+
+  //error handling
+  transctionError = false;
+  transctionInfo = false;
+  infomassage =""
+  errormassage=""
+
   //selectedDate = "2017-09-11";
-  private selectedDate: Object = { date: { year: 2016, month: 10, day: 9 } };
+  private selectedDateFrom: Object = { date: { year: 2016, month: 10, day: 9 } };
+  private selectedDateTo: Object = { date: { year: 2017, month: 10, day: 9 } };
   private myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'yyyy-mm-dd',
@@ -45,7 +56,9 @@ export class AgentComponent implements OnInit{
     todayBtnTxt:'Today',
 
   };
-  up;
+
+
+
 
   constructor(private agentService: AgentService,private _logger: Logger) {
 
@@ -83,7 +96,8 @@ export class AgentComponent implements OnInit{
         }
 
       }
-      this.selectedDate = currentdate;
+      this.selectedDateFrom = currentdate;
+    this.selectedDateTo = currentdate;
      this.fromdate = currentdate.date;
     this.todate = currentdate.date;
 
@@ -98,12 +112,13 @@ export class AgentComponent implements OnInit{
   onDateChangedTo(event: IMyDateModel) {
 
       this.todate =  event.date;
-
+    this.selectedDateTo = event;
 
   }
   onDateChangedFrom(event: IMyDateModel) {
 
     this.fromdate = event.date;
+    this.selectedDateFrom = event;
     console.log(event.date);
 
   }
@@ -113,6 +128,11 @@ export class AgentComponent implements OnInit{
   }
 
   getAgentTransaction(){
+
+    this.transctionInfo=false;
+    this.transctionError =false;
+    this.filterdata = [];
+
     if(+this.type == 0){
       console.log("day");
       console.log("fromdate:"+this.fromdate);
@@ -130,6 +150,8 @@ export class AgentComponent implements OnInit{
 
   }
   filterDate(){
+
+
     if(+this.type == 0){
 
       console.log("Day")
@@ -147,14 +169,23 @@ export class AgentComponent implements OnInit{
   getByDateToDate(){
     console.log("getByDAteToDate");
     this.agentService.getAgentTransactionByDateToDate(this.agentId,this.fromdate,this.todate).then((data) => {
-      if(data.data != null){
+
+      if(data.data.length==0){
+        this.infomassage = "Transaction not avilable";
+        this.transctionInfo = true;
+      }
+      else if(data.data != null){
         this.data = data.data;
         this.filterdata = this.data;
         console.log(this.data);
 
       }
       else {
-        console.log(data.data);
+        if(data.errors != null){
+          this.errormassage = data.errors[0].source.title;
+          this.transctionError = true;
+        }
+
       }
     });
     console.log(this.filterdata);
