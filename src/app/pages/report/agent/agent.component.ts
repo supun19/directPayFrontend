@@ -18,12 +18,12 @@ import { Logger } from "angular2-logger/core";
 export class AgentComponent implements OnInit{
 
 
-
-  data;
+//data store
+  data
   filterdata;
 
 
-  filterQuery = "";
+  //filterQuery = "";
   rowsOnPage = 10;
 
   merchantqrcode = false;
@@ -122,7 +122,7 @@ export class AgentComponent implements OnInit{
     console.log(event.date);
 
   }
-  selectType(){
+   selectType(){
     this._logger.error('This is a priority level 1 error message...'+this.type);
     this._logger.debug('tyoe ',""+this.type)
   }
@@ -134,17 +134,11 @@ export class AgentComponent implements OnInit{
     this.filterdata = [];
 
     if(+this.type == 0){
-      console.log("day");
-      console.log("fromdate:"+this.fromdate);
-      console.log("agentId"+this.agentId);
       this.nextDate();
       this.getByDateToDate()
 
     }
     if(+this.type == 1){
-      console.log("daytoday");
-      console.log("fromdate:"+this.fromdate+"--todate"+this.todate);
-      console.log("agentId"+this.agentId);
       this.getByDateToDate()
     }
 
@@ -154,13 +148,12 @@ export class AgentComponent implements OnInit{
 
     if(+this.type == 0){
 
-      console.log("Day")
       this.day = true;
       this.daytoday =false;
 
     }
     if(+this.type == 1){
-      console.log("DayToDay")
+
       this.day = true;
       this.daytoday =true;
     }
@@ -177,7 +170,7 @@ export class AgentComponent implements OnInit{
       else if(data.data != null){
         this.data = data.data;
         this.filterdata = this.data;
-        console.log(this.data);
+
 
       }
       else {
@@ -188,8 +181,6 @@ export class AgentComponent implements OnInit{
 
       }
     });
-    console.log(this.filterdata);
-
 
   }
 
@@ -200,8 +191,6 @@ export class AgentComponent implements OnInit{
     this.todate.year = date.getFullYear();
     this.todate.month = date.getMonth()+1;
     this.todate.day = date.getDate();
-    //console.log(date);
-    //console.log(this.todate);
 
   }
 

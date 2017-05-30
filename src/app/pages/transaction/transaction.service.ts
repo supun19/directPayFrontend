@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-
+import {AppSettings} from '../../class/AppSetting'
 @Injectable()
 export class TransactionService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private urlTransactionList = 'http://192.168.8.100:8000/reports/transactions';
+
+  private urlTransactionList = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/transactions';
   //private merchantListUrl = 'http://192.168.8.100/merchant/list';
   constructor(private http: Http) { }
   getData(): Promise<any> {

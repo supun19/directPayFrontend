@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 
-import {MerchantService} from '../../../services/merchant.service'
+import {MerchantService} from '../merchant.service'
 import {Merchant} from "../../../class/merchant";
 @Component({
 

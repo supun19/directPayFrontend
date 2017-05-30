@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {MerchantService} from "../../../services/merchant.service";
+import {MerchantService} from "../merchant.service";
 
 
 import {Merchant} from "../../../class/merchant";
@@ -13,6 +13,7 @@ import {Address} from '../../../class/address'
 })
 export class MerchantRegisterComponent {
   isChecked: boolean = false;
+
   address=new Address("","","");
 
   merchant = new Merchant("-1","","","",this.address,"","");

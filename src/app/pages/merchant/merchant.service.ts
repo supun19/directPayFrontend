@@ -8,9 +8,9 @@ import 'rxjs/add/operator/toPromise';
 import {Url} from "url";
 
 
-import {Merchant} from '../class/merchant';
+import {Merchant} from '../../class/merchant';
 
-
+import {AppSettings} from '../../class/AppSetting'
 
 
 
@@ -18,9 +18,9 @@ import {Merchant} from '../class/merchant';
 export class MerchantService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private merchantRegisterUrl = 'http://192.168.8.100:8000/merchant/register';
-  private merchantListUrl = 'http://192.168.8.100:8000/merchant/list';
-  private merchantDetailUrl = 'http://192.168.8.100:8000/merchant/details';
+  private merchantRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/register';
+  private merchantListUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/list';
+  private merchantDetailUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details';
   constructor(private http: Http) { }
 
 

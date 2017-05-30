@@ -19,7 +19,7 @@ import { PagesModule } from './pages/pages.module';
 
 //service
 
-import {MerchantService} from './services/merchant.service'
+import {MerchantService} from './pages/merchant/merchant.service'
 
 import { QRCodeModule } from 'angular2-qrcode';
 import {QRCodeComponent} from 'angular2-qrcode';
