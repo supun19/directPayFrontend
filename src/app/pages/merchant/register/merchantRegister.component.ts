@@ -31,7 +31,7 @@ export class MerchantRegisterComponent {
 
     this.merchantService.register(this.merchant).then(res => {
         console.log(this.merchant)
-        if (res.data[0] != null) {
+        if (res.data!=null && res.data[0] != null) {
           this.register = false;
           /*this.merchant.merchantName =  res.data[0].merchantName;
            this.merchant.brNumber = res.data[0].brNumber;
@@ -64,9 +64,9 @@ export class MerchantRegisterComponent {
             this.merchant.phoneNumber = res.data[0].phoneNumber;
             this.merchant.merchantAccountNumber = res.data[0].merchantAccountNumber
             this.merchant.merchantEmail = res.data[0].merchantEmail
-            this.merchant.merchantAddress.merchantAddressNo = res.data[0].merchantAddressNo
-            this.merchant.merchantAddress.merchantAddressStreet1 = res.data[0].merchantAddressStreet1
-            this.merchant.merchantAddress.merchantAddressState = res.data[0].merchantAddressState
+            this.merchant.address.streetAddress = res.data[0].streetAddress
+            this.merchant.address.locality = res.data[0].locality
+            this.merchant.address.region = res.data[0].region
             this.merchantId = res.data[0].merchantId
             this.detail = true;
           }

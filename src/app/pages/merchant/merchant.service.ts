@@ -19,7 +19,7 @@ export class MerchantService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private merchantRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/register';
-  private merchantListUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/list';
+  private merchantListUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/filterUsers';
   private merchantDetailUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details';
   constructor(private http: Http) { }
 
@@ -92,7 +92,29 @@ export class MerchantService {
 
     });
   }
+  getMerchantList(role): Promise<any> {
+    return new Promise((resolve, reject) => {
+      return this.http
+        .post(this.merchantListUrl, JSON.stringify({role:role}),{headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
 
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
+  }
 
   getData(): Promise<any> {
     return new Promise((resolve, reject) => {

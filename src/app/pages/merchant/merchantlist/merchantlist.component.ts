@@ -10,7 +10,7 @@ import {Merchant} from "../../../class/merchant";
 
 })
 
-export class MerchantListComponent{
+export class MerchantListComponent implements OnInit{
 
   data;
   filterQuery = "";
@@ -19,8 +19,15 @@ export class MerchantListComponent{
   sortOrder = "asc";
   merchantqrcode = false;
   merchantId="";
-  constructor(private merchant: MerchantService) {
-    this.merchant.getData().then((data) => {
+  role = "merchant";
+  constructor(private merchant: MerchantService){
+
+  }
+  ngOnInit(){
+    this.getMerchantList();
+  }
+  getMerchantList(){
+    this.merchant.getMerchantList(this.role).then((data) => {
 
       if(data.data != null){
         this.data = data.data;

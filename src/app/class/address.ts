@@ -3,7 +3,7 @@ export class Address{
 
 
 
-  constructor(public merchantAddressNo:string,public merchantAddressStreet1:string,public merchantAddressState:string){
+  constructor(public streetAddress:string,public locality:string,public region:string){
 
   }
 
