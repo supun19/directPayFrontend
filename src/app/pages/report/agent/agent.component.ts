@@ -73,7 +73,7 @@ export class AgentComponent implements OnInit{
           this._logger.debug("AgentComponent:agent List response",data);
           console.log(data.data);
           if(data.data[0]!=null){
-            this.agents = data.data[0].Resources;
+            this.filterdata = data.data[0].Resources;
 
             console.log(this.agents);
           }

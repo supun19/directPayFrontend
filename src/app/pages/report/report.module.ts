@@ -20,7 +20,6 @@ import { routing } from './report.routing';
 
 import {QrModule} from '../qr/qr.module'
 
-import { DataFilterPipe } from './agent/data-filter.pipe';
 
 import { Logger } from "angular2-logger/core";
 
@@ -43,12 +42,14 @@ import { DateFilterPipe } from './agent/date-filter.pipe';
     MyDatePickerModule,
 
 
+
   ],
   declarations: [
     AgentComponent,
     ReportComponent,
     UserComponent,
     DateFilterPipe,
+
 
 
   ],

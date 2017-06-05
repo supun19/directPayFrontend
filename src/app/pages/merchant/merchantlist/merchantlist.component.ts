@@ -13,6 +13,7 @@ import {Merchant} from "../../../class/merchant";
 export class MerchantListComponent implements OnInit{
 
   data;
+  filterdata;
   filterQuery = "";
   rowsOnPage = 10;
   sortBy = "email";
@@ -32,6 +33,10 @@ export class MerchantListComponent implements OnInit{
       if(data.data != null){
         this.data = data.data;
         console.log(this.data);
+        if(data.data[0]!=null){
+          this.filterdata = data.data[0].Resources;
+
+        }
       }
       else {
 
@@ -46,10 +51,10 @@ export class MerchantListComponent implements OnInit{
   sortByWordLength = (a: any) => {
     return a.city.length;
   }
-  showQrcode(merchant:Merchant){
+  showQrcode(id){
 
 
-    this.merchantId=merchant.merchantId;
+    this.merchantId=id;
     this.merchantqrcode = true;
   }
 
