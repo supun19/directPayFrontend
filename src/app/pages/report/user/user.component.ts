@@ -80,9 +80,11 @@ export class UserComponent implements OnInit {
         if(data.data != null){
           this._logger.debug("AgentComponent:agent List response",data);
           console.log(data.data);
-          this.users = data.data[0].Resources;
+          if(data.data[0]!=null){
+            this.users = data.data[0].Resources;
+            console.log(this.users);
+          }
 
-          console.log(this.users);
 
         }
         else {

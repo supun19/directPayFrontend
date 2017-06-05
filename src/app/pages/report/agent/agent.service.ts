@@ -10,34 +10,34 @@ import { Logger } from "angular2-logger/core";
 export class AgentService{
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private urlTransactionList = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/transactions';
-  private urlTransactionListAgentByDate = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/transactions/agent/bydate';
+  //private urlTransactionList = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/transactions';
+  //private urlTransactionListAgentByDate = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/transactions/agent/bydate';
   private urlTransactionListAgentByDateToDate = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/agent/between';
   private urlAgentList = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/filterUsers';
   //private merchantListUrl = 'http://192.168.8.100/merchant/list';
   constructor(private http: Http,private  _logger:Logger) { }
-  getData(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      return this.http
-        .get(this.urlTransactionList, {headers: this.headers})
-        .toPromise()
-        .then(response => {
-          //noinspection TypeScriptUnresolvedFunction
-          console.log(response.json());
-
-
-          resolve(response.json());
-        }, error => {
-          console.log(error);
-          reject(error);
-        })
-        .catch((err) => {
-          console.log(err);
-          reject(err);
-        });
-
-    });
-  }
+  // getData(): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     return this.http
+  //       .get(this.urlTransactionList, {headers: this.headers})
+  //       .toPromise()
+  //       .then(response => {
+  //         //noinspection TypeScriptUnresolvedFunction
+  //         console.log(response.json());
+  //
+  //
+  //         resolve(response.json());
+  //       }, error => {
+  //         console.log(error);
+  //         reject(error);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         reject(err);
+  //       });
+  //
+  //   });
+  // }
   getAgents(role): Promise<any> {
     return new Promise((resolve, reject) => {
       return this.http
@@ -90,31 +90,31 @@ export class AgentService{
 
 
   }*/
-  getAgentTransactionByDate(id,date) : Promise<any>{
-  return new Promise((resolve, reject) => {
-    return this.http
-      .post(this.urlTransactionListAgentByDate,JSON.stringify({id:id,date:date}), {headers: this.headers})
-      .toPromise()
-      .then(response => {
-        //noinspection TypeScriptUnresolvedFunction
-        console.log(response.json());
-
-
-        resolve(response.json());
-      }, error => {
-        console.log(error);
-        reject(error);
-      })
-      .catch((err) => {
-        console.log(err);
-        reject(err);
-      });
-
-  });
-
-
-
-}
+//   getAgentTransactionByDate(id,date) : Promise<any>{
+//   return new Promise((resolve, reject) => {
+//     return this.http
+//       .post(this.urlTransactionListAgentByDate,JSON.stringify({id:id,date:date}), {headers: this.headers})
+//       .toPromise()
+//       .then(response => {
+//         //noinspection TypeScriptUnresolvedFunction
+//         console.log(response.json());
+//
+//
+//         resolve(response.json());
+//       }, error => {
+//         console.log(error);
+//         reject(error);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         reject(err);
+//       });
+//
+//   });
+//
+//
+//
+// }
 
   getAgentTransactionByDateToDate(userId,fromdate,todate) : Promise<any> {
     return new Promise((resolve, reject) => {

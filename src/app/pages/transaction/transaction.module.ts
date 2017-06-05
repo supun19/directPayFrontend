@@ -20,6 +20,10 @@ import { routing } from './transaction.routing';
 
 import {QrModule} from '../qr/qr.module'
 
+import { MyDatePickerModule } from 'mydatepicker';
+
+import { Logger } from "angular2-logger/core";
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,7 +35,8 @@ import {QrModule} from '../qr/qr.module'
     HotTableModule,
     routing,
     QRCodeModule,
-    QrModule
+    QrModule,
+    MyDatePickerModule,
   ],
   declarations: [
     TransactionComponent,
@@ -39,6 +44,7 @@ import {QrModule} from '../qr/qr.module'
     DataFilterPipe,
 
 
-  ]
+  ],
+  providers:    [ Logger ]
 })
 export class TransactionModule {}

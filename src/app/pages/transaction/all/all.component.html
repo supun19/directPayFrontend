@@ -1,42 +1,67 @@
 <div class="widgets">
   <div class="row">
     <ba-card title="Transaction History" baCardClass="with-scroll" class="data-table-container">
-      <!--div class="row">
+      <div class="row">
         <div class="col-sm-2">
-          <label class="label-control">Rows on page</label>
-          <select class="form-control input-sm" [(ngModel)]="rowsOnPage">
-            <option [ngValue]="5">5</option>
-            <option [ngValue]="10">10</option>
-            <option [ngValue]="15">15</option>
+          <!--label class="label-control">Agent Id</label-->
+          <select class="form-control input-sm" [(ngModel)]="type" (ngModelChange)="filterDate()">
+            <option [ngValue]="0">Date</option>
+            <option [ngValue]="1">Time Period</option>
+
           </select>
         </div>
         <div class="col-sm-4">
-          <div class="row">
-            <label class="col-sm-12 label-control">Sort by</label>
+          <!--div class="row">
+            <label class="col-sm-12 label-control">Period</label>
           </div>
           <div class="row">
-            <div class="offset-sm-1 col-sm-5">
+            <label class="col-sm-12 label-control">Period</label>
+          </div-->
+          <div class="row">
+            <div *ngIf="day" class="offset-sm-1 col-sm-5">
               <div class="row">
-                <select class="form-control input-sm" [(ngModel)]="sortBy">
-                  <option ngValue="tId">Transaction Id</option>
-                  <option ngValue="status">Email</option>
-                  <option ngValue="age">Age</option>
-                  <option [ngValue]="sortByWordLength">City</option>
-                </select>
+                <form #myForm="ngForm" novalidate>
+                  <my-date-picker [options]="myDatePickerOptions"
+                                  (dateChanged)="onDateChangedFrom($event)" [(ngModel)]="selectedDateFrom"  name="mydate" required></my-date-picker>
+                </form>
               </div>
             </div>
+
             <div class="offset-sm-1 col-sm-5">
-              <div class="row">
-                <select class="form-control input-sm" [(ngModel)]="sortOrder">
-                  <option ngValue="asc">Ascending</option>
-                  <option ngValue="desc">Descending</option>
-                  <option ngValue="badValue">Bad value</option>
-                </select>
+              <div *ngIf="daytoday" class="row">
+                <form #myForm="ngForm" novalidate>
+                  <my-date-picker [options]="myDatePickerOptions"
+                                  (dateChanged)="onDateChangedTo($event)" [(ngModel)]="selectedDateTo" name="mydate" required></my-date-picker>
+                </form>
               </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="offset-sm-1 col-sm-5">
+            <div class="row">
+              <button (click)="getTransaction()" class="btn btn-primary"> filter</button>
             </div>
           </div>
         </div>
-      </div-->
+
+
+      </div>
+
+      <div class="row" *ngIf="transctionError">
+        <br>
+        <div class="alert alert-danger">
+          <strong>Error!</strong> {{errormassage}}
+        </div>
+      </div>
+
+      <div class="row" *ngIf="transctionInfo">
+        <br>
+        <div class="alert alert-info">
+          <strong>massege!</strong> {{infomassage}}
+        </div>
+      </div>
       <div class="panel panel-default">
         <!--div class="panel-heading">Transaction History</div-->
 
@@ -44,17 +69,23 @@
           <thead>
           <tr>
             <!--th style="width: 10%"></th-->
-            <th style="width: 20%">
+            <th style="width: 10%">
               <mfDefaultSorter by="tId">Transaction ID</mfDefaultSorter>
             </th>
             <th style="width: 20%">
-              <mfDefaultSorter by="mId">Merchant ID</mfDefaultSorter>
+              <mfDefaultSorter by="payerId">Payer ID</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="payerName">Payee Name</mfDefaultSorter>
             </th>
             <th style="width: 20%">
-              <mfDefaultSorter by="mName">Merchant Name</mfDefaultSorter>
+              <mfDefaultSorter by="payeeId">Payee ID</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="payeeName">Payer Name</mfDefaultSorter>
             </th>
 
-            <th style="width: 20%">
+            <th style="width: 10%">
               <mfDefaultSorter by="dateTime">Date Time</mfDefaultSorter>
             </th>
             <th style="width: 10%">
@@ -77,8 +108,10 @@
             <!--td>
               <button (click)="remove(item)" class="btn btn-danger">x</button>
             </td-->
-            <td (click)="showQrcode(item.id)">{{item.id}}</td>
-            <td>{{item.payeeId}}</td>
+            <td >{{item.id}}</td>
+            <td (click)="showQrcode(item.payerId)">{{item.payerId}}</td>
+            <td>{{item.payerName}}</td>
+            <td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td>
             <td>{{item.payeeName}}</td>
 
             <td >{{item.dateTime.date}}</td>
