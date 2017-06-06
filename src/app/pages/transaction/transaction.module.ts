@@ -1,15 +1,15 @@
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule as AngularFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
-
+import { AppTranslationModule } from '../../app.translation.module';
+import { FormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { DataTableModule } from "angular2-datatable";
 import { HttpModule } from "@angular/http";
 import { HotTable, HotTableModule } from 'ng2-handsontable';
 import { DataFilterPipe } from './all/data-filter.pipe';
-
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {TransactionComponent} from './transaction.component';
 import {AllComponent} from './all/all.component'
@@ -37,6 +37,13 @@ import { Logger } from "angular2-logger/core";
     QRCodeModule,
     QrModule,
     MyDatePickerModule,
+
+
+    AngularFormsModule,
+    AppTranslationModule,
+
+    NgbRatingModule,
+
   ],
   declarations: [
     TransactionComponent,

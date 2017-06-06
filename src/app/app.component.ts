@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, ViewContainerRef ,enableProdMode} from '@angular/core';
 import * as $ from 'jquery';
 
 import { GlobalState } from './global.state';
@@ -6,10 +6,12 @@ import { BaImageLoaderService, BaThemePreloader, BaThemeSpinner } from './theme/
 import { BaThemeConfig } from './theme/theme.config';
 import { layoutPaths } from './theme/theme.constants';
 
+
 /*
  * App Component
  * Top Level Component
  */
+enableProdMode();
 @Component({
   selector: 'app',
   styleUrls: ['./app.component.scss'],

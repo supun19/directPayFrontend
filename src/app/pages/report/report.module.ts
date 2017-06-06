@@ -2,6 +2,11 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
+
+import { AppTranslationModule } from '../../app.translation.module';
+
+
 import { NgaModule } from '../../theme/nga.module';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -40,6 +45,7 @@ import { DateFilterPipe } from './agent/date-filter.pipe';
     QRCodeModule,
     QrModule,
     MyDatePickerModule,
+    AppTranslationModule
 
 
 

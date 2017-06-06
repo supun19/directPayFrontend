@@ -2,6 +2,9 @@ import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
+import { AppTranslationModule } from '../../app.translation.module';
+import { HttpModule } from "@angular/http";
+
 
 import { Register } from './register.component';
 import { routing }       from './register.routing';
@@ -13,7 +16,10 @@ import { routing }       from './register.routing';
     ReactiveFormsModule,
     FormsModule,
     NgaModule,
-    routing
+    routing,
+    AppTranslationModule,
+    HttpModule,
+
   ],
   declarations: [
     Register
