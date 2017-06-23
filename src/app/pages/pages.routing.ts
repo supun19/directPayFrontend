@@ -2,6 +2,7 @@ import { Routes, RouterModule }  from '@angular/router';
 import { Pages } from './pages.component';
 import { ModuleWithProviders } from '@angular/core';
 import {AuthGuard} from "./security/auth.guard";
+import {SettingGuard} from "./security/setting.guard";
 // noinspection TypeScriptValidateTypes
 
 // export function loadChildren(path) { return System.import(path); };
@@ -36,7 +37,7 @@ export const routes: Routes = [
       { path: 'merchant', loadChildren: './merchant/merchant.module#MerchantModule', },
       { path: 'transaction', loadChildren: './transaction/transaction.module#TransactionModule' },
       { path: 'report', loadChildren: './report/report.module#ReportModule' },
-      { path: 'setting', loadChildren: './setting/setting.module#SettingModule' }
+      { path: 'setting', loadChildren: './setting/setting.module#SettingModule',canActivate: [SettingGuard] }
 
     ]
   }
