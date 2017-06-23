@@ -38,8 +38,8 @@ export class UserComponent implements OnInit {
 
 
   role ="user";
-  todate;
-  fromdate;
+  todate={ year: 2016, month: 10, day: 9 };
+  fromdate={ year: 2016, month: 10, day: 9 };
 
   //selectedDate = "2017-09-11";
   private selectedDateFrom: Object = { date: { year: 2016, month: 10, day: 9 } };
@@ -108,8 +108,12 @@ export class UserComponent implements OnInit {
     }
     this.selectedDateFrom = currentdate;
     this.selectedDateTo = currentdate;
-    this.fromdate = currentdate.date;
-    this.todate = currentdate.date;
+    this.fromdate.year = currentdate.date.year;
+    this.fromdate.month = currentdate.date.month;
+    this.fromdate.day = currentdate.date.day;
+    this.todate.year = currentdate.date.year;
+    this.todate.month = currentdate.date.month;
+    this.todate.day = currentdate.date.day;
 
   }
   selectType(){
@@ -188,6 +192,8 @@ export class UserComponent implements OnInit {
   }
   getByDateToDate(){
     console.log("getByDAteToDate");
+    console.log(this.fromdate);
+    console.log(this.todate);
     this.userService.getUsersTransactionByDateToDate(this.userId,this.fromdate,this.todate).then((data) => {
 
       if(data.data.length==0){

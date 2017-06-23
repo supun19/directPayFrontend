@@ -29,8 +29,8 @@ export class AgentComponent implements OnInit{
   merchantqrcode = false;
   merchantId="";
   type="";
-  todate;
-  fromdate;
+  todate = { year: 2016, month: 10, day: 9 };
+  fromdate = { year: 2016, month: 10, day: 9 };
   role ="merchant";
 
   agents;
@@ -72,8 +72,8 @@ export class AgentComponent implements OnInit{
         if(data.data != null){
           this._logger.debug("AgentComponent:agent List response",data);
           console.log(data.data);
-          if(data.data[0]!=null){
-            this.filterdata = data.data[0].Resources;
+          if(data.data[0] != null){
+            this.agents = data.data[0].Resources;
 
             console.log(this.agents);
           }
@@ -99,10 +99,14 @@ export class AgentComponent implements OnInit{
         }
 
       }
-      this.selectedDateFrom = currentdate;
+    this.selectedDateFrom = currentdate;
     this.selectedDateTo = currentdate;
-     this.fromdate = currentdate.date;
-    this.todate = currentdate.date;
+    this.fromdate.year = currentdate.date.year;
+    this.fromdate.month = currentdate.date.month;
+    this.fromdate.day = currentdate.date.day;
+    this.todate.year = currentdate.date.year;
+    this.todate.month = currentdate.date.month;
+    this.todate.day = currentdate.date.day;
 
   }
 
@@ -163,7 +167,8 @@ export class AgentComponent implements OnInit{
 
   }
   getByDateToDate(){
-    console.log("getByDAteToDate");
+    console.log(this.fromdate);
+    console.log(this.todate);
     this.agentService.getAgentTransactionByDateToDate(this.agentId,this.fromdate,this.todate).then((data) => {
 
       if(data.data.length==0){

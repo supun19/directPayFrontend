@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MerchantService} from "../merchant.service";
 
 
@@ -11,7 +11,7 @@ import {Address} from '../../../class/address'
   providers:[MerchantService],
 
 })
-export class MerchantRegisterComponent {
+export class MerchantRegisterComponent implements OnInit{
   isChecked: boolean = false;
 
   address=new Address("","","");
@@ -22,9 +22,21 @@ export class MerchantRegisterComponent {
   qr_code =false;
   detail=false;
   requestDetail={"id":""};
+
+  //permission
+  ownpermission;
+  //visibility
+
   constructor(private merchantService:MerchantService) {
   }
 
+  ngOnInit(){
+    this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
+    console.log("own permission")
+    console.log(this.ownpermission[0].role);
+   this.visibilityForRole(this.ownpermission[0].role);
+
+  }
 
   onSubmit(): void {
 
@@ -32,7 +44,6 @@ export class MerchantRegisterComponent {
     this.merchantService.register(this.merchant).then(res => {
         console.log(this.merchant)
         if (res.data!=null && res.data[0] != null) {
-          this.register = false;
           /*this.merchant.merchantName =  res.data[0].merchantName;
            this.merchant.brNumber = res.data[0].brNumber;
            this.merchant.phoneNumber = res.data[0].phoneNumber;
@@ -82,6 +93,39 @@ export class MerchantRegisterComponent {
         }
       );
     }
+  }
+
+  visibilityForRole(role){
+
+    switch (role){
+      case "superAdmin" :
+
+        this.register = true;
+        break;
+
+      case "admin" :
+        this.register = true;
+        break;
+
+      case "manager" :
+        this.register = true;
+        break;
+
+      case "supervisor" :
+        this.register = false;
+        break;
+
+      case "operator" :
+        this.register = false;
+        break;
+
+      case "customerSupport" :
+        this.register = false;
+        break;
+
+    }
+
+
   }
 }
 

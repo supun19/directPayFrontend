@@ -1,6 +1,10 @@
+import {AuthGuard} from "./security/auth.guard";
+
+export const role = JSON.parse(localStorage.getItem("ownpermission"));;
 export const PAGES_MENU = [
   {
     path: 'pages',
+    canActivate: [AuthGuard],
     children: [
 
       {
@@ -32,8 +36,10 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Register',
+                hidden: role[0].merchantRegister,
               }
-            }
+            },
+
           },
           {
             path: 'list',
@@ -98,7 +104,29 @@ export const PAGES_MENU = [
             }
           },
         ]
-      }
+      },
+      {
+        path: 'setting',
+        data: {
+          menu: {
+            title: 'Setting',
+            icon: 'ion-android-home',
+            selected: false,
+            expanded: false,
+            order: 0
+          }
+        },
+        children: [
+          {
+            path: 'permission',
+            data: {
+              menu: {
+                title: 'Permission',
+              }
+            }
+          },
+        ]
+      },
      /* {
         path: 'editors',
         data: {

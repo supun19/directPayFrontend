@@ -3,8 +3,7 @@ import { CommonModule }  from '@angular/common';
 import { AppTranslationModule } from '../../app.translation.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
-
-import { Login } from './login.component';
+import { LoginComponent } from './login.component';
 import { routing }       from './login.routing';
 
 
@@ -15,10 +14,11 @@ import { routing }       from './login.routing';
     ReactiveFormsModule,
     FormsModule,
     NgaModule,
-    routing
+    routing,
+
   ],
   declarations: [
-    Login
+    LoginComponent
   ]
 })
 export class LoginModule {}

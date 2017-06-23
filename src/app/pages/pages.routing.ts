@@ -7,6 +7,10 @@ import { ModuleWithProviders } from '@angular/core';
 
 export const routes: Routes = [
   {
+    path: '',redirectTo:'login',pathMatch: 'full',
+
+  },
+  {
     path: 'login',
     loadChildren: 'app/pages/login/login.module#LoginModule'
   },
@@ -29,7 +33,9 @@ export const routes: Routes = [
       //{ path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
       { path: 'merchant', loadChildren: './merchant/merchant.module#MerchantModule' },
       { path: 'transaction', loadChildren: './transaction/transaction.module#TransactionModule' },
-      { path: 'report', loadChildren: './report/report.module#ReportModule' }
+      { path: 'report', loadChildren: './report/report.module#ReportModule' },
+      { path: 'setting', loadChildren: './setting/setting.module#SettingModule' }
+
     ]
   }
 ];

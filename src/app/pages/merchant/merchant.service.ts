@@ -73,7 +73,7 @@ export class MerchantService {
 
     return new Promise((resolve, reject) => {
       return this.http
-        .post(this.merchantDetailUrl, JSON.stringify(id), {headers: this.headers})
+        .post(this.merchantDetailUrl, JSON.stringify({id:id}), {headers: this.headers})
         .toPromise()
         .then(response => {
           //noinspection TypeScriptUnresolvedFunction

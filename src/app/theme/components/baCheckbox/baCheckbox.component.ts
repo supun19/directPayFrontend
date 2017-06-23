@@ -22,9 +22,11 @@ export class BaCheckbox implements ControlValueAccessor {
   }
 
   public onChange(value: any): void {
+    //console.log(value);
   }
 
   public onTouch(value: any): void {
+    //console.log(value);
   }
 
   public writeValue(state: any): void {

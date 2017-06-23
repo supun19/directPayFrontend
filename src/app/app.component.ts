@@ -11,7 +11,7 @@ import { layoutPaths } from './theme/theme.constants';
  * App Component
  * Top Level Component
  */
-enableProdMode();
+
 @Component({
   selector: 'app',
   styleUrls: ['./app.component.scss'],

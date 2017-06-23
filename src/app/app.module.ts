@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
  * Platform and Environment providers/directives/pipes
  */
 import { routing } from './app.routing';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 // App is our top level component
 import { App } from './app.component';
@@ -55,7 +56,7 @@ export type StoreType = {
     PagesModule,
 
 
-    routing
+    routing,
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     APP_PROVIDERS,MerchantService

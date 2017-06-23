@@ -19,11 +19,13 @@ export class BaMenuService {
    */
   public updateMenuByRoutes(routes: Routes) {
     let convertedRoutes = this.convertRoutesToMenus(_.cloneDeep(routes));
+    //console.log(convertedRoutes);
     this.menuItems.next(convertedRoutes);
   }
 
   public convertRoutesToMenus(routes:Routes):any[] {
     let items = this._convertArrayToItems(routes);
+    //console.log(items);
     return this._skipEmpty(items);
   }
 
@@ -43,6 +45,7 @@ export class BaMenuService {
       if (item.children && item.children.length > 0) {
         item.children = this.selectMenuItem(item.children);
       }
+      //console.log("manu");
       items.push(item);
     });
     return items;

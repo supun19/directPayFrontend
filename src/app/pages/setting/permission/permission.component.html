@@ -1,0 +1,66 @@
+<div class="widgets">
+  <div class="row" *ngIf="authorize">
+    <ba-card title="Permission Table" baCardClass="with-scroll" class="data-table-container">
+      <div class="panel panel-default">
+        <!--div class="panel-heading">Transaction History</div-->
+
+        <table class="table table-striped" [mfData]="permissions" #mf="mfDataTable" >
+          <thead>
+          <tr>
+            <!--th style="width: 10%"></th-->
+            <th style="width: 5%">
+              <mfDefaultSorter by="tId">Role</mfDefaultSorter>
+            </th>
+            <th style="width: 5%">
+              <mfDefaultSorter by="tId">User Edit</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="payerId">User Edit Approve</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="payerName">Merchant Edit</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="payeeId">Merchant Edit Approve</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="payeeName">User Register</mfDefaultSorter>
+            </th>
+
+            <th style="width: 10%">
+              <mfDefaultSorter by="dateTime">User Register Approve</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="amount">Merchant Register</mfDefaultSorter>
+            </th>
+            <th style="width: 5%">
+              <mfDefaultSorter by="status">Merchant Register Approve</mfDefaultSorter>
+            </th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data">
+            <!--td>
+              <button (click)="remove(item)" class="btn btn-danger">x</button>
+            </td-->
+            <td >{{item.role}}</td>
+            <td ><ba-checkbox [(ngModel)]="item.userEdit"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.userEditApprove"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.merchantEdit"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.merchantEditApprove"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.userRegister"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.userRegisterApprove"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.merchantRegister"></ba-checkbox></td>
+            <td ><ba-checkbox [(ngModel)]="item.merchantRegisterApprove"></ba-checkbox></td>
+
+
+
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </ba-card>
+    <button (click)="savePermission()" class="btn-primary">Save</button>
+  </div>
+</div>

@@ -17,8 +17,8 @@ export class AllComponent implements OnInit{
   data;
   filterdata;
 
-  todate;
-  fromdate;
+  todate =  { year: 2016, month: 10, day: 9 } ;
+  fromdate = { year: 2016, month: 10, day: 9 } ;
 
   day = false;
   daytoday =false;
@@ -85,8 +85,14 @@ export class AllComponent implements OnInit{
     }
     this.selectedDateFrom = currentdate;
     this.selectedDateTo = currentdate;
-    this.fromdate = currentdate.date;
-    this.todate = currentdate.date;
+    this.fromdate.year = currentdate.date.year;
+    this.fromdate.month = currentdate.date.month;
+    this.fromdate.day = currentdate.date.day;
+    this.todate.year = currentdate.date.year;
+    this.todate.month = currentdate.date.month;
+    this.todate.day = currentdate.date.day;
+    //this.todate = currentdate.date;
+    console.log(this.fromdate);
 
   }
 
@@ -108,13 +114,14 @@ export class AllComponent implements OnInit{
     this.todate =  event.date;
     this.selectedDateTo = event;
 
+
   }
   onDateChangedFrom(event: IMyDateModel) {
 
     this.fromdate = event.date;
     this.selectedDateFrom = event;
     console.log(event.date);
-
+    //console.log(this.fromdate);
   }
   filterDate(){
 
@@ -140,8 +147,9 @@ export class AllComponent implements OnInit{
     this.filterdata = [];
 
     if(+this.type == 0){
+      console.log(this.fromdate);
       this.nextDate();
-      this.getByDateToDate()
+      this.getByDateToDate();
 
     }
     if(+this.type == 1){
@@ -150,7 +158,9 @@ export class AllComponent implements OnInit{
 
   }
   getByDateToDate(){
-    console.log("getByDAteToDate");
+    console.log("getByDateToDate");
+    console.log(this.fromdate);
+    console.log(this.todate);
     this.trasaction.getTransactionByDateToDate(this.fromdate,this.todate).then((data) => {
 
       if(data.data.length==0){
@@ -160,8 +170,6 @@ export class AllComponent implements OnInit{
       else if(data.data != null){
         this.data = data.data;
         this.filterdata = this.data;
-
-
       }
       else {
         if(data.errors != null){
@@ -176,11 +184,14 @@ export class AllComponent implements OnInit{
 
   nextDate(){
     console.log(this.fromdate);
+    console.log(this.todate);
     var date = new Date(this.fromdate.year,+this.fromdate.month-1,this.fromdate.day);
     date.setDate(date.getDate()+1);
     this.todate.year = date.getFullYear();
     this.todate.month = date.getMonth()+1;
     this.todate.day = date.getDate();
+    console.log(this.fromdate);
+    console.log(this.todate);
 
   }
   selectType(){

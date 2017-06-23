@@ -32,10 +32,45 @@ import { PAGES_MENU } from './pages.menu';
 })
 export class Pages {
 
+  ownpermission;
+  register;
   constructor(private _menuService: BaMenuService,) {
   }
 
   ngOnInit() {
+    this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
+    console.log(this.ownpermission);
     this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
+  }
+
+  visibilityForRole(role) {
+
+    switch (role) {
+      case "superAdmin" :
+
+        this.register = true;
+        break;
+
+      case "admin" :
+        this.register = true;
+        break;
+
+      case "manager" :
+        this.register = true;
+        break;
+
+      case "supervisor" :
+        this.register = false;
+        break;
+
+      case "operator" :
+        this.register = false;
+        break;
+
+      case "customerSupport" :
+        this.register = false;
+        break;
+
+    }
   }
 }

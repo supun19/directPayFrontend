@@ -21,6 +21,8 @@ export class MerchantListComponent implements OnInit{
   merchantqrcode = false;
   merchantId="";
   role = "merchant";
+
+  merchantDetail;
   constructor(private merchant: MerchantService){
 
   }
@@ -57,7 +59,25 @@ export class MerchantListComponent implements OnInit{
     this.merchantId=id;
     this.merchantqrcode = true;
   }
+  showMerchantDetail(id){
+    console.log(id);
+    this.merchant.merchantDetail(id).then((data) => {
 
+      if(data.data != null){
+        this.data = data.data;
+        console.log(this.data);
+        if(data.data[0]!=null){
+          this.merchantDetail = data.data[0];
+
+        }
+      }
+      else {
+
+      }
+    });
+
+
+  }
 
 
 
