@@ -11,16 +11,24 @@ export class AuthGuard implements CanActivate {
 
 
 
-  canActivate(){
-    // if(this.authService.isLoggedIn()){
-    //    return true;
-    // }
-    // else{
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
-    return false;
+  canActivate() {
+    return this.checkIfLoggedIn();
+  }
 
+  private checkIfLoggedIn(): boolean{
+
+    // A call to the actual login service would go here
+    // For now we'll just randomly return true or false
+
+    let loggedIn:string =  localStorage.getItem("loggedIn");
+
+
+    if(loggedIn == "true"){
+      console.log("LoginGuard: The user is not logged in and can't navigate product details");
+      return  true;
+    }
+
+    return false;
   }
 
 

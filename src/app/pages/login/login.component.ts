@@ -50,6 +50,7 @@ export class LoginComponent {
             this.filterdata = data.data[0];
             localStorage.setItem("ownpermission",JSON.stringify(this.filterdata.permission));
             localStorage.setItem('accessToken',this.filterdata.accessToken);
+            localStorage.setItem("loggedIn","true");
             this.router.navigate(['/pages']);
           }
         }

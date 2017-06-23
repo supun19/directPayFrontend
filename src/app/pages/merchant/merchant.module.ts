@@ -30,6 +30,7 @@ import { QRCodeModule } from 'angular2-qrcode';
 import { routing } from './merchant.routing';
 
 import {QrModule} from '../qr/qr.module';
+import {MerchantGuard} from "../security/merchant.guard";
 
 
 
@@ -56,6 +57,8 @@ import {QrModule} from '../qr/qr.module';
 
 
 
-  ]
+  ],
+  providers:[MerchantGuard]
+
 })
 export class MerchantModule {}

@@ -23,6 +23,7 @@ import {QrModule} from '../qr/qr.module'
 import { MyDatePickerModule } from 'mydatepicker';
 
 import { Logger } from "angular2-logger/core";
+import {SettingGuard} from "../security/setting.guard";
 
 @NgModule({
   imports: [
@@ -52,6 +53,6 @@ import { Logger } from "angular2-logger/core";
 
 
   ],
-  providers:    [ Logger ]
+  providers:    [ Logger,SettingGuard ]
 })
 export class SettingModule {}

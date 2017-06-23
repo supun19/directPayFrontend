@@ -4,7 +4,6 @@ export const role = JSON.parse(localStorage.getItem("ownpermission"));;
 export const PAGES_MENU = [
   {
     path: 'pages',
-    canActivate: [AuthGuard],
     children: [
 
       {
@@ -36,7 +35,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Register',
-                hidden: role[0].merchantRegister,
+                hidden: !role[0].merchantRegister,
               }
             },
 
@@ -113,7 +112,8 @@ export const PAGES_MENU = [
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
-            order: 0
+            order: 0,
+            hidden: !(role[0].role == "admin" || role[0].role == "superAdmin" || role[0].role == "manager"),
           }
         },
         children: [
