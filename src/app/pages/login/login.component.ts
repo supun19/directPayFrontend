@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {Router, Routes} from '@angular/router';
 import {LoginService} from './login.service';
 import {StorageService} from "../storage.service";
+import {BaMenuService} from "../../theme/services/baMenu/baMenu.service";
+import {Permission} from "../../class/permission";
 
 
 
@@ -11,7 +13,7 @@ import {StorageService} from "../storage.service";
   selector: 'login',
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
-  providers:[LoginService]
+  providers:[LoginService,BaMenuService]
 })
 export class LoginComponent {
 
@@ -22,7 +24,8 @@ export class LoginComponent {
 
   data;
   filterdata;
-
+  ownpermission;
+  register;
   private loggedIn = false;
 
   constructor(fb:FormBuilder,private loginService: LoginService,private router: Router,public storeService:StorageService) {
@@ -51,6 +54,7 @@ export class LoginComponent {
             localStorage.setItem("ownpermission",JSON.stringify(this.filterdata.permission));
             localStorage.setItem('accessToken',this.filterdata.accessToken);
             localStorage.setItem("loggedIn","true");
+
             this.router.navigate(['/pages']);
           }
         }
@@ -69,6 +73,38 @@ export class LoginComponent {
 
   isLoggedIn() {
     return this.loggedIn;
+  }
+
+
+  visibilityForRole(role) {
+
+    switch (role) {
+      case "superAdmin" :
+
+        this.register = true;
+        break;
+
+      case "admin" :
+        this.register = true;
+        break;
+
+      case "manager" :
+        this.register = true;
+        break;
+
+      case "supervisor" :
+        this.register = false;
+        break;
+
+      case "operator" :
+        this.register = false;
+        break;
+
+      case "customerSupport" :
+        this.register = false;
+        break;
+
+    }
   }
 
 }

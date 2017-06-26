@@ -9,14 +9,6 @@ import {SettingGuard} from "./security/setting.guard";
 
 export const routes: Routes = [
   {
-    path: '',redirectTo:'login',pathMatch: 'full',
-
-  },
-  {
-    path: 'login',
-    loadChildren: 'app/pages/login/login.module#LoginModule'
-  },
-  {
     path: 'register',
     loadChildren: 'app/pages/register/register.module#RegisterModule'
   },

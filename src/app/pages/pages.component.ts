@@ -39,6 +39,7 @@ export class Pages {
 
   ngOnInit() {
     this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
+    console.log("error")
     console.log(this.ownpermission);
     this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
   }

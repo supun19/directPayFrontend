@@ -18,8 +18,9 @@ export class BaMenuService {
    * @param {Routes} routes Type compatible with app.menu.ts
    */
   public updateMenuByRoutes(routes: Routes) {
+
     let convertedRoutes = this.convertRoutesToMenus(_.cloneDeep(routes));
-    //console.log(convertedRoutes);
+    console.log(convertedRoutes);
     this.menuItems.next(convertedRoutes);
   }
 

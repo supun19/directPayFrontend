@@ -1,6 +1,6 @@
 import {AuthGuard} from "./security/auth.guard";
 
-export const role = JSON.parse(localStorage.getItem("ownpermission"));;
+export const role = JSON.parse(localStorage.getItem("ownpermission"));
 export const PAGES_MENU = [
   {
     path: 'pages',
