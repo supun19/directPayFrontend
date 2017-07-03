@@ -7,6 +7,7 @@ export const routes: Routes = [
     path: 'login',
     loadChildren: 'app/pages/login/login.module#LoginModule'
   },
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

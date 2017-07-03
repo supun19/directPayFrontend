@@ -2,16 +2,21 @@ import { Injectable } from '@angular/core';
 import {CanActivate, RouterStateSnapshot, ActivatedRouteSnapshot, Router} from '@angular/router';
 
 import {Observable} from "rxjs";
+import {Permission} from "../../class/permission";
 
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
 
 
+  constructor(private storage:LocalStorageService){
 
+  }
 
   canActivate() {
+
     return this.checkIfLoggedIn();
   }
 
@@ -20,11 +25,10 @@ export class AuthGuard implements CanActivate {
     // A call to the actual login service would go here
     // For now we'll just randomly return true or false
 
-    let loggedIn:string =  localStorage.getItem("loggedIn");
+    let loggedIn:string =  this.storage.retrieve("loggedIn");
 
 
     if(loggedIn == "true"){
-      console.log("LoginGuard: The user is not logged in and can't navigate product details");
       return  true;
     }
 

@@ -1,6 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {SettingService} from "../setting.service";
 import {Permission} from "../../../class/permission";
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class PermissionComponent implements OnInit{
   ownpermission;
   authorize = false;
 
-  constructor(private settingSevice:SettingService) {
+  constructor(private settingSevice:SettingService,private storage:LocalStorageService) {
     //console.log(localStorage.getItem('userEdit'));
 
 
@@ -31,20 +32,18 @@ export class PermissionComponent implements OnInit{
   setPermission(){
 
 
-    this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
+    this.ownpermission = this.storage.retrieve("ownpermission");
     console.log("own permission")
-    console.log(this.ownpermission[0].role);
-    this.getAuthorization(this.ownpermission[0].role);
+    console.log(this.ownpermission.role);
+    this.getAuthorization(this.ownpermission.role);
     if(this.authorize){
-      this.settingSevice.getPermission(this.ownpermission[0].role).then(
+      this.settingSevice.getPermission(this.ownpermission.role).then(
         data=>{
           if(data!=null){
             if(data.data[0]!=null){
-              localStorage.setItem("permissions",JSON.stringify(data.data[0].permissions));
+              this.storage.store("permissions",data.data[0].permissions);
 
-              this.permissions = JSON.parse(localStorage.getItem("permissions"));
-              console.log("ddddddddddd");
-              console.log(data.data[0].permissions);
+              this.permissions = this.storage.retrieve("permissions");
             }
           }
 

@@ -13,6 +13,7 @@ export class BaMenuItem {
   @Output() itemHover = new EventEmitter<any>();
   @Output() toggleSubMenu = new EventEmitter<any>();
 
+
   public onHoverItem($event):void {
     this.itemHover.emit($event);
   }
@@ -22,4 +23,5 @@ export class BaMenuItem {
     this.toggleSubMenu.emit($event);
     return false;
   }
+
 }

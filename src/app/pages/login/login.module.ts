@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 import { LoginComponent } from './login.component';
 import { routing }       from './login.routing';
+import {PagesModule} from "../pages.module";
+import {Pages} from "../pages.component";
 
 
 @NgModule({

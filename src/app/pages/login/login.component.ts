@@ -5,6 +5,8 @@ import {LoginService} from './login.service';
 import {StorageService} from "../storage.service";
 import {BaMenuService} from "../../theme/services/baMenu/baMenu.service";
 import {Permission} from "../../class/permission";
+import {PAGES_MENU} from "../pages.menu";
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 
 
@@ -28,7 +30,7 @@ export class LoginComponent {
   register;
   private loggedIn = false;
 
-  constructor(fb:FormBuilder,private loginService: LoginService,private router: Router,public storeService:StorageService) {
+  constructor(fb:FormBuilder,private loginService: LoginService,private router: Router,private _menuService: BaMenuService,private storage:LocalStorageService) {
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
@@ -36,6 +38,10 @@ export class LoginComponent {
 
     this.email = this.form.controls['email'];
     this.password = this.form.controls['password'];
+  }
+  ngOnInit() {
+    console.log("got it");
+
   }
 
   public onSubmit(values:Object):void {
@@ -51,10 +57,14 @@ export class LoginComponent {
           console.log(this.data);
           if(data.data[0]!=null){
             this.filterdata = data.data[0];
-            localStorage.setItem("ownpermission",JSON.stringify(this.filterdata.permission));
-            localStorage.setItem('accessToken',this.filterdata.accessToken);
-            localStorage.setItem("loggedIn","true");
-
+            this.storage.store('ownpermission', this.filterdata.permission[0]);
+            //localStorage.setItem("ownpermission",JSON.stringify(this.filterdata.permission[0]));
+            //Permission.merchantRegister = true;
+            //console.log("login permisiiom");
+            //console.log(localStorage.getItem("ownpermission"));
+            this.storage.store('accessToken',this.filterdata.accessToken);
+            this.storage.store("loggedIn","true");
+            //this.setPermission();
             this.router.navigate(['/pages']);
           }
         }
@@ -74,7 +84,6 @@ export class LoginComponent {
   isLoggedIn() {
     return this.loggedIn;
   }
-
 
   visibilityForRole(role) {
 

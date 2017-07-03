@@ -1,6 +1,8 @@
 import {AuthGuard} from "./security/auth.guard";
+import {Permission} from "../class/permission";
+import {StorageService} from "./storage.service"
 
-export const role = JSON.parse(localStorage.getItem("ownpermission"));
+
 export const PAGES_MENU = [
   {
     path: 'pages',
@@ -35,7 +37,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Register',
-                hidden: !role[0].merchantRegister,
+                hidden: false,
               }
             },
 
@@ -113,7 +115,7 @@ export const PAGES_MENU = [
             selected: false,
             expanded: false,
             order: 0,
-            hidden: !(role[0].role == "admin" || role[0].role == "superAdmin" || role[0].role == "manager"),
+            hidden: false,
           }
         },
         children: [

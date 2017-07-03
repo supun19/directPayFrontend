@@ -11,8 +11,10 @@ import {AuthGuard} from "./security/auth.guard";
 import {StorageService} from "./storage.service";
 import {SettingGuard} from "./security/setting.guard";
 
+import {Ng2Webstorage} from 'ngx-webstorage';
+
 @NgModule({
-  imports: [CommonModule, AppTranslationModule, NgaModule, routing],
+  imports: [CommonModule, AppTranslationModule, NgaModule, routing,Ng2Webstorage],
   declarations: [Pages],
   providers:[
     AuthGuard,

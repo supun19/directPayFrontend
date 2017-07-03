@@ -21,7 +21,7 @@ export class MerchantGuard implements CanActivate {
     this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
     //console.log("merchantguard");
     //console.log(this.ownpermission[0].merchantRegister);
-    return  this.ownpermission[0].merchantRegister;
+    return  this.ownpermission.merchantRegister;
   }
 
 

@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {Permission} from "../class/permission";
 
 @Injectable()
 export class StorageService {
 
+  merchantRegister = true;
   constructor(){}
 
   permissionStore(permission :any){
@@ -18,5 +20,9 @@ export class StorageService {
     localStorage.setItem('merchantRegister',permission.merchantRegister);
     localStorage.setItem('merchantRegisterApprove',permission.merchantRegisterApprove);
   }
+   getMerchantRegisterPermission(){
+
+    return Permission.merchantRegister;
+   }
 
 }

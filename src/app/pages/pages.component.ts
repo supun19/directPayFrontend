@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 
 import { BaMenuService } from '../theme';
 import { PAGES_MENU } from './pages.menu';
+import {Permission} from "../class/permission";
 
 @Component({
   selector: 'pages',
@@ -34,13 +35,13 @@ export class Pages {
 
   ownpermission;
   register;
-  constructor(private _menuService: BaMenuService,) {
+  constructor(private _menuService: BaMenuService) {
+    console.log("error");
   }
 
   ngOnInit() {
-    this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
-    console.log("error")
-    console.log(this.ownpermission);
+    localStorage.setItem("ownpermission",JSON.stringify(new Permission()));
+    console.log(PAGES_MENU);
     this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
   }
 

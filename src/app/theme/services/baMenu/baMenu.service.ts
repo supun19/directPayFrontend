@@ -3,6 +3,9 @@ import {Router, Routes} from '@angular/router';
 import * as _ from 'lodash';
 
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Permission} from "../../../class/permission";
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
+
 
 @Injectable()
 export class BaMenuService {
@@ -10,7 +13,7 @@ export class BaMenuService {
 
   protected _currentMenuItem = {};
 
-  constructor(private _router:Router) { }
+  constructor(private _router:Router,private storage:LocalStorageService) { }
 
   /**
    * Updates the routes in the menu
@@ -75,6 +78,7 @@ export class BaMenuService {
   protected _convertArrayToItems(routes:any[], parent?:any):any[] {
     let items = [];
     routes.forEach((route) => {
+
       items.push(this._convertObjectToItem(route, parent));
     });
     return items;
@@ -82,9 +86,15 @@ export class BaMenuService {
 
   protected _convertObjectToItem(object, parent?:any):any {
     let item:any = {};
+    //console.log(object);
+    //this.givePermission(object);
     if (object.data && object.data.menu) {
       // this is a menu object
       item = object.data.menu;
+
+
+
+      //this.givePermission(item);
       item.route = object;
       delete item.route.data.menu;
     } else {
@@ -110,7 +120,8 @@ export class BaMenuService {
     if ((prepared.selected || prepared.expanded) && parent) {
       parent.expanded = true;
     }
-
+    //console.log(prepared)
+    this.givePermission(prepared);
     return prepared;
   }
 
@@ -127,5 +138,38 @@ export class BaMenuService {
   protected _selectItem(object:any):any {
     object.selected = this._router.isActive(this._router.createUrlTree(object.route.paths), object.pathMatch === 'full');
     return object;
+  }
+  protected givePermission(item){
+
+    let permission = this.storage.retrieve('ownpermission');
+    console.log(item);
+    console.log(permission);
+    if(item.title == "Merchant"){
+      console.log(permission.merchantRegister);
+      item.children[0].hidden = !permission.merchantRegister;
+
+
+    }
+    if(item.title == "Setting"){
+      console.log(permission.role);
+      switch (permission.role){
+        case "superadmin" :item.hidden = false;
+          break;
+        case "admin" :item.hidden = false;
+          break;
+        case "manager" :item.hidden = false;
+          break;
+        case "supervisor" :item.hidden = true;
+          break;
+        case "operator" :item.hidden = true;
+          break;
+        case "Customer support" :item.hidden = true;
+          break;
+
+      }
+    }
+    console.log(item);
+
+
   }
 }

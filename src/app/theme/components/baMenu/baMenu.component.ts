@@ -41,6 +41,7 @@ export class BaMenu {
   }
 
   public ngOnInit(): void {
+
     this._onRouteChange = this._router.events.subscribe((event) => {
 
       if (event instanceof NavigationEnd) {

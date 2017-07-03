@@ -20,6 +20,7 @@ export class BaSidebar {
   }
 
   public ngOnInit():void {
+
     if (this._shouldMenuCollapse()) {
       this.menuCollapse();
     }

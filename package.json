@@ -82,6 +82,7 @@
     "ng2-smart-table": "1.0.3",
     "ng2-tree": "2.0.0-alpha.5",
     "ngx-uploader": "2.2.5",
+    "ngx-webstorage": "^1.8.0",
     "normalize.css": "6.0.0",
     "roboto-fontface": "0.7.0",
     "rxjs": "5.1.1",

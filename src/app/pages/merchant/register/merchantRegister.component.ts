@@ -33,7 +33,7 @@ export class MerchantRegisterComponent implements OnInit{
   ngOnInit(){
     this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
     console.log("own permission")
-    console.log(this.ownpermission[0].role);
+    console.log(this.ownpermission.role);
    //this.visibilityForRole(this.ownpermission[0].role);
 
 
