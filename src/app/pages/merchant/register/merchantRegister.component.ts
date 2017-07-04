@@ -26,7 +26,7 @@ export class MerchantRegisterComponent implements OnInit{
   //permission
   ownpermission;
   //visibility
-
+  registerForm = true;
   constructor(private merchantService:MerchantService) {
   }
 
@@ -53,6 +53,7 @@ export class MerchantRegisterComponent implements OnInit{
            this.merchant.merchantAddress = res.data[0].merchantAddress*/
           this.merchantId = res.data[0].merchantId
           this.qr_code = true;
+          this.registerForm =false;
         }
         else {
 
