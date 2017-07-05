@@ -10,7 +10,7 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 
 export class QrCodeComponent{
-  @Input() merchantId :any;
+  @Input() qrtext :any;
   constructor(){
 
   }
