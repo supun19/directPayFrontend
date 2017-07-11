@@ -57,6 +57,7 @@ export class LoginComponent {
           console.log(this.data);
           if(data.data[0]!=null){
             this.filterdata = data.data[0];
+            console.log(this.filterdata);
             this.storage.store('ownpermission', this.filterdata.permission[0]);
             //localStorage.setItem("ownpermission",JSON.stringify(this.filterdata.permission[0]));
             //Permission.merchantRegister = true;

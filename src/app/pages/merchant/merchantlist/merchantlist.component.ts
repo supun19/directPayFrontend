@@ -11,7 +11,7 @@ import {Merchant} from "../../../class/merchant";
 })
 
 export class MerchantListComponent implements OnInit{
-
+  public qrtext;
   data;
   filterdata;
   filterQuery = "";
@@ -55,7 +55,7 @@ export class MerchantListComponent implements OnInit{
   }
   showQrcode(id){
 
-
+    this.qrtext = id + "$ main nsb texi"
     this.merchantId=id;
     this.merchantqrcode = true;
   }
