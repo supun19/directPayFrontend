@@ -54,7 +54,7 @@ export class MerchantRegisterComponent implements OnInit{
            this.merchant.merchantEmail = res.data[0].merchantEmail
            this.merchant.merchantAddress = res.data[0].merchantAddress*/
           this.merchantId = res.data[0].merchantId
-          this.qrtext = res.data[0].merchantId + "$ main nsb texi"
+          this.qrtext = res.data[0].merchantId + " $ main nsb texi"
           this.qr_code = true;
           this.registerForm =false;
         }

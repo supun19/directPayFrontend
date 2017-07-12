@@ -55,9 +55,12 @@ export class MerchantListComponent implements OnInit{
   }
   showQrcode(id){
 
-    this.qrtext = id + "$ main nsb texi"
+    this.qrtext = id + " $ main nsb texi"
     this.merchantId=id;
     this.merchantqrcode = true;
+    console.log(this.qrtext);
+
+
   }
   showMerchantDetail(id){
     console.log(id);
