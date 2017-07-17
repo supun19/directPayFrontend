@@ -122,7 +122,8 @@ export class AgentService{
         .post(this.urlTransactionListAgentByDateToDate, JSON.stringify({
           userId: userId,
           fromDate: fromdate,
-          toDate: todate
+          toDate: todate,
+          role :"merchant"
         }), {headers: this.headers})
         .toPromise()
         .then(response => {

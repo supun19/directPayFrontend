@@ -171,6 +171,8 @@ export class AllComponent implements OnInit{
       }
       else if(data.data != null){
         this.data = data.data;
+        console.log("transaction list");
+        console.log(this.data);
         this.filterdata = this.data;
       }
       else {

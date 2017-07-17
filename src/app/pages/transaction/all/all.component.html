@@ -72,27 +72,36 @@
             <th style="width: 10%">
               <mfDefaultSorter by="tId">Transaction ID</mfDefaultSorter>
             </th>
-            <th style="width: 20%">
+            <!--th style="width: 20%">
               <mfDefaultSorter by="payerId">Payer ID</mfDefaultSorter>
-            </th>
+            </th-->
             <th style="width: 10%">
-              <mfDefaultSorter by="payerName">Payee Name</mfDefaultSorter>
+              <mfDefaultSorter by="payerName">Payer</mfDefaultSorter>
             </th>
-            <th style="width: 20%">
+            <!--th style="width: 20%">
               <mfDefaultSorter by="payeeId">Payee ID</mfDefaultSorter>
-            </th>
+            </th-->
             <th style="width: 10%">
-              <mfDefaultSorter by="payeeName">Payer Name</mfDefaultSorter>
+              <mfDefaultSorter by="payeeName">Payee</mfDefaultSorter>
             </th>
 
             <th style="width: 10%">
               <mfDefaultSorter by="dateTime">Date Time</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+              <mfDefaultSorter by="OriginalAmount">OriginalAmount</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="PayingAmount">PayingAmount</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="ReceivingAmount">ReceivingAmount</mfDefaultSorter>
             </th>
             <th style="width: 10%">
               <mfDefaultSorter by="status">Status</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="type">Type</mfDefaultSorter>
             </th>
 
           </tr>
@@ -109,15 +118,18 @@
               <button (click)="remove(item)" class="btn btn-danger">x</button>
             </td-->
             <td >{{item.id}}</td>
-            <td (click)="showQrcode(item.payerId)">{{item.payerId}}</td>
-            <td>{{item.payerName}}</td>
-            <td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td>
-            <td>{{item.payeeName}}</td>
-
-            <td >{{item.dateTime.date}}</td>
-            <td>{{item.amount}}</td>
+            <!--td (click)="showQrcode(item.payerId)">{{item.payerId}}</td-->
+            <td *ngIf="item.type =='merchantpay'">{{item.payerDetail.data[0].username}}</td>
+            <td *ngIf="item.type =='refund'">{{item.payerDetail.data[0].brNumber}}</td>
+            <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
+            <td *ngIf="item.type =='merchantpay'">{{item.payeeDetail.data[0].brNumber}}</td>
+            <td *ngIf="item.type =='refund'">{{item.payeeDetail.data[0].username}}</td>
+            <td >{{item.dateTime.date |  date:"MM/DD/YYYY h:mm a"}}</td>
+            <td>{{item.OriginalAmount}}</td>
+            <td>{{item.PayingAmount}}</td>
+            <td>{{item.ReceivingAmount}}</td>
             <td>{{item.status}}</td>
-
+            <td>{{item.type}}</td>
           </tr>
           </tbody>
           <tfoot>
