@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+/node_moudules1
 package.json
 # IDEs and editors
 /.idea
