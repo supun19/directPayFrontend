@@ -1,12 +1,3 @@
-@import '../../../theme/sass/conf/conf';
-:host /deep/ .widgets {
-    .data-table-container {
-        width: 100%;
-        .panel-heading {
-            margin-top: 25px;
-        }
-    }
-}
 #mydiv {
   /*height: 100vh;*/
   /*width: 100vw;*/
@@ -24,4 +15,28 @@
   /*margin-top: -32px; !* -1 * image height / 2 *!*/
 }
 
+#container {
 
+  position: relative;
+}
+#register_form{
+
+}
+#loading{
+  position: fixed;
+  background-color:rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 100%;
+
+
+}
+img{
+
+  padding-top: 20%;
+  padding-left: 50%;
+}

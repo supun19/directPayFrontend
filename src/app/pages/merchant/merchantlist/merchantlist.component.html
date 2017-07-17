@@ -1,3 +1,4 @@
+<div id="container">
 <div class="widgets">
   <div class="row">
     <ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
@@ -91,13 +92,17 @@
     </ba-card>
   </div>
 </div>
-<div *ngIf="merchantqrcode" class="col-md-6 col-sm-6 col-xs-6">
+<div *ngIf="loading" id="loading" >
+  <img src="../../../../assets/images/loading.gif"/>
+
+</div>
+<div *ngIf="merchantqrcode" style="text-align: center">
   <qrcode [qrtext]="qrtext"></qrcode>
 </div>
 
-<div *ngIf="merchantDetail" class="col-md-6 col-sm-6 col-xs-6">
+<div *ngIf="merchantDetail">
   <detail [merchant]="merchantDetail"></detail>
 </div>
 
-
+</div>
 

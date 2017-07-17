@@ -1,4 +1,5 @@
-<div class="row" *ngIf="registerForm">
+<div id="container">
+<div class="row" *ngIf="registerForm" id="register_form">
   <div class="col-md-12">
     <div>
       <ba-card title="Merchant REgister Form" baCardClass="with-scroll">
@@ -45,9 +46,17 @@
     </div>
   </div>
 </div>
-<div *ngIf="qr_code" class="col-md-6 col-sm-6 col-xs-6">
-  <qrcode [qrtext]="qrtext"></qrcode>
+<div *ngIf="loading" id="loading" >
+  <img src="../../../../assets/images/loading.gif"/>
+
 </div>
-<div *ngIf="detail" class="col-md-6 col-sm-6 col-xs-6">
-  <detail [merchant]="merchant"></detail>
+<div class="row">
+  <div *ngIf="qr_code" class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+    <qrcode [qrtext]="qrtext"></qrcode>
+  </div>
+  <!--<div *ngIf="detail" class="col-md-6 col-sm-6 col-xs-6">-->
+    <!--<detail [merchant]="merchant"></detail>-->
+  <!--</div>-->
+</div>
+
 </div>

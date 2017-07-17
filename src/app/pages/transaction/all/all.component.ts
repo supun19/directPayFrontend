@@ -14,6 +14,8 @@ import { Logger } from "angular2-logger/core";
 
 export class AllComponent implements OnInit{
 
+
+  private qrtext;
   data;
   filterdata;
 

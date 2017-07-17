@@ -8,12 +8,15 @@ import {Address} from '../../../class/address'
 @Component({
   selector: 'merchant-register',
   templateUrl: 'merchantRegister.component.html',
+  styleUrls: ['./merchantRegister.component.css'],
   providers:[MerchantService],
+
 
 })
 export class MerchantRegisterComponent implements OnInit{
 
   public qrtext;
+  private loading = false;
   isChecked: boolean = false;
 
   address=new Address("","","");
@@ -43,6 +46,7 @@ export class MerchantRegisterComponent implements OnInit{
 
   onSubmit(): void {
 
+    this.loading = true;
 
     this.merchantService.register(this.merchant).then(res => {
         console.log(this.merchant)
@@ -57,6 +61,7 @@ export class MerchantRegisterComponent implements OnInit{
           this.qrtext = res.data[0].merchantId + " $ main nsb texi"
           this.qr_code = true;
           this.registerForm =false;
+          this.loading = false;
         }
         else {
 

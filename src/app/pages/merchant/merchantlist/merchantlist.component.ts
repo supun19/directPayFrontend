@@ -6,12 +6,14 @@ import {Merchant} from "../../../class/merchant";
 
   selector:'merchantlist',
   templateUrl:'./merchantlist.component.html',
+  styleUrls: ['./merchantList.component.css'],
   providers:[MerchantService]
 
 })
 
 export class MerchantListComponent implements OnInit{
   public qrtext;
+  public loading = true;
   data;
   filterdata;
   filterQuery = "";
@@ -37,7 +39,7 @@ export class MerchantListComponent implements OnInit{
         console.log(this.data);
         if(data.data[0]!=null){
           this.filterdata = data.data[0].Resources;
-
+          this.loading = false;
         }
       }
       else {

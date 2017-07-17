@@ -17,6 +17,7 @@ import { Logger } from "angular2-logger/core";
 
 export class UserComponent implements OnInit {
 
+  private qrtext;
   data;
   filterQuery = "";
   rowsOnPage = 10;

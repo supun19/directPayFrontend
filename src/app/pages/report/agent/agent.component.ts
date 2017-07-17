@@ -17,7 +17,7 @@ import { Logger } from "angular2-logger/core";
 
 export class AgentComponent implements OnInit{
 
-
+  private qrtext;
 //data store
   data
   filterdata;
