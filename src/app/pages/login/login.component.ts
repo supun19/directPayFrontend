@@ -28,6 +28,8 @@ export class LoginComponent {
   filterdata;
   ownpermission;
   register;
+
+  loading = false;
   private loggedIn = false;
 
   constructor(fb:FormBuilder,private loginService: LoginService,private router: Router,private _menuService: BaMenuService,private storage:LocalStorageService) {
@@ -45,6 +47,9 @@ export class LoginComponent {
   }
 
   public onSubmit(values:Object):void {
+
+    this.loading = true;
+
     this.submitted = true;
     if (this.form.valid) {
       // your code goes here

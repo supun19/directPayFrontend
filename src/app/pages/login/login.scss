@@ -1,1 +1,17 @@
 @import '../../theme/sass/auth';
+
+#mydiv {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color:rgba(0, 0, 0, 0.5);
+  margin:auto;
+  /* for demonstration */
+}
+.ajax-loader {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  //margin-left: -32px; /* -1 * image width / 2 */
+  //margin-top: -32px; /* -1 * image height / 2 */
+}
