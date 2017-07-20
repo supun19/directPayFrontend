@@ -25,6 +25,9 @@ export class MerchantListComponent implements OnInit{
   role = "merchant";
 
   merchantDetail;
+
+  public merchantDetailByBrnumber;
+  private merchant_exit_from_brNumber = false;
   constructor(private merchant: MerchantService){
 
   }
@@ -82,6 +85,28 @@ export class MerchantListComponent implements OnInit{
     });
 
 
+  }
+
+  searchMerchant(brNumber){
+    this.merchant_exit_from_brNumber = false;
+    this.loading = true;
+    console.log(brNumber);
+    this.merchant.merchantDetailByBrNumber(brNumber).then((data) => {
+
+      if(data.data != null){
+          this.data = data.data;
+            console.log(this.data);
+        if(data.data[0]!=null){
+          this.loading = false;
+          this.merchant_exit_from_brNumber = true;
+          this.merchantDetailByBrnumber = data.data[0];
+
+        }
+      }
+      else {
+
+      }
+    });
   }
 
 

@@ -8,6 +8,7 @@ import { Logger } from "angular2-logger/core";
 
   selector:'all',
   templateUrl:'./all.component.html',
+  styleUrls: ['./all.component.css'],
   providers:[TransactionService]
 
 })
@@ -16,6 +17,7 @@ export class AllComponent implements OnInit{
 
 
   private qrtext;
+  private loading = false;
   data;
   filterdata;
 
@@ -59,6 +61,7 @@ export class AllComponent implements OnInit{
   }
   ngOnInit() {
 
+    this.userblock();
     this.initiateDate();
     // this.data = this.userService.getData();
     /*this.users = this.userService.getUsersId();
@@ -143,7 +146,7 @@ export class AllComponent implements OnInit{
 
   }
   getTransaction(){
-
+    this.loading = true;
     this.transctionInfo=false;
     this.transctionError =false;
     this.filterdata = [];
@@ -168,12 +171,14 @@ export class AllComponent implements OnInit{
       if(data.data.length==0){
         this.infomassage = "Transaction not avilable";
         this.transctionInfo = true;
+        this.loading = false;
       }
       else if(data.data != null){
         this.data = data.data;
         console.log("transaction list");
         console.log(this.data);
         this.filterdata = this.data;
+
       }
       else {
         if(data.errors != null){
@@ -182,6 +187,7 @@ export class AllComponent implements OnInit{
         }
 
       }
+      this.loading = false;
     });
 
   }
@@ -201,6 +207,13 @@ export class AllComponent implements OnInit{
   selectType(){
     this._logger.error('This is a priority level 1 error message...'+this.type);
     this._logger.debug('tyoe ',""+this.type)
+  }
+
+  userblock(){
+      this.trasaction.userBlock().then((data) => {
+        console.log(data);
+      });
+
   }
 
 

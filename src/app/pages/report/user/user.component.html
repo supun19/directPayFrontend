@@ -132,6 +132,10 @@
     </ba-card>
   </div>
 </div>
+<div *ngIf="loading" id="loading" >
+  <img src="../../../../assets/images/loading.gif"/>
+
+</div>
 <div *ngIf="merchantqrcode" class="col-md-6 col-sm-6 col-xs-6">
   <qrcode [qrtext]="qrtext"></qrcode>
 </div>

@@ -11,6 +11,7 @@ import { Logger } from "angular2-logger/core";
 
   selector:'user',
   templateUrl:'./user.component.html',
+  styleUrls: ['./user.component.css'],
   providers:[UserService]
 
 })
@@ -18,6 +19,7 @@ import { Logger } from "angular2-logger/core";
 export class UserComponent implements OnInit {
 
   private qrtext;
+  private loading = false;
   data;
   filterQuery = "";
   rowsOnPage = 10;
@@ -153,7 +155,7 @@ export class UserComponent implements OnInit {
   }
 
   getAgentTransaction(){
-
+    this.loading = true;
     this.transctionInfo=false;
     this.transctionError =false;
     this.filterdata = [];
@@ -214,6 +216,7 @@ export class UserComponent implements OnInit {
         }
 
       }
+      this.loading = false;
     });
     console.log(this.filterdata);
 

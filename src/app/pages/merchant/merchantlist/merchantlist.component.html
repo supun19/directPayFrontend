@@ -1,7 +1,17 @@
 <div id="container">
 <div class="widgets">
   <div class="row">
-    <ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
+
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control with-danger-addon" placeholder="Search for..." #brNumber>
+        <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" (click)="searchMerchant(brNumber.value)">Go!</button>
+        </span>
+      </div>
+    </div>
+
+    <!--ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
 
       <div class="panel panel-default">
 
@@ -39,7 +49,39 @@
           </tfoot>
         </table>
       </div>
-    </ba-card>
+    </ba-card-->
+  </div>
+  <div *ngIf="merchant_exit_from_brNumber">
+  <div class="row">
+    <div class="col-md-4">Merchant Name:</div>
+    <div class="col-md-4">{{merchantDetailByBrnumber.merchantName}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">Merchant BrNumber:</div>
+    <div class="col-md-4">{{merchantDetailByBrnumber.brNumber}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">Merchant Email:</div>
+    <div class="col-md-4">{{merchantDetailByBrnumber.merchantEmail}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">Merchant Account Number:</div>
+    <div class="col-md-4">{{merchantDetailByBrnumber.merchantAccountNumber}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">Merchant Name:</div>
+    <div class="col-md-4">{{merchantDetailByBrnumber.merchantName}}</div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">Merchant Phone Number:</div>
+    <div class="col-md-4">{{merchantDetailByBrnumber.phoneNumber}}</div>
+  </div>
+    <div class="row">
+      <div class="col-md-4">Merchant Account Disable:</div>
+      <div class="col-md-4"><ba-checkbox [(ngModel)]="item.userEdit"></ba-checkbox></div>
+    </div>
+
   </div>
 </div>
 <div *ngIf="loading" id="loading" >

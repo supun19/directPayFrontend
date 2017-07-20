@@ -21,6 +21,7 @@ export class MerchantService {
   private merchantRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/register';
   private merchantListUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/filterUsers';
   private merchantDetailUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details';
+  private merchantDetailByBrNumberUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details/brnumber';
   constructor(private http: Http) { }
 
 
@@ -120,6 +121,29 @@ export class MerchantService {
     return new Promise((resolve, reject) => {
       return this.http
         .get(this.merchantListUrl, {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
+  }
+  merchantDetailByBrNumber(brNumber:any): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      return this.http
+        .post(this.merchantDetailByBrNumberUrl, JSON.stringify({brNumber:brNumber}), {headers: this.headers})
         .toPromise()
         .then(response => {
           //noinspection TypeScriptUnresolvedFunction

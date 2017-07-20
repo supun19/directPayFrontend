@@ -11,6 +11,7 @@ import { Logger } from "angular2-logger/core";
 
   selector:'agent',
   templateUrl:'./agent.component.html',
+  styleUrls: ['./agent.component.css'],
   providers:[AgentService]
 
 })
@@ -18,6 +19,7 @@ import { Logger } from "angular2-logger/core";
 export class AgentComponent implements OnInit{
 
   private qrtext;
+  private loading = false;
 //data store
   data
   filterdata;
@@ -135,7 +137,7 @@ export class AgentComponent implements OnInit{
   }
 
   getAgentTransaction(){
-
+    this.loading = true;
     this.transctionInfo=false;
     this.transctionError =false;
     this.filterdata = [];
@@ -188,6 +190,7 @@ export class AgentComponent implements OnInit{
         }
 
       }
+      this.loading = false;
     });
 
   }
