@@ -21,7 +21,7 @@ export class MerchantRegisterComponent implements OnInit{
 
   address=new Address("","","");
 
-  merchant = new Merchant("-1","","","",this.address,"","");
+  merchant = new Merchant("-1","","","","","",this.address,"","",false);
   merchantId="";
   register = true;
   qr_code =false;
