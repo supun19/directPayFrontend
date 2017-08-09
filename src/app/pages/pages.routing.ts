@@ -27,6 +27,7 @@ export const routes: Routes = [
       //{ path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
       //{ path: 'maps', loadChildren: './maps/maps.module#MapsModule' },
       { path: 'merchant', loadChildren: './merchant/merchant.module#MerchantModule', },
+      { path: 'user', loadChildren: './user/user.module#UserModule', },
       { path: 'transaction', loadChildren: './transaction/transaction.module#TransactionModule' },
       { path: 'report', loadChildren: './report/report.module#ReportModule' },
       { path: 'setting', loadChildren: './setting/setting.module#SettingModule',canActivate: [SettingGuard] }

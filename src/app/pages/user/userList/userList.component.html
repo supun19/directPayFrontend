@@ -1,0 +1,141 @@
+<div id="container">
+  <div class="widgets">
+    <div class="row">
+
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="text" class="form-control with-danger-addon" placeholder="Search for..." #nic>
+          <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" (click)="searchUser(nic.value)">Go!</button>
+        </span>
+        </div>
+      </div>
+
+      <!--ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
+
+        <div class="panel panel-default">
+
+
+          <table class="table table-striped" [mfData]="filterdata" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+            <thead>
+            <tr>
+
+              <th style="width: 20%">
+                <mfDefaultSorter by="merchantId">Merchant Id</mfDefaultSorter>
+              </th>
+              <th style="width: 20%">
+                <mfDefaultSorter by="merchantName">Merchant Name</mfDefaultSorter>
+              </th>
+
+            </tr>
+            <tr>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let merchant of mf.data">
+
+              <td (click)="showQrcode(merchant.id)">{{merchant.id}}</td>
+              <td (click)="showMerchantDetail(merchant.id)">{{merchant.userName}}</td>
+
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="5">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </ba-card-->
+      <ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
+
+        <div class="panel panel-default">
+
+
+          <table class="table table-striped" [mfData]="userDetailByNic" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+            <thead>
+            <tr>
+
+
+              <th style="width: 10%">
+                <mfDefaultSorter by="nic">Nic</mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+                <mfDefaultSorter by="phoneNumber">PhoneNumber</mfDefaultSorter>
+              </th>
+              <th style="width: 10%">
+                <mfDefaultSorter by="accountNumber">AccountNumber</mfDefaultSorter>
+              </th>
+
+
+
+
+            </tr>
+            <tr>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of mf.data">
+
+              <td >{{user.username}}</td>
+              <td >{{user.phoneNumber}}</td>
+              <td >{{user.accountNumber}}</td>
+
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="5">
+                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </ba-card>
+
+    </div>
+    <!--div *ngIf="merchantDetailByBrnumber" >
+    <div class="row">
+      <div class="col-md-4">Merchant Name:</div>
+      <div class="col-md-4" >{{merchantDetailByBrnumber.merchantName}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Merchant BrNumber:</div>
+      <div class="col-md-4">{{merchantDetailByBrnumber.brNumber}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Merchant Email:</div>
+      <div class="col-md-4">{{merchantDetailByBrnumber.merchantEmail}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Merchant Account Number:</div>
+      <div class="col-md-4">{{merchantDetailByBrnumber.merchantAccountNumber}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">Merchant Name:</div>
+      <div class="col-md-4">{{merchantDetailByBrnumber.merchantName}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">Merchant Phone Number:</div>
+      <div class="col-md-4">{{merchantDetailByBrnumber.phoneNumber}}</div>
+    </div>
+      <div class="row">
+        <div class="col-md-4">Merchant Account Disable:</div>
+        <div class="col-md-4"><ba-checkbox [(ngModel)]="item.userEdit"></ba-checkbox></div>
+      </div>
+
+    </div-->
+  </div>
+  <div *ngIf="loading" id="loading" >
+    <img src="../../../../assets/images/loading.gif"/>
+
+  </div>
+
+</div>
+

@@ -54,6 +54,29 @@ export const PAGES_MENU = [
         ]
       },
       {
+        path: 'user',  // path for our page
+        data: { // custom menu declaration
+          menu: {
+            title: 'User', // menu title
+            icon: 'ion-android-home', // menu icon
+            selected: false,
+            expanded: false,
+            order: 55
+          }
+        },
+        children: [
+          {
+            path: 'list',
+            data: {
+              menu: {
+                title: 'List',
+              }
+            }
+          }
+
+        ]
+      },
+      {
         path: 'transaction',  // path for our page
         data: { // custom menu declaration
           menu: {

@@ -2,8 +2,10 @@
  * Created by thilina on 12/16/16.
  */
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http,Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import {Url} from "url";
 
@@ -22,6 +24,7 @@ export class MerchantService {
   private merchantListUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/filterUsers';
   private merchantDetailUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details';
   private merchantDetailByBrNumberUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details/brnumber';
+
   constructor(private http: Http) { }
 
 

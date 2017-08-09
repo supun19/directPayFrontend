@@ -1,7 +1,10 @@
 import {Component, OnInit, Input} from '@angular/core';
 
 import {MerchantService} from '../merchant.service'
-import {Merchant} from "../../../class/merchant";
+
+
+
+
 @Component({
 
   selector:'merchantlist',
@@ -10,6 +13,8 @@ import {Merchant} from "../../../class/merchant";
   providers:[MerchantService]
 
 })
+
+
 
 export class MerchantListComponent implements OnInit{
   public qrtext;
@@ -26,8 +31,12 @@ export class MerchantListComponent implements OnInit{
 
   merchantDetail;
 
-  public merchantDetailByBrnumber;
+
+  merchantDetailByBrnumber:any;
+  merchantName:string = "11231";
   private merchant_exit_from_brNumber = false;
+  ch:boolean = true
+
   constructor(private merchant: MerchantService){
 
   }
@@ -94,12 +103,17 @@ export class MerchantListComponent implements OnInit{
     this.merchant.merchantDetailByBrNumber(brNumber).then((data) => {
 
       if(data.data != null){
-          this.data = data.data;
+          this.data = data;
             console.log(this.data);
         if(data.data[0]!=null){
           this.loading = false;
+
+          this.merchantDetailByBrnumber = data.data;
+          //this.merchantDetail=  JSON.stringify( data.data[0]);
           this.merchant_exit_from_brNumber = true;
-          this.merchantDetailByBrnumber = data.data[0];
+          console.log("data");
+
+          console.log(data.data[0].merchantName);
 
         }
       }
@@ -107,6 +121,7 @@ export class MerchantListComponent implements OnInit{
 
       }
     });
+
   }
 
 
