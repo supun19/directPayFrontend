@@ -69,7 +69,7 @@ export class UserListComponent implements OnInit{
 
       }
       else {
-
+        this.loading = false;
       }
     });
   }

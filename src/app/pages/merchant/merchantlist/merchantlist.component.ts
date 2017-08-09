@@ -118,7 +118,7 @@ export class MerchantListComponent implements OnInit{
         }
       }
       else {
-
+        this.loading = false;
       }
     });
 
