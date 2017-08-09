@@ -98,11 +98,9 @@
               <mfDefaultSorter by="ReceivingAmount">ReceivingAmount</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="status">Status</mfDefaultSorter>
+              <mfDefaultSorter by="customParam">CustomParam</mfDefaultSorter>
             </th>
-            <th style="width: 10%">
-              <mfDefaultSorter by="type">Type</mfDefaultSorter>
-            </th>
+
 
           </tr>
           <!--tr>
@@ -127,9 +125,8 @@
             <td >{{item.dateTime.date |  date:"MM/DD/YYYY h:mm a"}}</td>
             <td>{{item.OriginalAmount}}</td>
             <td>{{item.PayingAmount}}</td>
-            <td>{{item.ReceivingAmount}}</td>
-            <td>{{item.status}}</td>
-            <td>{{item.type}}</td>
+            <td>{{item.customParam}}</td>
+
           </tr>
           </tbody>
           <tfoot>
