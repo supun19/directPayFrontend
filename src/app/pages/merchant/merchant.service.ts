@@ -142,11 +142,11 @@ export class MerchantService {
 
     });
   }
-  merchantDetailByBrNumber(brNumber:any): Promise<any> {
+  merchantDetailByBrNumber(data:any): Promise<any> {
 
     return new Promise((resolve, reject) => {
       return this.http
-        .post(this.merchantDetailByBrNumberUrl, JSON.stringify({brNumber:brNumber}), {headers: this.headers})
+        .post(this.merchantDetailByBrNumberUrl, data, {headers: this.headers})
         .toPromise()
         .then(response => {
           //noinspection TypeScriptUnresolvedFunction

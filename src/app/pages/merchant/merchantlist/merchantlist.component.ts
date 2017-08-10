@@ -96,11 +96,11 @@ export class MerchantListComponent implements OnInit{
 
   }
 
-  searchMerchant(brNumber){
+  searchMerchantByUserName(username){
     this.merchant_exit_from_brNumber = false;
     this.loading = true;
-    console.log(brNumber);
-    this.merchant.merchantDetailByBrNumber(brNumber).then((data) => {
+    console.log(username);
+    this.merchant.merchantDetailByBrNumber({"userName":username}).then((data) => {
 
       if(data.data != null){
           this.data = data;
@@ -123,6 +123,34 @@ export class MerchantListComponent implements OnInit{
     });
 
   }
+  searchMerchantByBrNumber(brNumber){
+    this.merchant_exit_from_brNumber = false;
+    this.loading = true;
+    console.log(brNumber);
+    this.merchant.merchantDetailByBrNumber({"brNumber":brNumber}).then((data) => {
+
+      if(data.data != null){
+        this.data = data;
+        console.log(this.data);
+        if(data.data[0]!=null){
+          this.loading = false;
+
+          this.merchantDetailByBrnumber = data.data;
+          //this.merchantDetail=  JSON.stringify( data.data[0]);
+          this.merchant_exit_from_brNumber = true;
+          console.log("data");
+
+          console.log(data.data[0].merchantName);
+
+        }
+      }
+      else {
+        this.loading = false;
+      }
+    });
+
+  }
+
 
 
 

@@ -47,6 +47,10 @@ export class AllComponent implements OnInit{
   merchantqrcode = false;
   merchantId="";
 
+  customParam:string = "";
+  hideByCustomParam:boolean;
+
+
   private myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'yyyy-mm-dd',
@@ -146,7 +150,9 @@ export class AllComponent implements OnInit{
 
   }
   getTransaction(){
+    this.customParam="";
     this.loading = true;
+
     this.transctionInfo=false;
     this.transctionError =false;
     this.filterdata = [];
@@ -216,5 +222,8 @@ export class AllComponent implements OnInit{
 
   }
 
+  filterTransactionByCustomParam(){
 
+    console.log(this.customParam);
+  }
 }

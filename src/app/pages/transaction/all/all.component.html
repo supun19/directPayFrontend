@@ -46,7 +46,13 @@
           </div>
         </div>
 
+        <div class="col-sm-2">
+          <!--label class="label-control">Agent Id</label-->
+          <select class="form-control input-sm" [(ngModel)]="customParam" (ngModelChange)="filterTransactionByCustomParam()">
+            <option  *ngFor="let item of data " [ngValue]="item.id">{{item.customParam}}</option>
 
+          </select>
+        </div>
       </div>
 
       <div class="row" *ngIf="transctionError">
@@ -65,7 +71,7 @@
       <div class="panel panel-default">
         <!--div class="panel-heading">Transaction History</div-->
 
-        <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+        <table class="table table-striped" [mfData]="data | dataFilter : customParam" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
           <thead>
           <tr>
             <!--th style="width: 10%"></th-->

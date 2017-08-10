@@ -4,13 +4,20 @@
 
     <div class="col-md-4">
       <div class="input-group">
-        <input type="text" class="form-control with-danger-addon" placeholder="Search for..." #brNumber>
+        <input type="text" class="form-control with-danger-addon" placeholder="Search by Username..." #username>
         <span class="input-group-btn">
-          <button class="btn btn-danger" type="button" (click)="searchMerchant(brNumber.value)">Go!</button>
+          <button class="btn btn-danger" type="button" (click)="searchMerchantByUserName(username.value)">Go!</button>
         </span>
       </div>
     </div>
-
+    <div class="col-md-4">
+      <div class="input-group">
+        <input type="text" class="form-control with-danger-addon" placeholder="Search by brNumber..." #brNumber>
+        <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" (click)="searchMerchantByBrNumber(brNumber.value)">Go!</button>
+        </span>
+      </div>
+    </div>
     <!--ba-card title="Merchant List" baCardClass="with-scroll" class="data-table-container">
 
       <div class="panel panel-default">

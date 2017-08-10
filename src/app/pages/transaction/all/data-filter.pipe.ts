@@ -6,10 +6,9 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class DataFilterPipe implements PipeTransform {
 
-    transform(array: any[], query: string): any {
-        if (query) {
-            return _.filter(array, row=>row.name.indexOf(query) > -1);
-        }
-        return array;
-    }
+  transform(items: any[], query: string): any {
+    if (!items) return [];
+    if(query=="") return items;
+    return items.filter(it => it.id == query);
+  }
 }
