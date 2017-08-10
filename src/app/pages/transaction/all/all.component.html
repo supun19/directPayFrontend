@@ -117,11 +117,9 @@
             </td-->
             <td >{{item.id}}</td>
             <!--td (click)="showQrcode(item.payerId)">{{item.payerId}}</td-->
-            <td *ngIf="item.type =='merchantpay'">{{item.payerDetail.data[0].username}}</td>
-            <td *ngIf="item.type =='refund'">{{item.payerDetail.data[0].username}}</td>
+            <td >{{item.payerDetail.data[0].username}}</td>
             <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
-            <td *ngIf="item.type =='merchantpay'">{{item.payeeDetail.data[0].username}}</td>
-            <td *ngIf="item.type =='refund'">{{item.payeeDetail.data[0].username}}</td>
+            <td >{{item.payeeDetail.data[0].username}}</td>
             <td >{{item.dateTime.date |  date:"MM/DD/YYYY h:mm a"}}</td>
             <td>{{item.OriginalAmount}}</td>
             <td>{{item.PayingAmount}}</td>
