@@ -49,7 +49,7 @@
         <div class="col-sm-2">
           <!--label class="label-control">Agent Id</label-->
           <select class="form-control input-sm" [(ngModel)]="customParam" (ngModelChange)="filterTransactionByCustomParam()">
-            <option  *ngFor="let item of data " [ngValue]="item.id">{{item.customParam}}</option>
+            <option  *ngFor="let item of data " [ngValue]="item.customParam">{{item.customParam}}</option>
 
           </select>
         </div>

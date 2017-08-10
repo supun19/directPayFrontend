@@ -9,6 +9,6 @@ export class DataFilterPipe implements PipeTransform {
   transform(items: any[], query: string): any {
     if (!items) return [];
     if(query=="") return items;
-    return items.filter(it => it.id == query);
+    return items.filter(it => it.customParam == query);
   }
 }
