@@ -6,15 +6,17 @@ $hover: 24;
 
 .btn {
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 1px;
   transition: all 0.1s ease;
-  padding: 0.344rem 1rem;
+  padding: 0.875rem 2.188rem;
   font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: $font-bold;
 }
 
-.btn:hover {
+/* .btn:hover {
   transform: scale(1.2);
-}
+} */
 
 @mixin styleButton($color, $borderColor) {
   background: $color;
@@ -267,7 +269,7 @@ button.progress-button {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
-  border-radius: 3px;
+  border-radius: 1px;
 }
 
 .btn-group-lg > .btn, .btn-lg {

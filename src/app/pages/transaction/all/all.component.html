@@ -41,7 +41,7 @@
         <div class="col-sm-2">
           <div class="offset-sm-1 col-sm-5">
             <div class="row">
-              <button (click)="getTransaction()" class="btn btn-primary"> filter</button>
+              <button (click)="getTransaction()" class="btn btn-primary btn-sm"> filter</button>
             </div>
           </div>
         </div>
@@ -69,6 +69,7 @@
         </div>
       </div>
       <div class="panel panel-default">
+      <br>
         <!--div class="panel-heading">Transaction History</div-->
 
         <table class="table table-striped" [mfData]="data | dataFilter : customParam" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
