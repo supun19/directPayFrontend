@@ -25,7 +25,7 @@ export const PAGES_MENU = [
         data: { // custom menu declaration
           menu: {
             title: 'Merchant', // menu title
-            icon: 'ion-android-home', // menu icon
+            icon: 'ion-android-people', // menu icon
             selected: false,
             expanded: false,
             order: 50
@@ -37,6 +37,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Register',
+                icon: 'ion-arrow-up-a', // menu icon
                 hidden: false,
               }
             },
@@ -47,6 +48,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'List',
+                icon: 'ion-ios-list', // menu icon
               }
             }
           }
@@ -58,7 +60,7 @@ export const PAGES_MENU = [
         data: { // custom menu declaration
           menu: {
             title: 'User', // menu title
-            icon: 'ion-android-home', // menu icon
+            icon: 'ion-android-person', // menu icon
             selected: false,
             expanded: false,
             order: 55
@@ -70,6 +72,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'List',
+                icon: 'ion-ios-list', // menu icon
               }
             }
           }
@@ -81,7 +84,7 @@ export const PAGES_MENU = [
         data: { // custom menu declaration
           menu: {
             title: 'Transaction', // menu title
-            icon: 'ion-android-home', // menu icon
+            icon: 'ion-arrow-swap', // menu icon
             selected: false,
             expanded: false,
             order: 75
@@ -93,6 +96,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'All',
+                icon: 'ion-ios-list', // menu icon
               }
             }
           }
@@ -104,7 +108,7 @@ export const PAGES_MENU = [
         data: { // custom menu declaration
           menu: {
             title: 'Report', // menu title
-            icon: 'ion-android-home', // menu icon
+            icon: 'ion-arrow-graph-up-right', // menu icon
             selected: false,
             expanded: false,
             order: 100
@@ -116,6 +120,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Agent',
+                icon: 'ion-briefcase', // menu icon
               }
             }
           },
@@ -124,6 +129,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'User',
+                icon: 'ion-person', // menu icon
               }
             }
           },
@@ -134,7 +140,7 @@ export const PAGES_MENU = [
         data: {
           menu: {
             title: 'Setting',
-            icon: 'ion-android-home',
+            icon: 'ion-android-settings',
             selected: false,
             expanded: false,
             order: 0,
@@ -147,6 +153,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Permission',
+                icon: 'ion-checkmark', // menu icon
               }
             }
           },
