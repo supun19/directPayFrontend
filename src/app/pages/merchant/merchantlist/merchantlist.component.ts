@@ -100,7 +100,7 @@ export class MerchantListComponent implements OnInit{
     this.merchant_exit_from_brNumber = false;
     this.loading = true;
     console.log(username);
-    this.merchant.merchantDetailByBrNumber({"userName":username}).then((data) => {
+    this.merchant.merchantDetailByBrNumber({"merchantName":username}).then((data) => {
 
       if(data.data != null){
           this.data = data;
