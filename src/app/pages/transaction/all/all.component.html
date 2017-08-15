@@ -54,6 +54,16 @@
           </select>
         </div>
       </div>
+      <br>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="text" class="form-control with-danger-addon" placeholder="Search by TransactionId..." #transactionId>
+          <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" (click)="searchByTransactionId(transactionId.value)">Search</button>
+        </span>
+        </div>
+      </div>
+
 
       <div class="row" *ngIf="transctionError">
         <br>
@@ -128,9 +138,9 @@
             <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
             <td >{{item.payeeDetail.data[0].username}}</td>
             <td >{{item.dateTime.date |  date:"MM/DD/YYYY h:mm a"}}</td>
-            <td>{{item.OriginalAmount}}</td>
-            <td>{{item.PayingAmount}}</td>
-            <td>{{item.ReceivingAmount}}</td>
+            <td>{{item.originalAmount}}</td>
+            <td>{{item.payingAmount}}</td>
+            <td>{{item.receivingAmount}}</td>
 
             <td>{{item.customParam}}</td>
 

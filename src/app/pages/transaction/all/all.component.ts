@@ -226,4 +226,39 @@ export class AllComponent implements OnInit{
 
     console.log(this.customParam);
   }
+
+  searchByTransactionId(transactionId:string){
+
+      if(transactionId){
+        console.log(transactionId);
+        this.loading = true;
+        this.filterdata = null;
+        this.trasaction.getTransactionById(transactionId).then((data) => {
+
+          if(data.data.length==0){
+            this.infomassage = "Transaction not avilable";
+            this.transctionInfo = true;
+            this.loading = false;
+          }
+          else if(data.data != null){
+            this.data = data.data;
+            this.filterdata = this.data;
+
+          }
+          else {
+            if(data.errors != null){
+              this.errormassage = data.errors[0].source.title;
+              this.transctionError = true;
+            }
+
+          }
+          this.loading = false;
+        });
+      }
+      else {
+        //TODO show error msg
+      }
+    this.loading = false;
+
+  }
 }
