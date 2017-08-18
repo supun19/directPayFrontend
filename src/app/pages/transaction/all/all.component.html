@@ -137,7 +137,7 @@
             <td >{{item.payerDetail.data[0].username}}</td>
             <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
             <td >{{item.payeeDetail.data[0].username}}</td>
-            <td >{{item.dateTime.date |  date:"MM/DD/YYYY h:mm a"}}</td>
+            <td >{{item.dateTime.date |  date:'short'}}</td>
             <td>{{item.originalAmount}}</td>
             <td>{{item.payingAmount}}</td>
             <td>{{item.receivingAmount}}</td>
