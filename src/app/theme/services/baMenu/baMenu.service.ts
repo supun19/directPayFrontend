@@ -147,6 +147,7 @@ export class BaMenuService {
     if(item.title == "Merchant"){
       console.log(permission.merchantRegister);
       item.children[0].hidden = !permission.merchantRegister;
+      item.hidden = !permission.merchant
 
 
     }
@@ -165,8 +166,16 @@ export class BaMenuService {
           break;
         case "Customer support" :item.hidden = true;
           break;
+        case "merchant" :item.hidden = true;
+          break;
+        case "user" :item.hidden = true;
+          console.log("user");
+          break;
 
       }
+    }
+    if(item.title == "User"){
+      item.hidden = !permission.user
     }
     console.log(item);
 
