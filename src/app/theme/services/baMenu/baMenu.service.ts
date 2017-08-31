@@ -180,7 +180,7 @@ export class BaMenuService {
     if(item.title == "User"){
       item.hidden = !permission.user
     }
-    if(item.title == "Report"){
+    if(item.title == "Reports"){
       item.hidden = !permission.report
     }
     console.log(item);

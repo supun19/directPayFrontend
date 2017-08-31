@@ -83,7 +83,7 @@ export const PAGES_MENU = [
         path: 'transaction',  // path for our page
         data: { // custom menu declaration
           menu: {
-            title: 'Transaction', // menu title
+            title: 'Transactions', // menu title
             icon: 'ion-arrow-swap', // menu icon
             selected: false,
             expanded: false,
@@ -107,7 +107,7 @@ export const PAGES_MENU = [
         path: 'report',  // path for our page
         data: { // custom menu declaration
           menu: {
-            title: 'Report', // menu title
+            title: 'Reports', // menu title
             icon: 'ion-arrow-graph-up-right', // menu icon
             selected: false,
             expanded: false,
