@@ -174,6 +174,9 @@ export class BaMenuService {
 
       }
     }
+    if(item.title == "general.menu.dashboard"){
+      item.hidden = true
+    }
     if(item.title == "User"){
       item.hidden = !permission.user
     }

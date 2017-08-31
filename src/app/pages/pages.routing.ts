@@ -17,8 +17,8 @@ export const routes: Routes = [
     component: Pages,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+      //{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      //{ path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
       //{ path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
       //{ path: 'components', loadChildren: './components/components.module#ComponentsModule' },
       //{ path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

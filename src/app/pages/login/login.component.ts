@@ -71,7 +71,7 @@ export class LoginComponent {
             this.storage.store('accessToken',this.filterdata.accessToken);
             this.storage.store("loggedIn","true");
             //this.setPermission();
-            this.router.navigate(['/pages']);
+            this.router.navigate(['/pages/transaction/all']);
           }
         }
         else {
