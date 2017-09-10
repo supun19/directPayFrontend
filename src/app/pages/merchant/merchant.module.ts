@@ -34,6 +34,8 @@ import {MerchantGuard} from "../security/merchant.guard";
 
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -54,6 +56,7 @@ import {MerchantGuard} from "../security/merchant.guard";
     MerchantRegisterComponent,MerchantComponent,DetailComponent,
     MerchantListComponent,
     DataFilterPipe,
+
 
 
 

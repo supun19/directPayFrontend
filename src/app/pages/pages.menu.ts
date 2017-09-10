@@ -33,6 +33,17 @@ export const PAGES_MENU = [
         },
         children: [
           {
+            path: 'detail',
+            data: {
+              menu: {
+                title: 'Detail',
+                icon: 'ion-arrow-up-a', // menu icon
+                hidden: false,
+              }
+            },
+
+          },
+          {
             path: 'register',
             data: {
               menu: {
