@@ -70,6 +70,10 @@ export class LoginComponent {
             //console.log(localStorage.getItem("ownpermission"));
             this.storage.store('accessToken',this.filterdata.accessToken);
             this.storage.store("loggedIn","true");
+            if(this.filterdata.role == "merchant" || this.filterdata.role == "user"){
+              this.storage.store("role",this.filterdata.role);
+              this.storage.store("id",this.filterdata.detail.id);
+            }
             //this.setPermission();
             this.router.navigate(['/pages/transaction/all']);
           }

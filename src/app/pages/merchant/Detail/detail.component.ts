@@ -1,5 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
-import  {Merchant} from '../../../class/merchant'
+import  {Merchant} from '../../../class/merchant';
+
+import {MqttConnection} from '../../../class/MqttConnection';
 
 @Component({
 
@@ -9,9 +11,23 @@ import  {Merchant} from '../../../class/merchant'
 
 })
 
-export class DetailComponent{
-  @Input() merchant:Merchant;
+export class DetailComponent implements OnInit{
+
+  mqttConnection:MqttConnection;
+  ngOnInit(): void {
+    this.mqttConnection  = new MqttConnection("12345678");
+    this.mqttConnection.onMessage(function (msg:string) {
+
+      console.log("calback msg",msg);
+    });
+  }
+
   constructor(){
+
+  }
+
+  getLastTransaction(){
+
 
   }
 

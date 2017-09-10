@@ -146,7 +146,10 @@ export class BaMenuService {
     console.log(permission);
     if(item.title == "Merchant"){
       console.log(permission.merchantRegister);
-      item.children[0].hidden = !permission.merchantRegister;
+      item.children[0].hidden = !permission.merchantDetail;
+      item.children[1].hidden = !permission.merchantRegister;
+      item.children[2].hidden = !permission.merchantList;
+
       item.hidden = !permission.merchant
 
 
@@ -183,6 +186,7 @@ export class BaMenuService {
     if(item.title == "Reports"){
       item.hidden = !permission.report
     }
+
     console.log(item);
 
 
