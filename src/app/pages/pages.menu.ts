@@ -79,11 +79,23 @@ export const PAGES_MENU = [
         },
         children: [
           {
+            path: 'detail',
+            data: {
+              menu: {
+                title: 'Detail',
+                icon: 'ion-arrow-up-a', // menu icon
+                hidden: false,
+              }
+            }
+
+          },
+          {
             path: 'list',
             data: {
               menu: {
                 title: 'List',
                 icon: 'ion-ios-list', // menu icon
+                hidden: false,
               }
             }
           }
@@ -130,7 +142,7 @@ export const PAGES_MENU = [
             path: 'agent',
             data: {
               menu: {
-                title: 'Agent',
+                title: 'AgentReport',
                 icon: 'ion-briefcase', // menu icon
               }
             }
@@ -139,7 +151,7 @@ export const PAGES_MENU = [
             path: 'user',
             data: {
               menu: {
-                title: 'User',
+                title: 'UserReport',
                 icon: 'ion-person', // menu icon
               }
             }

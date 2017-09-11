@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user.component';
+import {DetailComponent} from './useDetail/detail.component'
 
 //merchant list
 
@@ -12,6 +13,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: 'list', component: UserListComponent },
+      { path: 'detail', component: DetailComponent },
 
     ]
   }

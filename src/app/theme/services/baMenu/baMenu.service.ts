@@ -181,11 +181,15 @@ export class BaMenuService {
       item.hidden = true
     }
     if(item.title == "User"){
+      console.log("item :user :",item);
+      item.children[0].hidden = !permission.userDetail;
+      item.children[1].hidden = !permission.userList;
       item.hidden = !permission.user
     }
     if(item.title == "Reports"){
       item.hidden = !permission.report
     }
+
 
     console.log(item);
 

@@ -19,6 +19,8 @@ export class UserService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private userDetailByNicUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/user/detail/nic';
+  private merchantLastTransactions = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/last';
+  private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
   constructor(private http: Http) { }
 
   userDetailByBrNumber(nic:any): Promise<any> {
@@ -43,6 +45,57 @@ export class UserService {
         });
 
     });
+  }
+
+  getLastTransaction(id:any):Promise<any>{
+
+    return new Promise((resolve,reject)=>{
+        return this.http
+          .post(this.merchantLastTransaction,JSON.stringify({id:id}),{headers:this.headers})
+          .toPromise()
+          .then(
+            response=>{
+              console.log(response.json())
+              resolve(response.json());
+            },
+            error=>{
+              console.log(error);
+              reject(error);
+            }
+          )
+          .catch((err)=>{
+            console.log(err);
+            reject(err);
+          });
+
+      }
+
+    );
+  }
+  getLastTransactions(id:any):Promise<any>{
+
+    return new Promise((resolve,reject)=>{
+        return this.http
+          .post(this.merchantLastTransactions,JSON.stringify({id:id}),{headers:this.headers})
+          .toPromise()
+          .then(
+            response=>{
+              console.log(response.json())
+              resolve(response.json());
+            },
+            error=>{
+              console.log(error);
+              reject(error);
+            }
+          )
+          .catch((err)=>{
+            console.log(err);
+            reject(err);
+          });
+
+      }
+
+    );
   }
 
 }
