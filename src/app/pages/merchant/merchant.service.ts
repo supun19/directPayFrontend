@@ -24,7 +24,8 @@ export class MerchantService {
   private merchantListUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/filterUsers';
   private merchantDetailUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details';
   private merchantDetailByBrNumberUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details/brnumber';
-
+  private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
+  private merchantLastTransactions = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/last';
   constructor(private http: Http) { }
 
 
@@ -165,5 +166,59 @@ export class MerchantService {
 
     });
   }
+
+  getLastTransaction(id:any):Promise<any>{
+
+    return new Promise((resolve,reject)=>{
+      return this.http
+        .post(this.merchantLastTransaction,JSON.stringify({id:id}),{headers:this.headers})
+        .toPromise()
+        .then(
+          response=>{
+            console.log(response.json())
+            resolve(response.json());
+          },
+          error=>{
+            console.log(error);
+            reject(error);
+          }
+        )
+        .catch((err)=>{
+        console.log(err);
+        reject(err);
+        });
+
+      }
+
+    );
+  }
+  getLastTransactions(id:any):Promise<any>{
+
+    return new Promise((resolve,reject)=>{
+        return this.http
+          .post(this.merchantLastTransactions,JSON.stringify({id:id}),{headers:this.headers})
+          .toPromise()
+          .then(
+            response=>{
+              console.log(response.json())
+              resolve(response.json());
+            },
+            error=>{
+              console.log(error);
+              reject(error);
+            }
+          )
+          .catch((err)=>{
+            console.log(err);
+            reject(err);
+          });
+
+      }
+
+    );
+  }
+
+
+
 
 }

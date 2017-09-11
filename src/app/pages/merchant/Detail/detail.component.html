@@ -6,8 +6,8 @@
   <!--<div>Merchant Account Number :{{merchant.merchantAccountNumber}}</div>-->
   <!--<div>Merchant Email :{{merchant.merchantEmail}}</div>-->
 <!--</div>-->
-
-<div class="row">
+<div *ngIf="filterData">
+<div  class="row">
 
   <div class="col-md-6">
     <div class="row">
@@ -15,7 +15,7 @@
         Merchant Name :
       </div>
       <div class="col-md-6">
-        Buddika
+        {{id}}
       </div>
 
     </div>
@@ -30,8 +30,113 @@
     </div>
   </div>
   <div class="col-md-6">
-
+    <div *ngIf="qr_code" class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+      <qrcode [qrtext]="qrtext"></qrcode>
+    </div>
 
   </div>
 </div>
+<div class="widgets">
+  <div class="row">
+    <ba-card title="Transaction History" baCardClass="with-scroll" class="data-table-container">
 
+      <br>
+
+
+
+
+
+
+      <div class="panel panel-default">
+        <br>
+        <!--div class="panel-heading">Transaction History</div-->
+
+        <table class="table table-striped" [mfData]="filterData" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+          <thead>
+          <tr>
+            <!--th style="width: 10%"></th-->
+            <th style="width: 10%">
+              <mfDefaultSorter by="tId">Transaction ID</mfDefaultSorter>
+            </th>
+            <!--th style="width: 20%">
+              <mfDefaultSorter by="payerId">Payer ID</mfDefaultSorter>
+            </th-->
+            <th style="width: 10%">
+              <mfDefaultSorter by="payerName">Payer</mfDefaultSorter>
+            </th>
+            <!--th style="width: 20%">
+              <mfDefaultSorter by="payeeId">Payee ID</mfDefaultSorter>
+            </th-->
+            <th style="width: 10%">
+              <mfDefaultSorter by="payeeName">Payee</mfDefaultSorter>
+            </th>
+
+            <th style="width: 10%">
+              <mfDefaultSorter by="dateTime">Date Time</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="OriginalAmount">OriginalAmount</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="PayingAmount">PayingAmount</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="ReceivingAmount">ReceivingAmount</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="customParam">CustomParam</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="status">Status</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+              <mfDefaultSorter by="type">Type</mfDefaultSorter>
+            </th>
+
+          </tr>
+          <!--tr>
+            <th colspan="5">
+              Filter by name:
+              <input class="form-control" [(ngModel)]="filterQuery" />
+            </th>
+          </tr-->
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of mf.data">
+            <!--td>
+              <button (click)="remove(item)" class="btn btn-danger">x</button>
+            </td-->
+            <td >{{item.id}}</td>
+            <!--td (click)="showQrcode(item.payerId)">{{item.payerId}}</td-->
+            <td *ngIf="item.payerDetail.data[0].roles[0]=='merchant'">{{item.payerDetail.data[0].merchantName}}</td>
+            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.userDetail}}</td>
+            <td *ngIf="item.payeeDetail.data[0].roles[0]=='merchant'">{{item.payeeDetail.data[0].merchantName}}</td>
+            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.userDetail}}</td>
+            <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
+
+            <td >{{item.dateTime.date |  date:'short'}}</td>
+            <td>{{item.originalAmount}}</td>
+            <td>{{item.payingAmount}}</td>
+            <td>{{item.receivingAmount}}</td>
+
+            <td>{{item.customParam}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.type}}</td>
+
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="5">
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </ba-card>
+  </div>
+</div>
+
+
+</div>

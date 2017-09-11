@@ -73,9 +73,19 @@ export class LoginComponent {
             if(this.filterdata.role == "merchant" || this.filterdata.role == "user"){
               this.storage.store("role",this.filterdata.role);
               this.storage.store("id",this.filterdata.detail.id);
+              this.storage.store("user",this.filterdata);
             }
             //this.setPermission();
-            this.router.navigate(['/pages/transaction/all']);
+            if(this.filterdata.role == "merchant"){
+              this.router.navigate(['/pages/merchant/detail']);
+            }
+            else if(this.filterdata.role == "user"){
+              this.router.navigate(['/pages/user/detail']);
+            }
+            else {
+              this.router.navigate(['/pages/transaction/all']);
+            }
+
           }
         }
         else {
