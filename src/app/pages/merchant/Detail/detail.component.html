@@ -30,8 +30,8 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div *ngIf="qr_code" class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
-      <qrcode [qrtext]="qrtext"></qrcode>
+    <div *ngIf="qr_code" class="col-md-3 col-sm-3 col-xs-3" style="text-align: center">
+      <qrcode [qrtext]="qrtext" [size]="100"></qrcode>
     </div>
 
   </div>
@@ -84,13 +84,13 @@
               <mfDefaultSorter by="ReceivingAmount">ReceivingAmount</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="customParam">CustomParam</mfDefaultSorter>
+              <mfDefaultSorter by="payerVollate">Payer Vollate</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="status">Status</mfDefaultSorter>
+              <mfDefaultSorter by="payeeVollate">Payee Vollate</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="type">Type</mfDefaultSorter>
+              <mfDefaultSorter by="commission">Commission</mfDefaultSorter>
             </th>
 
           </tr>
@@ -109,9 +109,9 @@
             <td >{{item.id}}</td>
             <!--td (click)="showQrcode(item.payerId)">{{item.payerId}}</td-->
             <td *ngIf="item.payerDetail.data[0].roles[0]=='merchant'">{{item.payerDetail.data[0].merchantName}}</td>
-            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.userDetail}}</td>
+            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.lastName}}</td>
             <td *ngIf="item.payeeDetail.data[0].roles[0]=='merchant'">{{item.payeeDetail.data[0].merchantName}}</td>
-            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.userDetail}}</td>
+            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.lastName}}</td>
             <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
 
             <td >{{item.dateTime.date |  date:'short'}}</td>
@@ -119,9 +119,9 @@
             <td>{{item.payingAmount}}</td>
             <td>{{item.receivingAmount}}</td>
 
-            <td>{{item.customParam}}</td>
-            <td>{{item.status}}</td>
-            <td>{{item.type}}</td>
+            <td>{{item.payerDetail.vollate}} LKR</td>
+            <td>{{item.payeeDetail.vollate}} LKR</td>
+            <td>{{item.commission}} LKR</td>
 
           </tr>
           </tbody>

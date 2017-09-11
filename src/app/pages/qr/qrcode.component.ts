@@ -11,6 +11,7 @@ import {Component, OnInit, Input} from '@angular/core';
 
 export class QrCodeComponent{
   @Input() qrtext :any;
+  @Input() size :number
   constructor(){
 
   }
