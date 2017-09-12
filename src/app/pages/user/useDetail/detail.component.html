@@ -11,62 +11,63 @@
     <div class="col-md-6">
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           User ID :
         </div>
-        <div class="col-md-6">
+        <div>
           {{user.detail.id}}
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-6">
-          User Name :
+        <div class="col-md-4">
+          Full Name :
         </div>
-        <div class="col-md-6">
+        <div>
+          {{user.otherdetail.firstName}}
+          {{user.otherdetail.lastName}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          NIC :
+        </div>
+        <div>
           {{user.detail.username}}
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           Bank :
         </div>
-        <div class="col-md-6">
+        <div>
           {{user.detail.bank}}
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           Account Number :
         </div>
-        <div class="col-md-6">
+        <div>
           {{user.detail.accountNumber}}
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           Phone Number :
         </div>
-        <div class="col-md-6">
+        <div>
           {{user.detail.phoneNumber}}
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
-
-        </div>
-        <div class="col-md-6">
-
-        </div>
-
-      </div>
     </div>
-
   <div class="col-md-6">
+
     <div *ngIf="qr_code" class="col-md-3 col-sm-3 col-xs-3" style="text-align: center">
       <qrcode [qrtext]="qrtext" [size]="100"></qrcode>
     </div>
