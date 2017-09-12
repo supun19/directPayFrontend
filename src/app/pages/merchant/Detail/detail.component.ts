@@ -73,10 +73,8 @@ export class DetailComponent implements OnInit{
 
         });
         this.filterData = temp;
-        console.log(this.filterData);
-        console.log(data.data[0].id)
-        console.log(this.filterData[9].id);
-        console.log(this.filterData[0].id)
+
+
       }
 
     },
