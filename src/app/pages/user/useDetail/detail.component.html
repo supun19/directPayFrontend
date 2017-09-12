@@ -7,46 +7,79 @@
   <!--<div>Merchant Email :{{merchant.merchantEmail}}</div>-->
 <!--</div>-->
 <div *ngIf="filterData">
-<div  class="row">
+  <div  class="row">
+    <div class="col-md-6">
 
-  <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-6">
-        User Name :
+      <div class="row">
+        <div class="col-md-4">
+          User ID :
+        </div>
+        <div>
+          {{user.detail.id}}
+        </div>
       </div>
-      <div class="col-md-6">
-        {{id}}
+
+      <div class="row">
+        <div class="col-md-4">
+          Full Name :
+        </div>
+        <div>
+          {{user.otherdetail.firstName}}
+          {{user.otherdetail.lastName}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          NIC :
+        </div>
+        <div>
+          {{user.detail.username}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          Bank :
+        </div>
+        <div>
+          {{user.detail.bank}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          Account Number :
+        </div>
+        <div>
+          {{user.detail.accountNumber}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          Phone Number :
+        </div>
+        <div>
+          {{user.detail.phoneNumber}}
+        </div>
       </div>
 
     </div>
-    <div class="row">
-      <div class="col-md-6">
-
-      </div>
-      <div class="col-md-6">
-
-      </div>
-
-    </div>
-  </div>
   <div class="col-md-6">
+
     <div *ngIf="qr_code" class="col-md-3 col-sm-3 col-xs-3" style="text-align: center">
       <qrcode [qrtext]="qrtext" [size]="100"></qrcode>
     </div>
-
   </div>
+  </div>
+
 </div>
+<br>
 <div class="widgets">
   <div class="row">
     <ba-card title="Transaction History" baCardClass="with-scroll" class="data-table-container">
-
       <br>
-
-
-
-
-
-
       <div class="panel panel-default">
         <br>
         <!--div class="panel-heading">Transaction History</div-->
@@ -139,4 +172,4 @@
 </div>
 
 
-</div>
+
