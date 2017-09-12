@@ -3,6 +3,7 @@ import {TransactionService} from '../transaction.service'
 import {Merchant} from "../../../class/merchant";
 import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
 import { Logger } from "angular2-logger/core";
+import {LocalStorageService} from "ngx-webstorage";
 
 @Component({
 
@@ -58,10 +59,11 @@ export class AllComponent implements OnInit{
     todayBtnTxt:'Today',
 
   };
+  id:string;
 
 
-
-  constructor(private trasaction: TransactionService,private _logger: Logger) {
+  constructor(private trasaction: TransactionService,private _logger: Logger,private storage:LocalStorageService) {
+    this.id =  this.storage.retrieve('id');
   }
   ngOnInit() {
 
@@ -172,7 +174,14 @@ export class AllComponent implements OnInit{
     console.log("getByDateToDate");
     console.log(this.fromdate);
     console.log(this.todate);
-    this.trasaction.getTransactionByDateToDate(this.fromdate,this.todate).then((data) => {
+    let param;
+    if(this.id==null){
+      param = {"fromDate":this.fromdate,"toDate":this.todate};
+    }
+    else {
+      param = {"fromDate":this.fromdate,"toDate":this.todate,"userId":this.id};
+    }
+    this.trasaction.getTransactionByDateToDate(param).then((data) => {
 
       if(data.data.length==0){
         this.infomassage = "Transaction not avilable";

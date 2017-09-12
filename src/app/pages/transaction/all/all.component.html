@@ -140,9 +140,9 @@
             <td >{{item.id}}</td>
             <!--td (click)="showQrcode(item.payerId)">{{item.payerId}}</td-->
             <td *ngIf="item.payerDetail.data[0].roles[0]=='merchant'">{{item.payerDetail.data[0].merchantName}}</td>
-            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.userDetail}}</td>
+            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.lastName}}</td>
             <td *ngIf="item.payeeDetail.data[0].roles[0]=='merchant'">{{item.payeeDetail.data[0].merchantName}}</td>
-            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.userDetail}}</td>
+            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.lastName}}</td>
             <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
 
             <td >{{item.dateTime.date |  date:'short'}}</td>
