@@ -82,7 +82,7 @@
       <br>
         <!--div class="panel-heading">Transaction History</div-->
 
-        <table class="table table-striped" [mfData]="data | dataFilter : customParam" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+        <table class="table table-striped" [mfData]="filterdata | dataFilter : customParam" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
           <thead>
           <tr>
             <!--th style="width: 10%"></th-->

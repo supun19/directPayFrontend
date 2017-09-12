@@ -21,7 +21,7 @@ export class AllComponent implements OnInit{
   private qrtext;
   private loading = false;
   data;
-  filterdata;
+  filterdata:any[];
 
   todate =  { year: 2016, month: 10, day: 9 } ;
   fromdate = { year: 2016, month: 10, day: 9 } ;
@@ -84,6 +84,7 @@ export class AllComponent implements OnInit{
      console.log(data.data);
      }
      });*/
+    this.getLastTransactions();
     this.mqttConnection  = new MqttConnection("admin");
     this.mqttConnection.onMessage(function (msg:string) {
 
@@ -279,7 +280,7 @@ export class AllComponent implements OnInit{
 
   }
   getLastTransaction(){
-    console.log("debug->userId : "+this.id);
+
     this.trasaction.getLastTransaction().then(data => {
         if(this.filterdata[0].id != data.data[0].id){
           console.log("update last transaction");
