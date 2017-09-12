@@ -7,34 +7,72 @@
   <!--<div>Merchant Email :{{merchant.merchantEmail}}</div>-->
 <!--</div>-->
 <div *ngIf="filterData">
-<div  class="row">
+  <div  class="row">
+    <div class="col-md-6">
 
-  <div class="col-md-6">
-    <div class="row">
-      <div class="col-md-6">
-        User Name :
-      </div>
-      <div class="col-md-6">
-        {{id}}
+      <div class="row">
+        <div class="col-md-6">
+          User ID :
+        </div>
+        <div class="col-md-6">
+          {{user.detail.id}}
+        </div>
       </div>
 
+      <div class="row">
+        <div class="col-md-6">
+          User Name :
+        </div>
+        <div class="col-md-6">
+          {{user.detail.username}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          Bank :
+        </div>
+        <div class="col-md-6">
+          {{user.detail.bank}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          Account Number :
+        </div>
+        <div class="col-md-6">
+          {{user.detail.accountNumber}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          Phone Number :
+        </div>
+        <div class="col-md-6">
+          {{user.detail.phoneNumber}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+
+        </div>
+
+      </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
 
-      </div>
-      <div class="col-md-6">
-
-      </div>
-
-    </div>
-  </div>
   <div class="col-md-6">
     <div *ngIf="qr_code" class="col-md-3 col-sm-3 col-xs-3" style="text-align: center">
       <qrcode [qrtext]="qrtext" [size]="100"></qrcode>
     </div>
-
   </div>
+  </div>
+
 </div>
 <div class="widgets">
   <div class="row">
@@ -139,4 +177,4 @@
 </div>
 
 
-</div>
+
