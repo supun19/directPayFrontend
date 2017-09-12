@@ -29,7 +29,7 @@ export class DetailComponent implements OnInit{
     this.getLastTransactions();
     this.id =  this.storage.retrieve('id');
     console.log("debug->userId : "+this.id);
-    this.mqttConnection  = new MqttConnection("12345678");
+    this.mqttConnection  = new MqttConnection(this.id);
     this.mqttConnection.onMessage(function (msg:string) {
 
       this.getLastTransaction();
