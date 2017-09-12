@@ -17,6 +17,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 
 export class DetailComponent implements OnInit{
 
+  balance:string;
   rowsOnPage = 10;
   sortBy = "email";
   sortOrder = "asc";
@@ -56,6 +57,17 @@ export class DetailComponent implements OnInit{
       if(this.filterData[0].id != data.data[0].id){
         console.log("update last transaction");
         this.filterData.push(data.data[0]);
+        let length = data.data.length-1;
+        console.log("lenght")
+        console.log(length)
+        if(data.data[length].payerId==this.id){
+          this.balance = data.data[length].payerDetail.vollate
+          console.log(this.balance)
+        }
+        else if(data.data[length].payeeId == this.id){
+          this.balance = data.data[length].payeeDetail.vollate
+          console.log(this.balance)
+        }
         let temp = data.data;
         this.filterData.forEach(element => {
           temp.push(element);
@@ -78,6 +90,17 @@ export class DetailComponent implements OnInit{
     this.userService.getLastTransactions(this.id).then(data => {
         this.filterData = data.data;
         console.log(data.data[0].id);
+        let length = data.data.length-1;
+        console.log("lenght")
+        console.log(length)
+        if(data.data[length].payerId==this.id){
+          this.balance = data.data[length].payerDetail.vollate
+          console.log(this.balance)
+        }
+        else if(data.data[length].payeeId == this.id){
+          this.balance = data.data[length].payeeDetail.vollate
+          console.log(this.balance)
+        }
       },
       error=>{
 

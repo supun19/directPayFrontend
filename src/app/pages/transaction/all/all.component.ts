@@ -18,6 +18,7 @@ import {MqttConnection} from "../../../class/MqttConnection";
 export class AllComponent implements OnInit{
 
 
+  balance:string;
   private qrtext;
   private loading = false;
   data;
@@ -285,15 +286,23 @@ export class AllComponent implements OnInit{
         if(this.filterdata[0].id != data.data[0].id){
           console.log("update last transaction");
           this.filterdata.push(data.data[0]);
+
+          let length = data.data.length-1;
+          console.log("lenght")
+          console.log(length)
+          if(data.data[length].payerId==this.id){
+            this.balance = data.data[length].payerDetail.vollate
+            console.log(this.balance)
+          }
+          else if(data.data[length].payeeId == this.id){
+            this.balance = data.data[length].payeeDetail.vollate
+            console.log(this.balance)
+          }
           let temp = data.data;
           this.filterdata.forEach(element => {
             temp.push(element);
           });
           this.filterdata = temp;
-          console.log(this.filterdata);
-          console.log(data.data[0].id)
-          console.log(this.filterdata[9].id);
-          console.log(this.filterdata[0].id)
         }
 
       },
@@ -307,7 +316,20 @@ export class AllComponent implements OnInit{
     this.trasaction.getLastTransactions().then(data => {
         this.filterdata = data.data;
         console.log(data.data[0].id);
+
+        let length = data.data.length-1;
+        console.log("lenght")
+        console.log(length)
+        if(data.data[length].payerId==this.id){
+          this.balance = data.data[length].payerDetail.vollate
+          console.log(this.balance)
+        }
+        else if(data.data[length].payeeId == this.id){
+          this.balance = data.data[length].payeeDetail.vollate
+          console.log(this.balance)
+        }
       },
+
       error=>{
 
       }

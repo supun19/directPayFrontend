@@ -25,6 +25,7 @@ export class DetailComponent implements OnInit{
   filterData:any[];
   user:any;
   qr_code:string;
+  balance:string;
   ngOnInit(): void {
     this.getLastTransactions();
     this.id =  this.storage.retrieve('id');
@@ -56,9 +57,20 @@ export class DetailComponent implements OnInit{
       if(this.filterData[0].id != data.data[0].id){
         console.log("update last transaction");
         this.filterData.push(data.data[0]);
+        console.log(data);
+        if(data.data[0].payerId==this.id){
+          this.balance = data.data[0].payerDetail.vollate
+          console.log(this.balance)
+        }
+        else if(data.data[0].payeeId == this.id){
+          this.balance = data.data[0].payeeDetail.vollate
+          console.log(this.balance)
+        }
         let temp = data.data;
         this.filterData.forEach(element => {
           temp.push(element);
+
+
         });
         this.filterData = temp;
         console.log(this.filterData);
@@ -78,6 +90,19 @@ export class DetailComponent implements OnInit{
     this.merchantService.getLastTransactions(this.id).then(data => {
         this.filterData = data.data;
         console.log(data.data[0].id);
+
+
+        let length = data.data.length-1;
+        console.log("lenght")
+        console.log(length)
+        if(data.data[length].payerId==this.id){
+          this.balance = data.data[length].payerDetail.vollate
+          console.log(this.balance)
+        }
+        else if(data.data[length].payeeId == this.id){
+          this.balance = data.data[length].payeeDetail.vollate
+          console.log(this.balance)
+        }
       },
       error=>{
 
