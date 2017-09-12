@@ -7,7 +7,7 @@
   <!--<div>Merchant Email :{{merchant.merchantEmail}}</div>-->
 <!--</div>-->
 <div *ngIf="filterData">
-
+  <br>
 <div  class="row">
   <div class="col-md-6">
 
@@ -52,8 +52,8 @@
         Address :
       </div>
       <div class="col-md-6">
-        {{user.detail.address.locality}}
-        {{user.detail.address.region}}
+        {{user.detail.address.locality}},
+        {{user.detail.address.region}},
         {{user.detail.address.streetAddress}}
       </div>
     </div>

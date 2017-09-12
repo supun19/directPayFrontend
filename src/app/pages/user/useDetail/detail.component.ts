@@ -41,6 +41,7 @@ export class DetailComponent implements OnInit{
   constructor(private userService:UserService,private storage:LocalStorageService){
     this.id =  this.storage.retrieve('id');
     console.log("debug->userId : "+this.id);
+
     this.user = this.storage.retrieve('user');
     console.log("user data : ",this.user);
     this.qr_code = this.id+" $ main Galle gye1"
@@ -52,7 +53,6 @@ export class DetailComponent implements OnInit{
   getLastTransaction(){
     console.log("debug->userId : "+this.id);
     this.userService.getLastTransaction(this.id).then(data => {
-      console.log(this.filterData.length);
       if(this.filterData[0].id != data.data[0].id){
         console.log("update last transaction");
         this.filterData.push(data.data[0]);
