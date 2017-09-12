@@ -126,11 +126,9 @@
               <mfDefaultSorter by="ReceivingAmount">ReceivingAmount</mfDefaultSorter>
             </th>
             <th style="width: 10%">
-              <mfDefaultSorter by="payerVollate">Payer wallet</mfDefaultSorter>
+              <mfDefaultSorter by="payerVollate">User wallet</mfDefaultSorter>
             </th>
-            <th style="width: 10%">
-              <mfDefaultSorter by="payeeVollate">Payee wallet</mfDefaultSorter>
-            </th>
+
             <th style="width: 10%">
               <mfDefaultSorter by="commission">Commission</mfDefaultSorter>
             </th>
@@ -161,8 +159,8 @@
             <td>{{item.payingAmount}}</td>
             <td>{{item.receivingAmount}}</td>
 
-            <td>{{item.payerDetail.vollate}} LKR</td>
-            <td>{{item.payeeDetail.vollate}} LKR</td>
+            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.vollate}} LKR</td>
+            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.vollate}} LKR</td>
             <td>{{item.commission}} LKR</td>
 
           </tr>
