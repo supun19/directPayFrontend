@@ -4,6 +4,7 @@ import {Merchant} from "../../../class/merchant";
 import {IMyDpOptions, IMyDateModel} from 'mydatepicker';
 import { Logger } from "angular2-logger/core";
 import {LocalStorageService} from "ngx-webstorage";
+import {MqttConnection} from "../../../class/MqttConnection";
 
 @Component({
 
@@ -60,6 +61,7 @@ export class AllComponent implements OnInit{
 
   };
   id:string;
+  mqttConnection:MqttConnection;
 
 
   constructor(private trasaction: TransactionService,private _logger: Logger,private storage:LocalStorageService) {
@@ -82,6 +84,12 @@ export class AllComponent implements OnInit{
      console.log(data.data);
      }
      });*/
+    this.mqttConnection  = new MqttConnection("admin");
+    this.mqttConnection.onMessage(function (msg:string) {
+
+      this.getLastTransaction();
+
+    }.bind(this));
   }
   initiateDate(){
     let date  = new Date();
