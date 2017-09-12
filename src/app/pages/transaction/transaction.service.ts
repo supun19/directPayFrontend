@@ -9,6 +9,8 @@ export class TransactionService {
   private urlTransactionList = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/agent/between';
   private urlUSerBlock = AppSettings.DIRECT_PAY_ENDPOINT+'/admin/user/disable';
   private urlGetTransactionById = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/id';
+  private lastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
+  private lastTransactions = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/last';
   //private urlTransactionList = AppSettings.DIRECT_PAY_ENDPOINT+'/reports/transactions';
   //private merchantListUrl = 'http://192.168.8.100/merchant/list';
   constructor(private http: Http) { }
@@ -85,4 +87,57 @@ export class TransactionService {
 
     });
   }
+
+  getLastTransaction():Promise<any>{
+
+    return new Promise((resolve,reject)=>{
+        return this.http
+          .post(this.lastTransaction,{headers:this.headers})
+          .toPromise()
+          .then(
+            response=>{
+              console.log(response.json())
+              resolve(response.json());
+            },
+            error=>{
+              console.log(error);
+              reject(error);
+            }
+          )
+          .catch((err)=>{
+            console.log(err);
+            reject(err);
+          });
+
+      }
+
+    );
+  }
+  getLastTransactions():Promise<any>{
+
+    return new Promise((resolve,reject)=>{
+        return this.http
+          .post(this.lastTransactions,{headers:this.headers})
+          .toPromise()
+          .then(
+            response=>{
+              console.log(response.json())
+              resolve(response.json());
+            },
+            error=>{
+              console.log(error);
+              reject(error);
+            }
+          )
+          .catch((err)=>{
+            console.log(err);
+            reject(err);
+          });
+
+      }
+
+    );
+  }
+
+
 }

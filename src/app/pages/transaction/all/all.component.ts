@@ -278,4 +278,39 @@ export class AllComponent implements OnInit{
     this.loading = false;
 
   }
+  getLastTransaction(){
+    console.log("debug->userId : "+this.id);
+    this.trasaction.getLastTransaction().then(data => {
+        if(this.filterdata[0].id != data.data[0].id){
+          console.log("update last transaction");
+          this.filterdata.push(data.data[0]);
+          let temp = data.data;
+          this.filterdata.forEach(element => {
+            temp.push(element);
+          });
+          this.filterdata = temp;
+          console.log(this.filterdata);
+          console.log(data.data[0].id)
+          console.log(this.filterdata[9].id);
+          console.log(this.filterdata[0].id)
+        }
+
+      },
+      error=>{
+
+      }
+    );
+  }
+  getLastTransactions(){
+    console.log("debug->userId : "+this.id);
+    this.trasaction.getLastTransactions().then(data => {
+        this.filterdata = data.data;
+        console.log(data.data[0].id);
+      },
+      error=>{
+
+      }
+    );
+  }
+
 }
