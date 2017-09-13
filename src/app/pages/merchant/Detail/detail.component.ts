@@ -60,7 +60,7 @@ export class DetailComponent implements OnInit{
         this.filterData = data.data;
         console.log("data");
         console.log(data.data);
-        this.balance = data.data[length].payerDetail.vollate
+        this.balance = data.data[length].payeeDetail.vollate
       }
       else {
         if (this.filterData[0].id != data.data[0].id) {
