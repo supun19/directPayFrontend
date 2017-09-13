@@ -56,27 +56,32 @@ export class DetailComponent implements OnInit{
     console.log("debug->userId : "+this.id);
     this.merchantService.getLastTransaction(this.id).then(data => {
       console.log(this.filterData.length);
-      if(this.filterData[0].id != data.data[0].id){
-        console.log("update last transaction");
-        this.filterData.push(data.data[0]);
-        console.log(data);
-        if(data.data[0].payerId==this.id){
-          this.balance = data.data[0].payerDetail.vollate
-          console.log(this.balance)
+      if(this.filterData ==null){
+        this.filterData = data.data;
+      }
+      else {
+        if (this.filterData[0].id != data.data[0].id) {
+          console.log("update last transaction");
+          this.filterData.push(data.data[0]);
+          console.log(data);
+          if (data.data[0].payerId == this.id) {
+            this.balance = data.data[0].payerDetail.vollate
+            console.log(this.balance)
+          }
+          else if (data.data[0].payeeId == this.id) {
+            this.balance = data.data[0].payeeDetail.vollate
+            console.log(this.balance)
+          }
+          let temp = data.data;
+          this.filterData.forEach(element => {
+            temp.push(element);
+
+
+          });
+          this.filterData = temp;
+
+
         }
-        else if(data.data[0].payeeId == this.id){
-          this.balance = data.data[0].payeeDetail.vollate
-          console.log(this.balance)
-        }
-        let temp = data.data;
-        this.filterData.forEach(element => {
-          temp.push(element);
-
-
-        });
-        this.filterData = temp;
-
-
       }
 
     },
