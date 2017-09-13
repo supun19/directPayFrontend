@@ -41,6 +41,8 @@ export class DetailComponent implements OnInit{
 
   constructor(private merchantService:MerchantService,private storage:LocalStorageService){
     this.id =  this.storage.retrieve('id');
+    console.log("balancd.............");
+    this.balance = this.storage.retrieve('user')['otherdetail']['vollate'];
     console.log("debug->userId : "+this.id);
     this.user = this.storage.retrieve('user');
     console.log("user data : ",this.user);
