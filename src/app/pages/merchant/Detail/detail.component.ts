@@ -56,8 +56,10 @@ export class DetailComponent implements OnInit{
     console.log("debug->userId : "+this.id);
     this.merchantService.getLastTransaction(this.id).then(data => {
       console.log(this.filterData.length);
-      if(this.filterData ==null){
+      if(this.filterData.length ==0){
         this.filterData = data.data;
+        console.log("data");
+        console.log(data.data);
       }
       else {
         if (this.filterData[0].id != data.data[0].id) {

@@ -42,7 +42,7 @@ export class DetailComponent implements OnInit{
   constructor(private userService:UserService,private storage:LocalStorageService){
     this.id =  this.storage.retrieve('id');
     console.log("debug->userId : "+this.id);
-
+    this.balance = this.storage.retrieve('user')['otherdetail']['vollate'];
     this.user = this.storage.retrieve('user');
     console.log("user data : ",this.user);
     this.qr_code = this.id+" $ main Galle gye1"
@@ -54,26 +54,31 @@ export class DetailComponent implements OnInit{
   getLastTransaction(){
     console.log("debug->userId : "+this.id);
     this.userService.getLastTransaction(this.id).then(data => {
-      if(this.filterData[0].id != data.data[0].id){
-        console.log("update last transaction");
-        this.filterData.push(data.data[0]);
-        let length = data.data.length-1;
-        console.log("lenght")
-        console.log(length)
-        if(data.data[length].payerId==this.id){
-          this.balance = data.data[length].payerDetail.vollate
-          console.log(this.balance)
+        if(this.filterData ==null){
+          this.filterData = data.data;
         }
-        else if(data.data[length].payeeId == this.id){
-          this.balance = data.data[length].payeeDetail.vollate
-          console.log(this.balance)
+        {
+          if (this.filterData[0].id != data.data[0].id) {
+            console.log("update last transaction");
+            this.filterData.push(data.data[0]);
+            let length = data.data.length - 1;
+            console.log("lenght")
+            console.log(length)
+            if (data.data[length].payerId == this.id) {
+              this.balance = data.data[length].payerDetail.vollate
+              console.log(this.balance)
+            }
+            else if (data.data[length].payeeId == this.id) {
+              this.balance = data.data[length].payeeDetail.vollate
+              console.log(this.balance)
+            }
+            let temp = data.data;
+            this.filterData.forEach(element => {
+              temp.push(element);
+            });
+            this.filterData = temp;
+          }
         }
-        let temp = data.data;
-        this.filterData.forEach(element => {
-          temp.push(element);
-        });
-        this.filterData = temp;
-      }
 
     },
       error=>{
