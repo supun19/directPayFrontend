@@ -29,7 +29,7 @@ import { routing } from './user.routing';
 import {QrModule} from '../qr/qr.module';
 import {MerchantGuard} from "../security/merchant.guard";
 import {DetailComponent} from './useDetail/detail.component';
-
+import {UserRegisterComponent} from './register/userRegister.component'
 
 @NgModule({
   imports: [
@@ -49,7 +49,7 @@ import {DetailComponent} from './useDetail/detail.component';
   ],
   declarations: [
     UserComponent,UserListComponent,
-    DataFilterPipe,DetailComponent
+    DataFilterPipe,DetailComponent,UserRegisterComponent
 
 
 

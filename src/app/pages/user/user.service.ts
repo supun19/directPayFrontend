@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 import {Url} from "url";
 
 
-import {Merchant} from '../../class/merchant';
+import {User} from '../../class/User';
 
 import {AppSettings} from '../../class/AppSetting'
 
@@ -21,6 +21,7 @@ export class UserService {
   private userDetailByNicUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/user/detail/nic';
   private merchantLastTransactions = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/last';
   private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
+  private userRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/admin/user/register';
   constructor(private http: Http) { }
 
   userDetailByBrNumber(nic:any): Promise<any> {
@@ -96,6 +97,30 @@ export class UserService {
       }
 
     );
+  }
+
+  register(user:User): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      return this.http
+        .post(this.userRegisterUrl, JSON.stringify(user), {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
   }
 
 }

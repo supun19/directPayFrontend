@@ -5,6 +5,11 @@ import {MerchantService} from "../merchant.service";
 import {Merchant} from "../../../class/merchant";
 import {register} from "ts-node/dist";
 import {Address} from '../../../class/address'
+import { FileUploader } from 'ng2-file-upload';
+
+const URL = 'http://192.168.8.103:8000/merchant/uploadbr';
+
+
 @Component({
   selector: 'merchant-register',
   templateUrl: 'merchantRegister.component.html',
@@ -13,9 +18,13 @@ import {Address} from '../../../class/address'
 
 
 })
+
 export class MerchantRegisterComponent implements OnInit{
 
+  public uploader:FileUploader;
+  public itemAlias:string;
   public qrtext;
+  public pdf:any;
   private loading = false;
   isChecked: boolean = false;
 
@@ -33,6 +42,7 @@ export class MerchantRegisterComponent implements OnInit{
   //visibility
   registerForm = true;
   constructor(private merchantService:MerchantService) {
+
   }
 
   ngOnInit(){
@@ -47,7 +57,7 @@ export class MerchantRegisterComponent implements OnInit{
   onSubmit(): void {
 
     this.loading = true;
-
+    console.log();
     this.merchantService.register(this.merchant).then(res => {
         console.log(this.merchant)
         if (res.data!=null && res.data[0] != null) {
@@ -62,6 +72,8 @@ export class MerchantRegisterComponent implements OnInit{
           this.qr_code = true;
           this.registerForm =false;
           this.loading = false;
+
+          this.uploadPdf(this.merchantId);
         }
         else {
 
@@ -136,6 +148,22 @@ export class MerchantRegisterComponent implements OnInit{
     }
 
 
+  }
+  uploadPdf(id:string){
+
+    console.log(this.pdf);
+    this.merchantService.uploadBr(this.pdf,id).then(res => {
+
+
+      },
+      error => {
+
+      });
+
+
+  }
+  fileChangeEvent(event){
+    this.pdf =  event.target.files;
   }
 }
 

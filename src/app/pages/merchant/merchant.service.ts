@@ -26,6 +26,7 @@ export class MerchantService {
   private merchantDetailByBrNumberUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/details/brnumber';
   private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
   private merchantLastTransactions = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/last';
+  private brUploadUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/uploadbr';
   constructor(private http: Http) { }
 
 
@@ -216,6 +217,48 @@ export class MerchantService {
       }
 
     );
+  }
+
+  uploadBr(files:any,id:string){
+
+    return new Promise((resolve, reject) => {
+      var formData: any = new FormData();
+      var xhr = new XMLHttpRequest();
+      for(var i = 0; i < files.length; i++) {
+        formData.append("files", files[i], id);
+      }
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(xhr.response);
+          }
+        }
+      }
+      xhr.open("POST", this.brUploadUrl, true);
+      xhr.send(formData);
+
+      // return this.http
+      //   .post(this.brUploadUrl,JSON.stringify(formData),{headers:this.headers})
+      //   .toPromise()
+      //   .then(
+      //     response=>{
+      //       console.log(response.json())
+      //       resolve(response.json());
+      //     },
+      //     error=>{
+      //       console.log(error);
+      //       reject(error);
+      //     }
+      //   )
+      //   .catch((err)=>{
+      //     console.log(err);
+      //     reject(err);
+      //   });
+    });
+
+
   }
 
 

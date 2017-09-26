@@ -90,6 +90,17 @@ export const PAGES_MENU = [
 
           },
           {
+            path: 'register',
+            data: {
+              menu: {
+                title: 'Register',
+                icon: 'ion-arrow-up-a', // menu icon
+                hidden: false,
+              }
+            },
+
+          },
+          {
             path: 'list',
             data: {
               menu: {

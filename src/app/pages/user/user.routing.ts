@@ -7,6 +7,8 @@ import {DetailComponent} from './useDetail/detail.component'
 
 import {UserListComponent} from './userList/userlist.component';
 import {MerchantGuard} from "../security/merchant.guard";
+
+import {UserRegisterComponent} from './register/userRegister.component'
 const routes: Routes = [
   {
     path: '',
@@ -14,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'list', component: UserListComponent },
       { path: 'detail', component: DetailComponent },
+      { path: 'register', component: UserRegisterComponent },
 
     ]
   }

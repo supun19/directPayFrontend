@@ -32,7 +32,7 @@ import { routing } from './merchant.routing';
 import {QrModule} from '../qr/qr.module';
 import {MerchantGuard} from "../security/merchant.guard";
 
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 
 
@@ -50,7 +50,10 @@ import {MerchantGuard} from "../security/merchant.guard";
     HttpModule,
     HotTableModule,
     routing,
-    QrModule
+    QrModule,
+     FormsModule,
+    FileUploadModule
+
   ],
   declarations: [
     MerchantRegisterComponent,MerchantComponent,DetailComponent,
@@ -60,8 +63,10 @@ import {MerchantGuard} from "../security/merchant.guard";
 
 
 
+
   ],
-  providers:[MerchantGuard]
+  providers:[MerchantGuard],
+  exports: [FileUploadModule]
 
 })
 export class MerchantModule {}
