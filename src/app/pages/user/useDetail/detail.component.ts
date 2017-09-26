@@ -54,9 +54,9 @@ export class DetailComponent implements OnInit{
   getLastTransaction(){
     console.log("debug->userId : "+this.id);
     this.userService.getLastTransaction(this.id).then(data => {
-        if(this.filterData.length ==0){
+        if(this.filterData ==null){
           this.filterData = data.data;
-          this.balance = data.data[length].payerDetail.vollate
+          this.balance = data.data[0].payerDetail.vollate
         }
         {
           if (this.filterData[0].id != data.data[0].id) {

@@ -129,9 +129,6 @@
               <mfDefaultSorter by="payerVollate">User wallet</mfDefaultSorter>
             </th>
 
-            <th style="width: 10%">
-              <mfDefaultSorter by="commission">Commission</mfDefaultSorter>
-            </th>
 
           </tr>
           <!--tr>
@@ -154,14 +151,13 @@
             <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.lastName}}</td>
             <!--td (click)="showQrcode(item.payeeId)">{{item.payeeId}}</td-->
 
-            <td >{{item.dateTime.date |  date:'short'}}</td>
+            <td>{{item.dateTime.date |  date:'short'}}</td>
             <td>{{item.originalAmount}}</td>
             <td>{{item.payingAmount}}</td>
             <td>{{item.receivingAmount}}</td>
 
-            <td *ngIf="item.payerDetail.data[0].roles[0]=='user'">{{item.payerDetail.vollate}} LKR</td>
-            <td *ngIf="item.payeeDetail.data[0].roles[0]=='user'">{{item.payeeDetail.vollate}} LKR</td>
-            <td>{{item.commission}} LKR</td>
+            <td *ngIf="item.payerId==id">{{item.payerDetail.vollate}} LKR</td>
+            <td *ngIf="item.payeeId==id">{{item.payeeDetail.vollate}} LKR</td>
 
           </tr>
           </tbody>
