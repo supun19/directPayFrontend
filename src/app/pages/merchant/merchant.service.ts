@@ -27,6 +27,7 @@ export class MerchantService {
   private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
   private merchantLastTransactions = AppSettings.DIRECT_PAY_ENDPOINT+'/transactions/last';
   private brUploadUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/uploadbr';
+  private merchantUpdate = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/update/';
   constructor(private http: Http) { }
 
 
@@ -259,6 +260,29 @@ export class MerchantService {
     });
 
 
+  }
+  update(merchant:Merchant): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      return this.http
+        .post(this.merchantUpdate, JSON.stringify(merchant), {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
   }
 
 

@@ -23,6 +23,7 @@ import { DataFilterPipe } from './merchantlist/data-filter.pipe';
 
 
 import {MerchantListComponent} from './merchantlist/merchantlist.component';
+import {MerchantEditComponent} from './merchanrEdit/merchantEdit.component';
 
 
 import { QRCodeModule } from 'angular2-qrcode';
@@ -59,6 +60,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     MerchantRegisterComponent,MerchantComponent,DetailComponent,
     MerchantListComponent,
     DataFilterPipe,
+    MerchantEditComponent,
 
 
 

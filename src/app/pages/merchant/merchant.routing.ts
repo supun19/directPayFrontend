@@ -5,6 +5,7 @@ import { MerchantRegisterComponent } from './register/merchantRegister.component
 import {MerchantComponent} from "./merchant.component";
 
 import {DetailComponent} from './Detail/detail.component';
+import {MerchantEditComponent} from './merchanrEdit/merchantEdit.component';
 //merchant list
 
 import {MerchantListComponent} from './merchantlist/merchantlist.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'register', component: MerchantRegisterComponent,canActivate: [MerchantGuard] },
       { path: 'list', component: MerchantListComponent },
       { path: 'detail', component: DetailComponent },
+      { path: 'edit', component: MerchantEditComponent },
 
     ]
   }

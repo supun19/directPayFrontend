@@ -6,21 +6,19 @@ import {Merchant} from "../../../class/merchant";
 import {register} from "ts-node/dist";
 import {Address} from '../../../class/address'
 import { FileUploader } from 'ng2-file-upload';
-import {AppSettings} from "../../../class/AppSetting";
 
-const URL = AppSettings.DIRECT_PAY_ENDPOINT+'/merchant/uploadbr';
 
 
 @Component({
-  selector: 'merchant-register',
-  templateUrl: 'merchantRegister.component.html',
-  styleUrls: ['./merchantRegister.component.css'],
+  selector: 'merchant-edit',
+  templateUrl: 'merchantEdit.component.html',
+  styleUrls: ['merchantEdit.component.css'],
   providers:[MerchantService],
 
 
 })
 
-export class MerchantRegisterComponent implements OnInit{
+export class MerchantEditComponent implements OnInit{
 
   public uploader:FileUploader;
   public itemAlias:string;
@@ -42,6 +40,9 @@ export class MerchantRegisterComponent implements OnInit{
   ownpermission;
   //visibility
   registerForm = true;
+  merchantDetailByBrnumber:any;
+  merchantName:string = "11231";
+  private merchant_exit_from_brNumber = false;
   constructor(private merchantService:MerchantService) {
 
   }
@@ -59,7 +60,7 @@ export class MerchantRegisterComponent implements OnInit{
 
     this.loading = true;
     console.log();
-    this.merchantService.register(this.merchant).then(res => {
+    this.merchantService.update(this.merchant).then(res => {
         console.log(this.merchant)
         if (res.data!=null && res.data[0] != null) {
           /*this.merchant.merchantName =  res.data[0].merchantName;
@@ -73,8 +74,8 @@ export class MerchantRegisterComponent implements OnInit{
           this.qr_code = true;
           this.registerForm =false;
           this.loading = false;
-          console.log("merchatnId:"+this.merchantId);
-          this.uploadPdf(this.merchantId);
+
+
         }
         else {
 
@@ -94,6 +95,7 @@ export class MerchantRegisterComponent implements OnInit{
           if (res.data[0] != null) {
 
             this.merchant.merchantName = res.data[0].merchantName;
+            this.merchant.userName = res.data[0].username;
             this.merchant.brNumber = res.data[0].brNumber;
             this.merchant.phoneNumber = res.data[0].phoneNumber;
             this.merchant.merchantAccountNumber = res.data[0].merchantAccountNumber
@@ -102,6 +104,7 @@ export class MerchantRegisterComponent implements OnInit{
             this.merchant.address.locality = res.data[0].locality
             this.merchant.address.region = res.data[0].region
             this.merchantId = res.data[0].merchantId
+
             this.detail = true;
           }
           else {
@@ -150,21 +153,46 @@ export class MerchantRegisterComponent implements OnInit{
 
 
   }
-  uploadPdf(id:string){
 
-    console.log(this.pdf);
-    this.merchantService.uploadBr(this.pdf,id).then(res => {
+  searchMerchantByBrNumber(brNumber){
+    this.merchant_exit_from_brNumber = false;
+    this.loading = true;
+    console.log(brNumber);
+    this.merchantService.merchantDetailByBrNumber({"brNumber":brNumber}).then((data) => {
+
+      if(data.data != null){
+        if(data.data[0]!=null){
+          this.loading = false;
+
+          this.merchantDetailByBrnumber = data.data;
+          //this.merchantDetail=  JSON.stringify( data.data[0]);
+          this.merchant_exit_from_brNumber = true;
+          console.log("data");
+          console.log("userName:")
+          console.log(data.data[0].merchantName);
+          this.merchant.merchantName = data.data[0].merchantName;
+          this.merchant.merchantId =  data.data[0].merchantId;
+          this.merchant.brNumber = data.data[0].brNumber;
+          this.merchant.bank= data.data[0].bank;
+          this.merchant.branchCode= data.data[0].branchCode;
+          this.merchant.phoneNumber= data.data[0].phoneNumber;
+
+          let address = new Address(data.data[0].address.streetAddress,data.data[0].address.locality,data.data[0].address.region);
+          this.merchant.address= address;
+          this.merchant.merchantAccountNumber= data.data[0].merchantAccountNumber;
+          this.merchant.merchantEmail= data.data[0].merchantEmail;
+          this.merchant.tip= data.data[0].tip;
+          this.merchant.userName = data.data[0].username;
+          this.merchant.role = data.data[0].role;
 
 
-      },
-      error => {
+        }
+      }
+      else {
+        this.loading = false;
+      }
+    });
 
-      });
-
-
-  }
-  fileChangeEvent(event){
-    this.pdf =  event.target.files;
   }
 }
 
