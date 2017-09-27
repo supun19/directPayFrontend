@@ -59,8 +59,9 @@ export class DetailComponent implements OnInit{
       if(this.filterData.length ==0){
         this.filterData = data.data;
         console.log("data");
-        console.log(data.data);
-        this.balance = data.data[length].payeeDetail.vollate
+        console.log(this.user);
+        this.balance =this.user.otherdetail.vollate;
+
       }
       else {
         if (this.filterData[0].id != data.data[0].id) {
@@ -97,18 +98,20 @@ export class DetailComponent implements OnInit{
     console.log("debug->userId : "+this.id);
     this.merchantService.getLastTransactions(this.id).then(data => {
         this.filterData = data.data;
+        console.log(this.filterData)
 
-
-        let length = data.data.length-1;
-        console.log("lenght")
-        console.log(length)
-        if(data.data[length].payerId==this.id){
-          this.balance = data.data[length].payerDetail.vollate
-          console.log(this.balance)
-        }
-        else if(data.data[length].payeeId == this.id){
-          this.balance = data.data[length].payeeDetail.vollate
-          console.log(this.balance)
+          let length = data.data.length - 1;
+        if(length>-1) {
+          console.log("lenght")
+          console.log(length)
+          if (data.data[length].payerId == this.id) {
+            this.balance = data.data[length].payerDetail.vollate
+            console.log(this.balance)
+          }
+          else if (data.data[length].payeeId == this.id) {
+            this.balance = data.data[length].payeeDetail.vollate
+            console.log(this.balance)
+          }
         }
       },
       error=>{
