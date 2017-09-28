@@ -30,6 +30,7 @@ import {QrModule} from '../qr/qr.module';
 import {MerchantGuard} from "../security/merchant.guard";
 import {DetailComponent} from './useDetail/detail.component';
 import {UserRegisterComponent} from './register/userRegister.component'
+import {UserEditComponent} from './userEdit/userEdit.component'
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import {UserRegisterComponent} from './register/userRegister.component'
   ],
   declarations: [
     UserComponent,UserListComponent,
-    DataFilterPipe,DetailComponent,UserRegisterComponent
+    DataFilterPipe,DetailComponent,UserRegisterComponent,
+    UserEditComponent,
 
 
 

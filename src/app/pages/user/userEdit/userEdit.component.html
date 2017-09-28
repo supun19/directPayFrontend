@@ -1,0 +1,62 @@
+<div id="container">
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="text" class="form-control with-danger-addon" placeholder="Search By NIC" #nic>
+      <span class="input-group-btn">
+          <button class="btn btn-danger" type="button" (click)="searchUser(nic.value)">Go!</button>
+        </span>
+    </div>
+  </div>
+  <div class="row" *ngIf="registerForm" id="register_form">
+    <div class="col-md-12">
+      <div>
+        <ba-card title="Merchant REgister Form" baCardClass="with-scroll">
+          <form #merchantRegisterForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="row">
+              <div class="form-group col-sm-8">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" [(ngModel)] = "user.firstName" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" [(ngModel)] = "user.lastName" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="form-group col-sm-4">
+                <label for="accountNumber">Account Number</label>
+                <input type="text" class="form-control" id="accountNumber" placeholder="" [(ngModel)] = "user.accountNumber" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" placeholder="" [(ngModel)] = "user.phoneNumber" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+
+
+            <!--div class="checkbox">
+              <ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+            </div-->
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+        </ba-card>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading" id="loading" >
+    <img src="../../../../assets/images/loading.gif"/>
+
+  </div>
+  <div class="row">
+    <div *ngIf="qr_code" class="col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+      <qrcode [qrtext]="qrtext" [size]="400"></qrcode>
+    </div>
+    <!--<div *ngIf="detail" class="col-md-6 col-sm-6 col-xs-6">-->
+    <!--<detail [merchant]="merchant"></detail>-->
+    <!--</div>-->
+  </div>
+
+</div>

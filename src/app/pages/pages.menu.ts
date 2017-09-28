@@ -121,6 +121,18 @@ export const PAGES_MENU = [
               }
             }
           }
+          ,
+          {
+            path: 'edit',
+            data: {
+              menu: {
+                title: 'Edit',
+                icon: 'ion-arrow-up-a', // menu icon
+                hidden: false,
+              }
+            },
+
+          },
 
         ]
       },

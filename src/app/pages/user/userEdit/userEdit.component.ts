@@ -7,14 +7,14 @@ import {User} from "../../../class/User"
 import {register} from "ts-node/dist";
 import {Address} from '../../../class/address'
 @Component({
-  selector: 'user-register',
-  templateUrl: 'userRegister.component.html',
-  styleUrls: ['userRegister.component.css'],
+  selector: 'user-edit',
+  templateUrl: 'userEdit.component.html',
+  styleUrls: ['userEdit.component.css'],
   providers:[UserService],
 
 
 })
-export class UserRegisterComponent implements OnInit{
+export class UserEditComponent implements OnInit{
 
   public qrtext;
   private loading = false;
@@ -40,7 +40,7 @@ export class UserRegisterComponent implements OnInit{
     this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
     console.log("own permission")
     console.log(this.ownpermission.role);
-   //this.visibilityForRole(this.ownpermission[0].role);
+    //this.visibilityForRole(this.ownpermission[0].role);
 
 
   }
@@ -49,7 +49,7 @@ export class UserRegisterComponent implements OnInit{
 
     this.loading = true;
 
-    this.userService.register(this.user).then(res => {
+    this.userService.edit(this.user).then(res => {
         console.log(this.user)
         if (res.data!=null && res.data[0] != null) {
           /*this.merchant.merchantName =  res.data[0].merchantName;
@@ -108,6 +108,30 @@ export class UserRegisterComponent implements OnInit{
 
     }
 
+
+  }
+  searchUser(nic){
+
+    this.userService.userDetailByBrNumber(nic).then( (data)=>{
+
+      if(data.data != null){
+        console.log("User Detail =>"+data);
+        this.loading = false;
+        this.user.id = data.data[0]['userId']
+        this.user.nic = nic
+        this.user.firstName = data.data[0]['firstName']
+        this.user.lastName = data.data[0]['lastName']
+        this.user.accountNumber = data.data[0]['accountNumber']
+        this.user.phoneNumber = data.data[0]['phoneNumber']
+
+      }
+      else {
+        this.loading = false;
+      }
+
+      }
+
+    );
 
   }
 }
