@@ -6,6 +6,7 @@ import {Merchant} from "../../../class/merchant";
 import {register} from "ts-node/dist";
 import {Address} from '../../../class/address'
 import { FileUploader } from 'ng2-file-upload';
+import {LocalStorageService} from "ngx-webstorage";
 
 
 
@@ -31,7 +32,7 @@ export class MerchantEditComponent implements OnInit{
 
   merchant = new Merchant("-1","","","","","",this.address,"","",false,"","");
   merchantId="";
-  register = true;
+  search = true;
   qr_code =false;
   detail=false;
   requestDetail={"id":""};
@@ -43,15 +44,17 @@ export class MerchantEditComponent implements OnInit{
   merchantDetailByBrnumber:any;
   merchantName:string = "11231";
   private merchant_exit_from_brNumber = false;
-  constructor(private merchantService:MerchantService) {
+
+  constructor(private merchantService:MerchantService,private storage:LocalStorageService) {
 
   }
 
   ngOnInit(){
-    this.ownpermission = JSON.parse(localStorage.getItem("ownpermission"));
-    console.log("own permission")
-    console.log(this.ownpermission.role);
-   //this.visibilityForRole(this.ownpermission[0].role);
+    this.ownpermission = this.storage.retrieve('ownpermission');
+    console.log("own permission");
+    console.log(this.ownpermission);
+   this.visibilityForRole(this.ownpermission.role);
+   this.searchMerchantByBrNumber( this.storage.retrieve('user')['otherdetail']['brNumber']);
 
 
   }
@@ -126,27 +129,30 @@ export class MerchantEditComponent implements OnInit{
     switch (role){
       case "superAdmin" :
 
-        this.register = true;
+        this.search = true;
         break;
 
       case "admin" :
-        this.register = true;
+        this.search = true;
         break;
 
+      case "merchant":
+        this.search = false;
+
       case "manager" :
-        this.register = true;
+        this.search = false;
         break;
 
       case "supervisor" :
-        this.register = false;
+        this.search = false;
         break;
 
       case "operator" :
-        this.register = false;
+        this.search = false;
         break;
 
       case "customerSupport" :
-        this.register = false;
+        this.search = false;
         break;
 
     }

@@ -55,7 +55,7 @@ export class DetailComponent implements OnInit{
   getLastTransaction(){
     console.log("debug->userId : "+this.id);
     this.merchantService.getLastTransaction(this.id).then(data => {
-      console.log(this.filterData.length);
+      //console.log(this.filterData.length);
       if(this.filterData.length ==0){
         this.filterData = data.data;
         console.log("data");
