@@ -77,6 +77,7 @@ export class LoginComponent {
             }
             //this.setPermission();
             if(this.filterdata.role == "merchant"){
+
               this.router.navigate(['/pages/merchant/detail']);
             }
             else if(this.filterdata.role == "user"){
