@@ -30,7 +30,8 @@ export const routes: Routes = [
       { path: 'user', loadChildren: './user/user.module#UserModule', },
       { path: 'transaction', loadChildren: './transaction/transaction.module#TransactionModule' },
       { path: 'report', loadChildren: './report/report.module#ReportModule' },
-      { path: 'setting', loadChildren: './setting/setting.module#SettingModule',canActivate: [SettingGuard] }
+      { path: 'setting', loadChildren: './setting/setting.module#SettingModule',canActivate: [SettingGuard] },
+      { path: 'adminFeature', loadChildren: './adminFeature/adminFeature.module#AdminFeatureModule' }
 
     ]
   }

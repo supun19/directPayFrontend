@@ -1,6 +1,6 @@
 import {AuthGuard} from "./security/auth.guard";
 import {Permission} from "../class/permission";
-import {StorageService} from "./storage.service"
+import {StorageService} from "./storage.service";
 
 
 export const PAGES_MENU = [
@@ -37,11 +37,10 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Detail',
-                icon: 'ion-arrow-up-a', // menu icon
+                icon: 'ion-grid', // menu icon
                 hidden: false,
               }
-            },
-
+            }
           },
           {
             path: 'register',
@@ -59,7 +58,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'List',
-                icon: 'ion-ios-list', // menu icon
+                icon: 'ion-android-list', // menu icon
               }
             }
           },
@@ -68,7 +67,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Edit',
-                icon: 'ion-arrow-up-a', // menu icon
+                icon: 'ion-edit',
                 hidden: false,
               }
             },
@@ -94,11 +93,10 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Detail',
-                icon: 'ion-arrow-up-a', // menu icon
+                icon: 'ion-grid', // menu icon
                 hidden: false,
               }
             }
-
           },
           {
             path: 'register',
@@ -127,7 +125,7 @@ export const PAGES_MENU = [
             data: {
               menu: {
                 title: 'Edit',
-                icon: 'ion-arrow-up-a', // menu icon
+                icon: 'ion-edit', // menu icon
                 hidden: false,
               }
             },
@@ -176,7 +174,7 @@ export const PAGES_MENU = [
             path: 'agent',
             data: {
               menu: {
-                title: 'AgentReport',
+                title: 'Agent Report',
                 icon: 'ion-briefcase', // menu icon
               }
             }
@@ -185,7 +183,7 @@ export const PAGES_MENU = [
             path: 'user',
             data: {
               menu: {
-                title: 'UserReport',
+                title: 'User Report',
                 icon: 'ion-person', // menu icon
               }
             }
@@ -216,6 +214,32 @@ export const PAGES_MENU = [
           },
         ]
       },
+
+      {
+        path: 'adminFeature',
+        data: {
+          menu: {
+            title: 'Admin Feature',
+            icon: 'ion-settings',
+            selected: false,
+            expanded: false,
+            order: 0,
+            hidden: false,
+          }
+        },
+        children: [
+          {
+            path: 'bankDetail',
+            data: {
+              menu: {
+                title: 'Bank Detail',
+                icon: 'ion-android-document',
+              }
+            }
+          },
+        ]
+      }
+
      /* {
         path: 'editors',
         data: {
