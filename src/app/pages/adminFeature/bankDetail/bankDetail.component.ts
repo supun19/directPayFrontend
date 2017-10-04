@@ -6,7 +6,7 @@ import {User} from "../../../class/User"
 
 import {register} from "ts-node/dist";
 import {Address} from '../../../class/address'
-import {bankDetail} from "../../../class/bankDetail";
+import {BankUser} from '../../../class/bankUser';
 @Component({
   selector: 'bank-detail',
   templateUrl: 'bankDetail.component.html',
@@ -18,7 +18,7 @@ import {bankDetail} from "../../../class/bankDetail";
 export class BankDetailComponent implements OnInit{
 
 
-    bankDetail:bankDetail;
+  bankUser:BankUser;
   private loading = false;
 
 
@@ -26,13 +26,14 @@ export class BankDetailComponent implements OnInit{
   }
 
   ngOnInit(){
-
+        this.bankUser = new BankUser("","","","");
   }
 
 
   onSubmit(): void {
     this.loading = true;
-    this.adminFeatureService.bankRegister(this.bankDetail).then(res => {
+    this.adminFeatureService.bankRegister(this.bankUser).then(res => {
+      this.loading = false;
         if (res.data!=null && res.data[0] != null) {
           console.log(res)
         }
