@@ -7,21 +7,18 @@ import {AppSettings} from '../../class/AppSetting'
 export class AdminFeatureService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private userDetailByNicUrl = AppSettings.DIRECT_PAY_ENDPOINT + '/user/detail/nic';
-  private merchantLastTransactions = AppSettings.DIRECT_PAY_ENDPOINT + '/transactions/last';
-  private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT + '/transaction/last';
-  private userRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT + '/admin/user/register';
-  private userUpdate = AppSettings.DIRECT_PAY_ENDPOINT + '/user/update';
+  private bankRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT + '/admin/adminFeature/bankDetail';
+
 
   constructor(private http: Http) {
   }
 
 
-  userDetailByBrNumber(nic: any): Promise<any> {
+  bankRegister(bankdetail: any): Promise<any> {
 
     return new Promise((resolve, reject) => {
       return this.http
-        .post(this.userDetailByNicUrl, JSON.stringify({nic: nic}), {headers: this.headers})
+        .post(this.bankRegisterUrl, JSON.stringify(bankdetail), {headers: this.headers})
         .toPromise()
         .then(response => {
           //noinspection TypeScriptUnresolvedFunction
