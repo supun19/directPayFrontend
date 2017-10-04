@@ -165,6 +165,7 @@ export class MerchantRegisterComponent implements OnInit{
   }
   fileChangeEvent(event){
     this.pdf =  event.target.files;
+    console.log(this.pdf);
   }
 }
 
