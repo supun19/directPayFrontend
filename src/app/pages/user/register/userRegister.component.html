@@ -30,7 +30,29 @@
               <input type="text" class="form-control" id="phoneNumber" placeholder="" [(ngModel)] = "user.phoneNumber" [ngModelOptions]="{standalone: true}">
             </div>
           </div>
-
+          <!--Profile picture upload-->
+          <div class="form-group">
+            <div class="form-group col-sm-4">
+              <ba-card bacardclass="with-scroll" cardtitle="Picture Uploader"><div bacardblur="" zoom-in="" class="animated fadeIn card with-scroll">
+                <div class="card-header clearfix">
+                  <h3 class="card-title" translate="">Picture Uploader</h3>
+                </div>
+                <div class="card-body">
+                  <ba-picture-uploader _nghost-c21="">
+                    <div _ngcontent-c21="" class="picture-group">
+                      <div _ngcontent-c21="" class="picture-wrapper">
+                        <img _ngcontent-c21="" src="assets/img/app/profile/Nasta.png">
+                      </div>
+                      <i _ngcontent-c21="" class="ion-ios-close-outline"></i>
+                      <a _ngcontent-c21="" class="change-picture" href="">Change profile Picture</a>
+                      <input _ngcontent-c21="" hidden="true" ngfileselect="" type="file">
+                    </div>
+                  </ba-picture-uploader>
+                </div>
+              </div>
+              </ba-card>
+            </div>
+          </div>
 
           <!--div class="checkbox">
             <ba-checkbox [(ngModel)]="isChecked" [label]="'Check me out'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
