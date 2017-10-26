@@ -55,18 +55,57 @@
             <input type="text" class="form-control" id="state" placeholder="" [(ngModel)] = "merchant.address.region" [ngModelOptions]="{standalone: true}">
           </div>
 
+          <!--Profile picture upload-->
           <div class="form-group">
-
-
-
-              <input type="file" id="pdf" name="attachmentName" (change)="fileChangeEvent($event)"  style="display: none">
-
-              <label for="pdf" class="ui icon button">Attach Your BR Here  <i class="material-icons">attachment</i></label>
-            <br>
-            <div *ngIf="pdf">{{pdf[0].name}} </div>
-
+            <div class="form-group col-sm-4">
+            <ba-card bacardclass="with-scroll" cardtitle="Picture Uploader"><div bacardblur="" zoom-in="" class="animated fadeIn card with-scroll">
+              <div class="card-header clearfix">
+              <h3 class="card-title" translate="">Picture Uploader</h3>
+              </div>
+              <div class="card-body">
+                <ba-picture-uploader _nghost-c21="">
+                  <div _ngcontent-c21="" class="picture-group">
+                  <div _ngcontent-c21="" class="picture-wrapper">
+                  <img _ngcontent-c21="" src="assets/img/app/profile/Nasta.png">
+                  </div>
+                  <i _ngcontent-c21="" class="ion-ios-close-outline"></i>
+                  <a _ngcontent-c21="" class="change-picture" href="">Change profile Picture</a>
+                  <input _ngcontent-c21="" hidden="true" ngfileselect="" type="file">
+                  </div>
+                </ba-picture-uploader>
+              </div>
+            </div>
+            </ba-card>
+          </div>
           </div>
 
+          <!--BR upload-->
+          <div class="form-group">
+            <div class="form-group col-sm-6">
+              <ba-card bacardclass="with-scroll" cardtitle="File Uploader">
+                <div bacardblur="" zoom-in="" class="animated fadeIn card with-scroll">
+                <div class="card-header clearfix">
+                <h3 class="card-title" translate="">Attach Your BR Here</h3>
+                </div>
+                <div class="card-body">
+                  <ba-file-uploader _nghost-c22="">
+                    <input _ngcontent-c22="" hidden="true" ngfileselect="" type="file">
+                    <div _ngcontent-c22="" class="input-group">
+                      <input _ngcontent-c22="" class="form-control" readonly="" type="text">
+                      <span _ngcontent-c22="" class="input-group-btn">
+                      <button _ngcontent-c22="" class="btn btn-success" type="button">Upload</button>
+                      </span>
+                    </div>
+                  </ba-file-uploader>
+                </div>
+                </div>
+              </ba-card>
+            </div>
+            <!--<input type="file" id="pdf" name="attachmentName" (change)="fileChangeEvent($event)"  style="display: none">-->
+            <!--<label for="pdf" class="ui icon button">Attach Your BR Here  <i class="material-icons">attachment</i></label>-->
+            <!--<br>-->
+            <!--<div *ngIf="pdf">{{pdf[0].name}} </div>-->
+          </div>
           <div class="form-group">
             <label><ba-checkbox class="pull-left" id="merchantTip" [(ngModel)]="merchant.tip" [ngModelOptions]="{standalone: true}"></ba-checkbox> Tip Enable</label>
 
