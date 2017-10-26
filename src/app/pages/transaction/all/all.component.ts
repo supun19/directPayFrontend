@@ -315,18 +315,20 @@ export class AllComponent implements OnInit{
     console.log("debug->userId : "+this.id);
     this.trasaction.getLastTransactions().then(data => {
         this.filterdata = data.data;
-        console.log(data.data[0].id);
+        if(this.filterdata.length>0) {
+          console.log(data.data[0].id);
 
-        let length = data.data.length-1;
-        console.log("lenght")
-        console.log(length)
-        if(data.data[length].payerId==this.id){
-          this.balance = data.data[length].payerDetail.vollate
-          console.log(this.balance)
-        }
-        else if(data.data[length].payeeId == this.id){
-          this.balance = data.data[length].payeeDetail.vollate
-          console.log(this.balance)
+          let length = data.data.length - 1;
+          console.log("lenght")
+          console.log(length)
+          if (data.data[length].payerId == this.id) {
+            this.balance = data.data[length].payerDetail.vollate
+            console.log(this.balance)
+          }
+          else if (data.data[length].payeeId == this.id) {
+            this.balance = data.data[length].payeeDetail.vollate
+            console.log(this.balance)
+          }
         }
       },
 
