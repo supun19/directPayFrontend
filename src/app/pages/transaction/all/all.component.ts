@@ -283,7 +283,7 @@ export class AllComponent implements OnInit{
   getLastTransaction(){
 
     this.trasaction.getLastTransaction().then(data => {
-        if(this.filterdata[0].id != data.data[0].id){
+        if(this.filterdata.length>0 && this.filterdata[0].id != data.data[0].id){
           console.log("update last transaction");
           this.filterdata.push(data.data[0]);
 
