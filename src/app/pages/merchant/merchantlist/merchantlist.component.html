@@ -20,9 +20,12 @@
     </div>
     <div *ngIf="vollate" class="col-md-4">
       <div class="input-group">
-        <input type="text" [(ngModel)]="merchantDetailByBrnumber[0].vollate" class="form-control with-danger-addon" placeholder="Search for..." #vollate>
         <span class="input-group-btn">
-          <button class="btn btn-primary" type="button" (click)="updateVollate()">Change Vollate</button>
+          <button class="btn btn-primary" type="button" (click)="decreaseVollate()">-</button>
+        </span>
+        <input type="text" [(ngModel)]="changeVollate" class="form-control with-danger-addon" placeholder="add vollate" #vollate>
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" (click)="increaseVollate()">+</button>
         </span>
       </div>
     </div>

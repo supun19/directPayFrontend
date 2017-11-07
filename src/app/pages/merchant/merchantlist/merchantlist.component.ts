@@ -31,6 +31,7 @@ export class MerchantListComponent implements OnInit{
 
   merchantDetail;
   vollate:any = false;
+  changeVollate:any;
 
   merchantDetailByBrnumber:any;
   merchantName:string = "11231";
@@ -171,6 +172,16 @@ export class MerchantListComponent implements OnInit{
       }
     });
 
+  }
+  decreaseVollate(){
+    this.merchantDetailByBrnumber[0].vollate = parseFloat(this.merchantDetailByBrnumber[0].vollate)-parseFloat(this.changeVollate);
+    this.updateVollate();
+  }
+  increaseVollate(){
+    console.log("increase vollate");
+    this.merchantDetailByBrnumber[0].vollate = parseFloat(this.merchantDetailByBrnumber[0].vollate)+parseFloat(this.changeVollate);
+    console.log(this.merchantDetailByBrnumber[0].vollate);
+    this.updateVollate();
   }
 
 

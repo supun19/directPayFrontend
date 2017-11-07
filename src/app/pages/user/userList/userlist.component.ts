@@ -26,6 +26,7 @@ export class UserListComponent implements OnInit{
 
   merchantDetail;
   vollate:any = false;
+  changeVollate:any;
 
   public userDetailByNic;
   private merchant_exit_from_brNumber = false;
@@ -94,6 +95,16 @@ export class UserListComponent implements OnInit{
       }
     });
 
+  }
+  decreaseVollate(){
+    this.userDetailByNic[0].vollate = parseFloat(this.userDetailByNic[0].vollate)-parseFloat(this.changeVollate);
+    this.updateVollate();
+  }
+  increaseVollate(){
+    console.log("increase vollate");
+    this.userDetailByNic[0].vollate = parseFloat(this.userDetailByNic[0].vollate)+parseFloat(this.changeVollate);
+    console.log(this.userDetailByNic[0].vollate);
+    this.updateVollate();
   }
 
 
