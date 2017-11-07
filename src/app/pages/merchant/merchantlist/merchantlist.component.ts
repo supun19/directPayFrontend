@@ -30,7 +30,7 @@ export class MerchantListComponent implements OnInit{
   role = "merchant";
 
   merchantDetail;
-
+  vollate:any = false;
 
   merchantDetailByBrnumber:any;
   merchantName:string = "11231";
@@ -107,7 +107,7 @@ export class MerchantListComponent implements OnInit{
             console.log(this.data);
         if(data.data[0]!=null){
           this.loading = false;
-
+          this.vollate = true;
           this.merchantDetailByBrnumber = data.data;
           //this.merchantDetail=  JSON.stringify( data.data[0]);
           this.merchant_exit_from_brNumber = true;
@@ -134,7 +134,7 @@ export class MerchantListComponent implements OnInit{
         console.log(this.data);
         if(data.data[0]!=null){
           this.loading = false;
-
+          this.vollate = true;
           this.merchantDetailByBrnumber = data.data;
           //this.merchantDetail=  JSON.stringify( data.data[0]);
           this.merchant_exit_from_brNumber = true;
@@ -151,7 +151,27 @@ export class MerchantListComponent implements OnInit{
 
   }
 
+  updateVollate(){
+    this.loading = true;
+    console.log(this.merchantDetailByBrnumber[0]);
+    this.merchant.updateVollate(this.merchantDetailByBrnumber[0]).then((data) => {
 
+      if(data.data != null){
+        this.data = data.data;
+        console.log(this.data);
+
+        this.loading = false;
+
+        this.merchantDetailByBrnumber = data.data;
+        this.vollate = true;
+
+      }
+      else {
+        this.loading = false;
+      }
+    });
+
+  }
 
 
 }

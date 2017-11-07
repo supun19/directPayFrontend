@@ -75,6 +75,7 @@ export class UserListComponent implements OnInit{
     });
   }
   updateVollate(){
+    this.loading = true;
     console.log(this.userDetailByNic[0]);
     this.user.updateVolaate(this.userDetailByNic[0]).then((data) => {
 
