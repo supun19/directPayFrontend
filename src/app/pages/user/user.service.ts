@@ -23,6 +23,7 @@ export class UserService {
   private merchantLastTransaction = AppSettings.DIRECT_PAY_ENDPOINT+'/transaction/last';
   private userRegisterUrl = AppSettings.DIRECT_PAY_ENDPOINT+'/admin/user/register';
   private userUpdate = AppSettings.DIRECT_PAY_ENDPOINT+'/user/update';
+  private vollateUpdate = AppSettings.DIRECT_PAY_ENDPOINT+'/user/update/vollate';
   constructor(private http: Http) { }
 
   userDetailByBrNumber(nic:any): Promise<any> {
@@ -129,6 +130,30 @@ export class UserService {
     return new Promise((resolve, reject) => {
       return this.http
         .post(this.userUpdate, JSON.stringify(user), {headers: this.headers})
+        .toPromise()
+        .then(response => {
+          //noinspection TypeScriptUnresolvedFunction
+          console.log(response.json());
+
+
+          resolve(response.json());
+        }, error => {
+          console.log(error);
+          reject(error);
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err);
+        });
+
+    });
+  }
+
+  updateVolaate(user:User): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      return this.http
+        .post(this.vollateUpdate, JSON.stringify(user), {headers: this.headers})
         .toPromise()
         .then(response => {
           //noinspection TypeScriptUnresolvedFunction

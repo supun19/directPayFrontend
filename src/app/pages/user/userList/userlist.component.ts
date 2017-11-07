@@ -25,6 +25,7 @@ export class UserListComponent implements OnInit{
   role = "merchant";
 
   merchantDetail;
+  vollate:any = false;
 
   public userDetailByNic;
   private merchant_exit_from_brNumber = false;
@@ -65,7 +66,7 @@ export class UserListComponent implements OnInit{
         this.loading = false;
 
           this.userDetailByNic = data.data;
-
+          this.vollate = true;
 
       }
       else {
@@ -73,7 +74,26 @@ export class UserListComponent implements OnInit{
       }
     });
   }
+  updateVollate(){
+    console.log(this.userDetailByNic[0]);
+    this.user.updateVolaate(this.userDetailByNic[0]).then((data) => {
 
+      if(data.data != null){
+        this.data = data.data;
+        console.log(this.data);
+
+        this.loading = false;
+
+        this.userDetailByNic = data.data;
+        this.vollate = true;
+
+      }
+      else {
+        this.loading = false;
+      }
+    });
+
+  }
 
 
 }
