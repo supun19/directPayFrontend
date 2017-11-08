@@ -36,6 +36,8 @@ export class AllComponent implements OnInit{
   infomassage =""
   errormassage=""
   type="";
+  //permission
+  ownpermission;
 
 
   //selectedDate = "2017-09-11";
@@ -72,6 +74,9 @@ export class AllComponent implements OnInit{
 
     this.userblock();
     this.initiateDate();
+    this.ownpermission = this.storage.retrieve('ownpermission');
+    console.log("own permission");
+    console.log(this.ownpermission);
     // this.data = this.userService.getData();
     /*this.users = this.userService.getUsersId();
      this.userService.getData().then((data) => {
@@ -185,12 +190,12 @@ export class AllComponent implements OnInit{
     console.log(this.fromdate);
     console.log(this.todate);
     let param;
-    // if(this.id==null){
+    if(this.id==null || this.ownpermission.role =='admin'){
       param = {"fromDate":this.fromdate,"toDate":this.todate};
-    // }
-    // else {
-    //   param = {"fromDate":this.fromdate,"toDate":this.todate,"userId":this.id};
-    // }
+    }
+    else {
+      param = {"fromDate":this.fromdate,"toDate":this.todate,"userId":this.id};
+    }
     this.trasaction.getTransactionByDateToDate(param).then((data) => {
 
       if(data.data.length==0){
