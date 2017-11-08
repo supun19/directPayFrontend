@@ -185,12 +185,12 @@ export class AllComponent implements OnInit{
     console.log(this.fromdate);
     console.log(this.todate);
     let param;
-    if(this.id==null){
+    // if(this.id==null){
       param = {"fromDate":this.fromdate,"toDate":this.todate};
-    }
-    else {
-      param = {"fromDate":this.fromdate,"toDate":this.todate,"userId":this.id};
-    }
+    // }
+    // else {
+    //   param = {"fromDate":this.fromdate,"toDate":this.todate,"userId":this.id};
+    // }
     this.trasaction.getTransactionByDateToDate(param).then((data) => {
 
       if(data.data.length==0){

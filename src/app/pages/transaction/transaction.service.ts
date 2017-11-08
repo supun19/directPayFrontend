@@ -15,6 +15,8 @@ export class TransactionService {
   //private merchantListUrl = 'http://192.168.8.100/merchant/list';
   constructor(private http: Http) { }
   getTransactionByDateToDate(param): Promise<any> {
+    console.log(param);
+    console.log("data between")
     return new Promise((resolve, reject) => {
       return this.http
         .post(this.urlTransactionList,JSON.stringify(param), {headers: this.headers})
